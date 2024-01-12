@@ -45,17 +45,12 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
 
         if (tableAnchor != null)
         {
-            Vector3 offsetY = new Vector3(0, tableVolume.Height * 0.5f, 0);
+            //Vector3 offsetY = new Vector3(0, tableVolume.Height * 0.5f, 0);
+            Vector3 offsetY = Vector3.zero;
 
-
-            offsetY = Vector3.zero;
             Vector3 positionToSpawn = tableVolume.transform.position + offsetY;
 
             Instantiate(prefabToSpawn, positionToSpawn, Quaternion.identity);       // TODO: rotation, in front of the player.
         }
-
-
     }
-
-
 }
