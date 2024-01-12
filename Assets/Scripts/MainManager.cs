@@ -7,8 +7,6 @@ public class MainManager : MonoBehaviour
 {
     public static MainManager Instance;
 
-    
-    
     private int currentExerciceID = 0;
 
 
@@ -17,11 +15,12 @@ public class MainManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
+            Debug.Log("[MainManager] An instance of Main Manager already exist. Destroying new one.");
             Destroy(gameObject);
-            Debug.LogError("[MainManager] An instance of Main Manager already exist!");
         }
     }
 
@@ -29,5 +28,5 @@ public class MainManager : MonoBehaviour
     public void SetCurrentExerciceID(int currentExerciceID) { this.currentExerciceID = currentExerciceID; }
 
 
-    
+
 }
