@@ -19,14 +19,14 @@ public class HandMenuBehaviour : MonoBehaviour
     [SerializeField] private OVRSkeleton ovrSkeletonRightHand;
     [Space(20)]
     [SerializeField] private Toggle[] exercicesToggles;
-
+    [Space(20)]
+    [SerializeField] private Vector3 offset;
 
     private ActiveStateSelector currentHandDisplayingMenu = null;
 
     private OVRBone leftThumbTip;
     private OVRBone rightThumbTip;
 
-    private Vector3 offset = Vector3.up * 0.08f + Vector3.forward * 0.07f;
 
     private IEnumerator Start()
     {
@@ -54,6 +54,12 @@ public class HandMenuBehaviour : MonoBehaviour
     }
 
     private void Update()
+    {
+        ChangeMenuPosition();
+    }
+
+
+    private void ChangeMenuPosition()
     {
         if (leftThumbTip != null && rightThumbTip != null)
         {
@@ -123,7 +129,7 @@ public class HandMenuBehaviour : MonoBehaviour
             return;
         }
 
-
+        currentHandDisplayingMenu = ass;
 
         if (ass == menuHandPoseLeft)
         {
@@ -131,6 +137,7 @@ public class HandMenuBehaviour : MonoBehaviour
 
             //transform.position = leftThumbTip.Transform.position + offset;
 
+            ChangeMenuPosition();
             DisplayMainMenu();
         }
         else if (ass == menuHandPoseRight)
@@ -139,10 +146,9 @@ public class HandMenuBehaviour : MonoBehaviour
 
             //transform.position = rightThumbTip.Transform.position + offset;
 
+            ChangeMenuPosition();
             DisplayMainMenu();
         }
-
-        currentHandDisplayingMenu = ass;
     }
 
     public void MenuHandPoseUnselected(ActiveStateSelector ass)
