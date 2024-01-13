@@ -7,11 +7,9 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
 {
     [SerializeField] private OVRSceneManager ovrSceneManager;
 
-    [SerializeField] private GameObject prefabToSpawn;
-
-    private OVRSceneAnchor tableAnchor;
-
     private OVRSceneVolume tableVolume;
+
+    public enum AnchorTypes { TABLE, WALL, FLOOR, CEILING }
 
     private void Awake()
     {
@@ -29,11 +27,10 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
 
             if (cla != null)
             {
-                Debug.Log("[SpawnObjectOnSceneAnchor] OVRSemanticClassification found on scene anchor.");
+                //Debug.Log("[SpawnObjectOnSceneAnchor] OVRSemanticClassification found on scene anchor.");
 
                 if (cla.Contains("TABLE") || cla.Contains("DESK"))
                 {
-                    tableAnchor = sceneAnchors[i];
                     tableVolume = sceneAnchors[i].transform.GetComponent<OVRSceneVolume>();
 
                     Debug.Log("[SpawnObjectOnSceneAnchor] Table or desk found.");
@@ -42,15 +39,19 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
                 }
             }
         }
+    }
 
-        if (tableAnchor != null)
+    public GameObject SpawnObject(GameObject obj, AnchorTypes anchorTypes)
+    {
+        GameObject result = null;
+
+        if (anchorTypes == AnchorTypes.TABLE && tableVolume != null)
         {
-            //Vector3 offsetY = new Vector3(0, tableVolume.Height * 0.5f, 0);
             Vector3 offsetY = Vector3.zero;
-
             Vector3 positionToSpawn = tableVolume.transform.position + offsetY;
-
-            Instantiate(prefabToSpawn, positionToSpawn, Quaternion.identity);       // TODO: rotation, in front of the player.
+            result = Instantiate(obj, positionToSpawn, tableVolume.transform.rotation);       // TODO: for rotation, verify that it is in front of the player.
         }
+
+        return result;
     }
 }

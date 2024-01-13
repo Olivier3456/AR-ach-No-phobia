@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/AR-ach-No-phobia Scenes/3. MainMenu + Scene + Passthrough.unity
+    path: Assets/Scenes/AR-ach-No-phobia Scenes/3. Hand Menu + Scene + Passthrough.unity
     guid: 7851a06bbe3b2c04390896706d8a5365
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 3cb75574dec8de04db87fc240bc68aff,

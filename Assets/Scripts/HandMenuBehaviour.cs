@@ -1,16 +1,21 @@
 using Oculus.Interaction;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.XR;
 
 public class HandMenuBehaviour : MonoBehaviour
 {
-    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject noExerciceMainMenu;
+    [SerializeField] private GameObject exerciceMainMenu;
+    [SerializeField] private GameObject quitConfirmationMenu;
     [SerializeField] private GameObject levelsChoiceMenu;
     [SerializeField] private GameObject settingsMenu;
+    [Space(10)]
+    [SerializeField] private GameObject previousButton;
+    [SerializeField] private GameObject nextButton;
     [Space(20)]
     [SerializeField] private ActiveStateSelector menuHandPoseLeft;
     [SerializeField] private ActiveStateSelector menuHandPoseRight;
@@ -20,13 +25,19 @@ public class HandMenuBehaviour : MonoBehaviour
     [Space(20)]
     [SerializeField] private Toggle[] exercicesToggles;
     [Space(20)]
-    [SerializeField] private Vector3 offset;
+    [SerializeField] private Vector3 offsetForRightHand;
+    private Vector3 offsetForLeftHand;
 
     private ActiveStateSelector currentHandDisplayingMenu = null;
 
     private OVRBone leftThumbTip;
     private OVRBone rightThumbTip;
 
+
+    private void Awake()
+    {
+        offsetForLeftHand = new Vector3(-offsetForRightHand.x, offsetForRightHand.y, offsetForRightHand.z);
+    }
 
     private IEnumerator Start()
     {
@@ -55,48 +66,100 @@ public class HandMenuBehaviour : MonoBehaviour
 
     private void Update()
     {
-        ChangeMenuPosition();
+        UpdateMenuPositionAndRotation();
     }
 
 
-    private void ChangeMenuPosition()
+    private void UpdateMenuPositionAndRotation()
     {
-        if (leftThumbTip != null && rightThumbTip != null)
+        if (currentHandDisplayingMenu != null && leftThumbTip != null && rightThumbTip != null)
         {
+            Vector3 direction = transform.position - Camera.main.transform.position;
+            direction.y = 0;
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            Vector3 adjustedOffset;
+
             if (currentHandDisplayingMenu == menuHandPoseLeft)
             {
-                transform.position = leftThumbTip.Transform.position + offset;
+                adjustedOffset = Quaternion.Euler(0, rotation.eulerAngles.y, 0) * offsetForLeftHand;
+                transform.position = leftThumbTip.Transform.position + adjustedOffset;
             }
             else if (currentHandDisplayingMenu == menuHandPoseRight)
             {
-                transform.position = rightThumbTip.Transform.position + offset;
+                adjustedOffset = Quaternion.Euler(0, rotation.eulerAngles.y, 0) * offsetForRightHand;
+                transform.position = rightThumbTip.Transform.position + adjustedOffset;
             }
+
+            transform.rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
         }
     }
 
 
-
-    public void DisplayMainMenu()
+    public void DisplayQuitConfirmationMenu()
     {
-        levelsChoiceMenu.SetActive(false);
-        //settingsMenu.SetActive(false);      // TODO
+        HideAllMenus(false);
+        quitConfirmationMenu.SetActive(true);
+    }
 
-        mainMenu.SetActive(true);
+
+
+    public void DisplayActualMainMenu()
+    {
+        HideAllMenus(false);
+
+        if (MainManager.Instance.GetCurrentExerciceID() == 0)
+        {
+            noExerciceMainMenu.SetActive(true);
+        }
+        else
+        {
+            exerciceMainMenu.SetActive(true);
+        }
+
+        DisplayOrHidePreviousAndNextButtons();
+    }
+
+
+    public void DisplayOrHidePreviousAndNextButtons()
+    {
+        if (MainManager.Instance.GetCurrentExerciceID() == 1 && MainManager.Instance.GetImagesPanel() != null && !MainManager.Instance.GetImagesPanel().IsFirstSprite())
+        {
+            previousButton.SetActive(true);
+        }
+        else
+        {
+            previousButton.SetActive(false);
+        }
+
+        if (MainManager.Instance.GetCurrentExerciceID() == 1 && MainManager.Instance.GetImagesPanel() != null && !MainManager.Instance.GetImagesPanel().IsLastSprite())
+        {
+            nextButton.SetActive(true);
+        }
+        else
+        {
+            nextButton.SetActive(false);
+        }
     }
 
 
     public void DisplayLevelsChoiceMenu()
     {
-        mainMenu.SetActive(false);
-        //settingsMenu.SetActive(false);      // TODO
-
+        HideAllMenus(false);
         levelsChoiceMenu.SetActive(true);
     }
 
-    public void HideMenu()
+    public void HideAllMenus(bool isMenuDisappearing)
     {
-        mainMenu.SetActive(false);
+        noExerciceMainMenu.SetActive(false);
+        settingsMenu.SetActive(false);      // TODO
         levelsChoiceMenu.SetActive(false);
+        exerciceMainMenu.SetActive(false);
+        quitConfirmationMenu.SetActive(false);
+
+        if (isMenuDisappearing)
+        {
+            currentHandDisplayingMenu = null;
+        }
     }
 
 
@@ -112,7 +175,7 @@ public class HandMenuBehaviour : MonoBehaviour
         {
             if (exercicesToggles[i].isOn)
             {
-                MainManager.Instance.SetCurrentExerciceID(i + 1);
+                MainManager.Instance.SetCurrentChosenExerciceID(i + 1);
                 Debug.Log($"[HandMenuBehaviour] Exercice chosen: exercice {i + 1}.");
                 return;
             }
@@ -135,19 +198,15 @@ public class HandMenuBehaviour : MonoBehaviour
         {
             Debug.Log("La pose du menu pour la main gauche a été reconnue.");
 
-            //transform.position = leftThumbTip.Transform.position + offset;
-
-            ChangeMenuPosition();
-            DisplayMainMenu();
+            UpdateMenuPositionAndRotation();
+            DisplayActualMainMenu();
         }
         else if (ass == menuHandPoseRight)
         {
             Debug.Log("La pose du menu pour la main droite a été reconnue.");
 
-            //transform.position = rightThumbTip.Transform.position + offset;
-
-            ChangeMenuPosition();
-            DisplayMainMenu();
+            UpdateMenuPositionAndRotation();
+            DisplayActualMainMenu();
         }
     }
 
@@ -155,14 +214,13 @@ public class HandMenuBehaviour : MonoBehaviour
     {
         if (currentHandDisplayingMenu == ass)
         {
-            HideMenu();
-            currentHandDisplayingMenu = null;
+            HideAllMenus(true);
         }
     }
 
 
 
-    public void Quit()
+    public void ApplicationQuit()
     {
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
