@@ -2,6 +2,8 @@ using Oculus.Interaction;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -66,31 +68,42 @@ public class HandMenuBehaviour : MonoBehaviour
 
     private void Update()
     {
-        UpdateMenuPositionAndRotation();
+        if (currentHandDisplayingMenu != null && leftThumbTip != null && rightThumbTip != null)
+        {
+            UpdateMenuPositionAndRotation(true);
+        }
     }
 
 
-    private void UpdateMenuPositionAndRotation()
+    private void UpdateMenuPositionAndRotation(bool lerpPosition)
     {
-        if (currentHandDisplayingMenu != null && leftThumbTip != null && rightThumbTip != null)
+        Vector3 direction = transform.position - Camera.main.transform.position;
+        direction.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        Vector3 adjustedOffset;
+        Vector3 targetPosition = Vector3.zero;
+
+        transform.rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
+
+        if (currentHandDisplayingMenu == menuHandPoseLeft)
         {
-            Vector3 direction = transform.position - Camera.main.transform.position;
-            direction.y = 0;
-            Quaternion rotation = Quaternion.LookRotation(direction);
-            Vector3 adjustedOffset;
+            adjustedOffset = Quaternion.Euler(0, rotation.eulerAngles.y, 0) * offsetForLeftHand;
+            targetPosition = leftThumbTip.Transform.position + adjustedOffset;
+        }
+        else if (currentHandDisplayingMenu == menuHandPoseRight)
+        {
+            adjustedOffset = Quaternion.Euler(0, rotation.eulerAngles.y, 0) * offsetForRightHand;
+            targetPosition = rightThumbTip.Transform.position + adjustedOffset;
+        }
 
-            if (currentHandDisplayingMenu == menuHandPoseLeft)
-            {
-                adjustedOffset = Quaternion.Euler(0, rotation.eulerAngles.y, 0) * offsetForLeftHand;
-                transform.position = leftThumbTip.Transform.position + adjustedOffset;
-            }
-            else if (currentHandDisplayingMenu == menuHandPoseRight)
-            {
-                adjustedOffset = Quaternion.Euler(0, rotation.eulerAngles.y, 0) * offsetForRightHand;
-                transform.position = rightThumbTip.Transform.position + adjustedOffset;
-            }
-
-            transform.rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
+        if (lerpPosition)
+        {
+            float lerp = 0.1f;
+            transform.position = Vector3.Lerp(transform.position, targetPosition, lerp);
+        }
+        else
+        {
+            transform.position = targetPosition;
         }
     }
 
@@ -194,20 +207,10 @@ public class HandMenuBehaviour : MonoBehaviour
 
         currentHandDisplayingMenu = ass;
 
-        if (ass == menuHandPoseLeft)
-        {
-            Debug.Log("La pose du menu pour la main gauche a été reconnue.");
+        Debug.Log("Hand pose for menu detected.");
 
-            UpdateMenuPositionAndRotation();
-            DisplayActualMainMenu();
-        }
-        else if (ass == menuHandPoseRight)
-        {
-            Debug.Log("La pose du menu pour la main droite a été reconnue.");
-
-            UpdateMenuPositionAndRotation();
-            DisplayActualMainMenu();
-        }
+        UpdateMenuPositionAndRotation(false);
+        DisplayActualMainMenu();
     }
 
     public void MenuHandPoseUnselected(ActiveStateSelector ass)

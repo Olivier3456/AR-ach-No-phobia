@@ -41,15 +41,25 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
         }
     }
 
-    public GameObject SpawnObject(GameObject obj, AnchorTypes anchorTypes)
+    public GameObject SpawnObject(GameObject obj, AnchorTypes anchorType)
     {
         GameObject result = null;
 
-        if (anchorTypes == AnchorTypes.TABLE && tableVolume != null)
+        if (anchorType == AnchorTypes.TABLE && tableVolume != null)
         {
             Vector3 offsetY = Vector3.zero;
             Vector3 positionToSpawn = tableVolume.transform.position + offsetY;
-            result = Instantiate(obj, positionToSpawn, tableVolume.transform.rotation);       // TODO: for rotation, verify that it is in front of the player.
+            Quaternion rotation = Quaternion.Euler(tableVolume.transform.forward);  // Or right? Up?
+
+            result = Instantiate(obj, positionToSpawn, rotation);
+
+            //A décommenter après le test de la rotation correcte ci-dessus.
+            //Vector3 fromObjectToCamera = Camera.main.transform.position - obj.transform.position;
+            //float dot = Vector3.Dot(fromObjectToCamera, obj.transform.forward);
+            //if (dot < 0) // The object is not facing camera. We neet to flip it.
+            //{
+            //    obj.transform.Rotate(Vector3.up, 180);
+            //}
         }
 
         return result;
