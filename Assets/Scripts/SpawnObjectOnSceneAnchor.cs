@@ -53,13 +53,24 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
 
             result = Instantiate(obj, positionToSpawn, rotation);
 
-            //A décommenter après le test de la rotation correcte ci-dessus.
+
+
+
             //Vector3 fromObjectToCamera = Camera.main.transform.position - obj.transform.position;
             //float dot = Vector3.Dot(fromObjectToCamera, obj.transform.forward);
+
+            //Debug.Log("[SpawnObjectOnSceneAnchor] dot = " + dot);
+
             //if (dot < 0) // The object is not facing camera. We neet to flip it.
             //{
+            //    Debug.Log("[SpawnObjectOnSceneAnchor] dot < 0: rotate game obejct.");
+
             //    obj.transform.Rotate(Vector3.up, 180);
             //}
+
+
+
+
         }
 
         return result;

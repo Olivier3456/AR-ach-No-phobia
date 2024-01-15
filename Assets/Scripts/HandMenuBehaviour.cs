@@ -29,11 +29,20 @@ public class HandMenuBehaviour : MonoBehaviour
     [Space(20)]
     [SerializeField] private Vector3 offsetForRightHand;
     private Vector3 offsetForLeftHand;
+    [Space(20)]
+    [SerializeField] private bool showHandsModelWhenMenuIsVisible;
+    [SerializeField] private GameObject handVisualLeft;
+    [SerializeField] private GameObject handVisualRight;
+
+
 
     private ActiveStateSelector currentHandDisplayingMenu = null;
 
     private OVRBone leftThumbTip;
     private OVRBone rightThumbTip;
+
+
+
 
 
     private void Awake()
@@ -172,6 +181,8 @@ public class HandMenuBehaviour : MonoBehaviour
         if (isMenuDisappearing)
         {
             currentHandDisplayingMenu = null;
+            handVisualLeft.SetActive(false);
+            handVisualRight.SetActive(false);
         }
     }
 
@@ -211,6 +222,12 @@ public class HandMenuBehaviour : MonoBehaviour
 
         UpdateMenuPositionAndRotation(false);
         DisplayActualMainMenu();
+
+        if (showHandsModelWhenMenuIsVisible)
+        {
+            handVisualLeft.SetActive(true);
+            handVisualRight.SetActive(true);
+        }
     }
 
     public void MenuHandPoseUnselected(ActiveStateSelector ass)
