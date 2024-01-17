@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 982026192658043629}
   - component: {fileID: 6644135920285991051}
   m_Layer: 0
-  m_Name: Spiders Image Panel
+  m_Name: Images Panel (Spiders)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

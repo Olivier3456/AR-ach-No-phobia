@@ -10,6 +10,7 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
     private OVRSceneVolume tableVolume;
 
     public enum AnchorTypes { TABLE, WALL, FLOOR, CEILING }
+    public enum SpawnSituation { SurfaceCenter, RandomPointOnSurface }
 
     private void Awake()
     {
@@ -41,19 +42,38 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
         }
     }
 
-    public GameObject SpawnObject(GameObject obj, AnchorTypes anchorType)
+    public GameObject SpawnObjectOnAnchorOfType(GameObject obj, AnchorTypes anchorType, SpawnSituation spawnSituation)
     {
+        Debug.Log("[SpawnObjectOnSceneAnchor] SpawnObjectOnAnchorOfType() called");
+
+
         GameObject result = null;
 
         if (anchorType == AnchorTypes.TABLE && tableVolume != null)
         {
+            Debug.Log("[SpawnObjectOnSceneAnchor] Desired anchor type for object spawn is TABLE");
+
+
             Vector3 offsetY = Vector3.zero;
-            Vector3 positionToSpawn = tableVolume.transform.position + offsetY;
-            Quaternion rotation = Quaternion.Euler(tableVolume.transform.forward);  // Or right? Up?
+            Vector3 positionToSpawn = Vector3.zero;
+
+            if (spawnSituation == SpawnSituation.SurfaceCenter)
+            {
+                positionToSpawn = tableVolume.transform.position + offsetY;
+            }
+            else
+            {
+                // TODO: define a random point on the anchor object.
+
+
+
+            }
+
+            Quaternion rotation = Quaternion.Euler(tableVolume.transform.forward);
 
             result = Instantiate(obj, positionToSpawn, rotation);
 
-
+            Debug.Log($"[SpawnObjectOnSceneAnchor] Object {result} instantiated at position {positionToSpawn}.");
 
 
             //Vector3 fromObjectToCamera = Camera.main.transform.position - obj.transform.position;

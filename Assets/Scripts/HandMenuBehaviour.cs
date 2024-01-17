@@ -2,17 +2,17 @@ using Oculus.Interaction;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HandMenuBehaviour : MonoBehaviour
 {
+    [Header("Menus game objects")]
     [SerializeField] private GameObject noExerciceMainMenu;
     [SerializeField] private GameObject exerciceMainMenu;
-    [SerializeField] private GameObject quitConfirmationMenu;
+    [SerializeField] private GameObject quitExerciceConfirmationMenu;
+    //[SerializeField] private GameObject exerciceEndMenu;
     [SerializeField] private GameObject levelsChoiceMenu;
     [SerializeField] private GameObject settingsMenu;
     [Space(10)]
@@ -33,15 +33,18 @@ public class HandMenuBehaviour : MonoBehaviour
     [SerializeField] private bool showHandsModelWhenMenuIsVisible;
     [SerializeField] private GameObject handVisualLeft;
     [SerializeField] private GameObject handVisualRight;
+    [Space(20)]
+    [Header("Exercise Quitting")]
+    [SerializeField] private GameObject anxietyButtonsParent;
+    [SerializeField] private GameObject quitButton;
+    [SerializeField] private GameObject exerciseNotFinishedLabel;
+    [SerializeField] private GameObject exerciseFinishedLabel;
 
 
 
     private ActiveStateSelector currentHandDisplayingMenu = null;
-
-    private OVRBone leftThumbTip;
-    private OVRBone rightThumbTip;
-
-
+    private OVRBone leftThumbTip = null;
+    private OVRBone rightThumbTip = null;
 
 
 
@@ -120,7 +123,14 @@ public class HandMenuBehaviour : MonoBehaviour
     public void DisplayQuitConfirmationMenu()
     {
         HideAllMenus(false);
-        quitConfirmationMenu.SetActive(true);
+        quitExerciceConfirmationMenu.SetActive(true);
+
+        bool exerciseInProgress = MainManager.Instance.GetCurrentExercise().IsInProgress;
+
+        exerciseNotFinishedLabel.SetActive(exerciseInProgress);
+        exerciseFinishedLabel.SetActive(!exerciseInProgress);
+        anxietyButtonsParent.SetActive(!exerciseInProgress);
+        quitButton.SetActive(exerciseInProgress);
     }
 
 
@@ -129,37 +139,54 @@ public class HandMenuBehaviour : MonoBehaviour
     {
         HideAllMenus(false);
 
-        if (MainManager.Instance.GetCurrentExerciceID() == 0)
+        if (MainManager.Instance.GetCurrentExercise() == null)
         {
+            Debug.Log($"[HandMenuBehaviour] Displaying menu for NO exercise.");
+
             noExerciceMainMenu.SetActive(true);
         }
         else
         {
             exerciceMainMenu.SetActive(true);
-        }
 
-        DisplayOrHidePreviousAndNextButtons();
+            DisplayOrHidePreviousAndNextButtons();
+        }
     }
 
 
     public void DisplayOrHidePreviousAndNextButtons()
     {
-        if (MainManager.Instance.GetCurrentExerciceID() == 1 && MainManager.Instance.GetImagesPanel() != null && !MainManager.Instance.GetImagesPanel().IsFirstSprite())
+        if (MainManager.Instance.GetCurrentExercise() == null)
         {
-            previousButton.SetActive(true);
-        }
-        else
-        {
-            previousButton.SetActive(false);
+            return;
         }
 
-        if (MainManager.Instance.GetCurrentExerciceID() == 1 && MainManager.Instance.GetImagesPanel() != null && !MainManager.Instance.GetImagesPanel().IsLastSprite())
+        ImagesPanel imagesPanel = MainManager.Instance.GetCurrentExercise().ImagesPanel;
+
+        if (imagesPanel == null)
         {
-            nextButton.SetActive(true);
+            previousButton.SetActive(false);
+            nextButton.SetActive(false);
         }
         else
         {
-            nextButton.SetActive(false);
+            if (imagesPanel.IsFirstSprite())
+            {
+                previousButton.SetActive(false);
+            }
+            else
+            {
+                nextButton.SetActive(true);
+            }
+
+            if (imagesPanel.IsLastSprite())
+            {
+                previousButton.SetActive(true);
+            }
+            else
+            {
+                nextButton.SetActive(false);
+            }
         }
     }
 
@@ -176,7 +203,8 @@ public class HandMenuBehaviour : MonoBehaviour
         settingsMenu.SetActive(false);      // TODO
         levelsChoiceMenu.SetActive(false);
         exerciceMainMenu.SetActive(false);
-        quitConfirmationMenu.SetActive(false);
+        quitExerciceConfirmationMenu.SetActive(false);
+        //exerciceEndMenu.SetActive(false);
 
         if (isMenuDisappearing)
         {
@@ -188,7 +216,7 @@ public class HandMenuBehaviour : MonoBehaviour
 
 
 
-    public void SetCurrentExercice(bool isOn)
+    public void ChoseNextExercise(bool isOn)
     {
         if (!isOn)  // Avoid this function to be executed each time by the toggle switched on AND the toggle switched off.
         {
@@ -199,13 +227,13 @@ public class HandMenuBehaviour : MonoBehaviour
         {
             if (exercicesToggles[i].isOn)
             {
-                MainManager.Instance.SetCurrentChosenExerciceID(i + 1);
-                Debug.Log($"[HandMenuBehaviour] Exercice chosen: exercice {i + 1}.");
+                MainManager.Instance.ChoseNextExercise(i + 1);
+                Debug.Log($"[HandMenuBehaviour] Exercise chosen: exercice {i + 1}.");
                 return;
             }
         }
 
-        Debug.LogError("[HandMenuBehaviour] No exercice toggle is on!");
+        Debug.Log("[HandMenuBehaviour] No exercice toggle is on! Can't chose exercise.");
     }
 
 
@@ -220,14 +248,14 @@ public class HandMenuBehaviour : MonoBehaviour
 
         Debug.Log("Hand pose for menu detected.");
 
-        UpdateMenuPositionAndRotation(false);
-        DisplayActualMainMenu();
-
         if (showHandsModelWhenMenuIsVisible)
         {
             handVisualLeft.SetActive(true);
             handVisualRight.SetActive(true);
         }
+
+        UpdateMenuPositionAndRotation(false);
+        DisplayActualMainMenu();
     }
 
     public void MenuHandPoseUnselected(ActiveStateSelector ass)
@@ -238,6 +266,16 @@ public class HandMenuBehaviour : MonoBehaviour
         }
     }
 
+
+    public void DeactivateOkButton()
+    {
+        quitButton.SetActive(false);
+    }
+
+    public void ChoseAnxietyLevel(int anxietyLevel)
+    {
+        quitButton.SetActive(true);
+    }
 
 
     public void ApplicationQuit()

@@ -2,6 +2,7 @@ using Oculus.Interaction;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MainManager : MonoBehaviour
 {
@@ -10,17 +11,12 @@ public class MainManager : MonoBehaviour
     [Space(20)]
     [SerializeField] private HandMenuBehaviour handMenuBehaviour;
     [Space(20)]
-    [SerializeField] private ImagesPanel imagesPanelPrefab;
-
-    // 0 for no exercice.
-    private int currentExerciceID = 0;
+    [SerializeField] private BaseExercise[] exercisesPrefabs;
 
     // Chosen exercice can be not the same as current exercice if the exercice is not yet begun.
-    private int currentChosenExerciceID = 0;
+    private int chosenExerciceID = 0;
 
-    private ImagesPanel imagesPanelInstantiated = null;
-
-    private List<GameObject> gameObjectsOfCurrentExercice = new List<GameObject>();
+    private BaseExercise currentExercise;
 
     private void Awake()
     {
@@ -39,59 +35,58 @@ public class MainManager : MonoBehaviour
 
     public void BeginExercice()
     {
-        if (currentChosenExerciceID == 0)
+        if (chosenExerciceID == 0)
         {
-            Debug.Log("[MainManager] No exercice chosen yet. Can't begin exercice.");
+            Debug.Log("[MainManager] No exercise chosen yet. Can't begin exercice.");
             return;
         }
-        else if (currentChosenExerciceID == 1)
+        else
         {
-            imagesPanelInstantiated = spawnObjectOnSceneAnchor.SpawnObject(imagesPanelPrefab.gameObject, SpawnObjectOnSceneAnchor.AnchorTypes.TABLE).GetComponent<ImagesPanel>();
+            handMenuBehaviour.HideAllMenus(true);
+            handMenuBehaviour.DeactivateOkButton();
+            currentExercise = Instantiate(exercisesPrefabs[chosenExerciceID - 1]);
+            currentExercise.SetExerciseId(chosenExerciceID);
 
-            gameObjectsOfCurrentExercice.Add(imagesPanelInstantiated.gameObject);
+            Debug.Log($"[MainManager] Begining exercise {currentExercise.Id}");
+            Debug.Log($"[MainManager] Exercice Game Object name is: {currentExercise.name}.");
         }
-
-        currentExerciceID = currentChosenExerciceID;
-        handMenuBehaviour.HideAllMenus(true);
     }
 
     public void QuitExercice()
     {
+        Debug.Log($"[MainManager] Quitting exercise {currentExercise.Id}");
+
         handMenuBehaviour.HideAllMenus(true);
-        DestroyAllExerciceGameObjects();
-        currentExerciceID = 0;
+        Destroy(currentExercise.gameObject);
+        currentExercise = null;
     }
 
 
-    private void DestroyAllExerciceGameObjects()
+    public int GetChosenExerciceID() { return chosenExerciceID; }
+    public void ChoseNextExercise(int exerciceID) { chosenExerciceID = exerciceID; }
+    public SpawnObjectOnSceneAnchor GetSpawnObjectOnSceneAnchor() { return spawnObjectOnSceneAnchor; }
+    public BaseExercise GetCurrentExercise() { return currentExercise; }
+
+
+    public void DisplayNextSprite()
     {
-        for (int i = 0; i < gameObjectsOfCurrentExercice.Count; i++)
+        if (currentExercise != null)
         {
-            Destroy(gameObjectsOfCurrentExercice[i]);
-        }
-
-        gameObjectsOfCurrentExercice.Clear();
-    }
-
-
-    public int GetCurrentChosenExerciceID() { return currentChosenExerciceID; }
-    public void SetCurrentChosenExerciceID(int exerciceID) { currentChosenExerciceID = exerciceID; }
-    public int GetCurrentExerciceID() { return currentExerciceID; }
-    public ImagesPanel GetImagesPanel() { return imagesPanelInstantiated; }
-
-    public void DisplayNextSpriteOfImagePanel()
-    {
-        if (imagesPanelInstantiated != null)
-        {
-            imagesPanelInstantiated.DisplayNextSprite();
+            if (currentExercise.ImagesPanel != null)
+            {
+                currentExercise.ImagesPanel.DisplayNextSprite();
+            }
         }
     }
 
-    public void DisplayPreviousSpriteOfImagePanel()
+    public void DisplayPreviousSprite()
     {
-        if (imagesPanelInstantiated != null)
+        if (currentExercise != null)
         {
-            imagesPanelInstantiated.DisplayPreviousSprite();
+            if (currentExercise.ImagesPanel != null)
+            {
+                currentExercise.ImagesPanel.DisplayPreviousSprite();
+            }
         }
     }
 }
