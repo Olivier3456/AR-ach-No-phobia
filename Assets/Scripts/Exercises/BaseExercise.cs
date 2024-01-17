@@ -46,6 +46,7 @@ public class BaseExercise : MonoBehaviour
     private List<GameObject> allObjectsSpawned = new List<GameObject>();
     private ImagesPanel imagesPanel = null;
     private int id;
+    private bool isLastEventReached = false;
 
     public float ExerciseTimer { get { return exerciseTimer; } }
     public float ExerciceLength { get { return exerciceLength; } }
@@ -54,14 +55,12 @@ public class BaseExercise : MonoBehaviour
     public ImagesPanel ImagesPanel { get { return imagesPanel; } }
     public int Id { get { return id; } }
 
-    
+
     void Update()
     {
         exerciseTimer += Time.deltaTime;
 
-        //Debug.Log($"[BaseExercise] exerciseEvents[currentEventIndex].time = {exerciseEvents[currentEventIndex].time}.");
-
-        if (exerciseEvents[currentEventIndex].time <= exerciseTimer)
+        if (!isLastEventReached && exerciseEvents[currentEventIndex].time <= exerciseTimer)
         {
             Debug.Log($"[BaseExercise] exercise event {currentEventIndex} reached at {exerciseTimer} seconds.");
 
@@ -97,8 +96,14 @@ public class BaseExercise : MonoBehaviour
             }
 
 
-
-            currentEventIndex++;
+            if (currentEventIndex < exerciseEvents.Length - 1)
+            {
+                currentEventIndex++;
+            }
+            else
+            {
+                isLastEventReached = true;
+            }
         }
 
 
@@ -110,17 +115,19 @@ public class BaseExercise : MonoBehaviour
 
         if (imagesPanel != null)
         {
+            Debug.Log("[BaseExercise] imagesPanel != null.");
+
             if (imagesPanel.IsLastSprite())
             {
                 TriggerExerciseEnd();
             }
         }
-
-        //Debug.Log($"[BaseExercise] Update done. Exercise timer = {exerciseTimer} seconds");
     }
 
     public void TriggerExerciseEnd()
     {
+        if (isInProgress) Debug.Log("[BaseExercise] Current exercise is finished.");
+
         isInProgress = false;
     }
 

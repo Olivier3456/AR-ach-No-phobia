@@ -176,16 +176,16 @@ public class HandMenuBehaviour : MonoBehaviour
             }
             else
             {
-                nextButton.SetActive(true);
+                previousButton.SetActive(true);
             }
 
             if (imagesPanel.IsLastSprite())
             {
-                previousButton.SetActive(true);
+                nextButton.SetActive(false);
             }
             else
             {
-                nextButton.SetActive(false);
+                nextButton.SetActive(true);
             }
         }
     }
