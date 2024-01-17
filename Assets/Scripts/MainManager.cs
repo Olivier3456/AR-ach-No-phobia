@@ -14,9 +14,16 @@ public class MainManager : MonoBehaviour
     [SerializeField] private BaseExercise[] exercisesPrefabs;
 
     // Chosen exercice can be not the same as current exercice if the exercice is not yet begun.
-    private int chosenExerciceID = 0;
+    private int chosenExerciseID = 0;
 
     private BaseExercise currentExercise;
+
+
+    public int GetChosenExerciseID() { return chosenExerciseID; }
+    public void ChoseNextExercise(int exerciceID) { chosenExerciseID = exerciceID; }
+    public SpawnObjectOnSceneAnchor GetSpawnObjectOnSceneAnchor() { return spawnObjectOnSceneAnchor; }
+    public BaseExercise GetCurrentExercise() { return currentExercise; }
+    public int TotalNumberOfExercises { get { return exercisesPrefabs.Length; } }
 
     private void Awake()
     {
@@ -33,9 +40,9 @@ public class MainManager : MonoBehaviour
     }
 
 
-    public void BeginExercice()
+    public void BeginExercise()
     {
-        if (chosenExerciceID == 0)
+        if (chosenExerciseID == 0)
         {
             Debug.Log("[MainManager] No exercise chosen yet. Can't begin exercice.");
             return;
@@ -44,15 +51,16 @@ public class MainManager : MonoBehaviour
         {
             handMenuBehaviour.HideAllMenus(true);
             handMenuBehaviour.DeactivateOkButton();
-            currentExercise = Instantiate(exercisesPrefabs[chosenExerciceID - 1]);
-            currentExercise.SetExerciseId(chosenExerciceID);
+            currentExercise = Instantiate(exercisesPrefabs[chosenExerciseID - 1]);
+            currentExercise.SetExerciseId(chosenExerciseID);
 
             Debug.Log($"[MainManager] Begining exercise {currentExercise.Id}");
             Debug.Log($"[MainManager] Exercice Game Object name is: {currentExercise.name}.");
         }
     }
 
-    public void QuitExercice()
+
+    public void QuitExercise()
     {
         Debug.Log($"[MainManager] Quitting exercise {currentExercise.Id}");
 
@@ -62,10 +70,16 @@ public class MainManager : MonoBehaviour
     }
 
 
-    public int GetChosenExerciceID() { return chosenExerciceID; }
-    public void ChoseNextExercise(int exerciceID) { chosenExerciceID = exerciceID; }
-    public SpawnObjectOnSceneAnchor GetSpawnObjectOnSceneAnchor() { return spawnObjectOnSceneAnchor; }
-    public BaseExercise GetCurrentExercise() { return currentExercise; }
+    public void GoToNextExercise()
+    {
+        QuitExercise();
+
+        if (chosenExerciseID < TotalNumberOfExercises)
+        {
+            chosenExerciseID++;
+            BeginExercise();
+        }
+    }
 
 
     public void DisplayNextSprite()

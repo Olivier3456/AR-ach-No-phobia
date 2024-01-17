@@ -39,6 +39,7 @@ public class BaseExercise : MonoBehaviour
     [SerializeField] private float exerciceLength = 30f;
     [Space(15)]
     [SerializeField] private ExerciseEvent[] exerciseEvents;
+    [SerializeField] private AudioClip endOfExerciseAudioClip;
 
     private float exerciseTimer = 0;
     private int currentEventIndex = 0;
@@ -54,6 +55,12 @@ public class BaseExercise : MonoBehaviour
     public List<GameObject> AllObjectsSpawned { get { return allObjectsSpawned; } }
     public ImagesPanel ImagesPanel { get { return imagesPanel; } }
     public int Id { get { return id; } }
+
+    public void SetExerciseId(int id)
+    {
+        this.id = id;
+        Debug.Log($"[BaseExercise] Exercise id: {id}.");
+    }
 
 
     void Update()
@@ -115,8 +122,6 @@ public class BaseExercise : MonoBehaviour
 
         if (imagesPanel != null)
         {
-            Debug.Log("[BaseExercise] imagesPanel != null.");
-
             if (imagesPanel.IsLastSprite())
             {
                 TriggerExerciseEnd();
@@ -126,16 +131,17 @@ public class BaseExercise : MonoBehaviour
 
     public void TriggerExerciseEnd()
     {
-        if (isInProgress) Debug.Log("[BaseExercise] Current exercise is finished.");
-
-        isInProgress = false;
+        if (isInProgress)
+        {
+            isInProgress = false;
+            Debug.Log("[BaseExercise] Current exercise is finished.");
+            if (endOfExerciseAudioClip != null)
+            {
+                AudioSource.PlayClipAtPoint(endOfExerciseAudioClip, Camera.main.transform.position);
+            }
+        }
     }
-
-    public void SetExerciseId(int id)
-    {
-        this.id = id;
-        Debug.Log($"[BaseExercise] Exercise id: {id}.");
-    }
+    
 
     private void OnDestroy()
     {

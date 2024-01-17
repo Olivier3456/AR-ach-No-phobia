@@ -8,14 +8,15 @@ using UnityEngine.UI;
 
 public class HandMenuBehaviour : MonoBehaviour
 {
-    [Header("Menus game objects")]
+    [Header("Parent menus GameObjects")]
     [SerializeField] private GameObject noExerciceMainMenu;
     [SerializeField] private GameObject exerciceMainMenu;
     [SerializeField] private GameObject quitExerciceConfirmationMenu;
     //[SerializeField] private GameObject exerciceEndMenu;
     [SerializeField] private GameObject levelsChoiceMenu;
     [SerializeField] private GameObject settingsMenu;
-    [Space(10)]
+    [Space(20)]
+    [Header("Buttons previous/next for images panel")]
     [SerializeField] private GameObject previousButton;
     [SerializeField] private GameObject nextButton;
     [Space(20)]
@@ -25,8 +26,10 @@ public class HandMenuBehaviour : MonoBehaviour
     [SerializeField] private OVRSkeleton ovrSkeletonLeftHand;
     [SerializeField] private OVRSkeleton ovrSkeletonRightHand;
     [Space(20)]
+    [Header("Exercises toggles of the levels choice menu.")]
     [SerializeField] private Toggle[] exercicesToggles;
     [Space(20)]
+    [Header("Offset for all menus. The offset for left hand will be symetrical to the offset for right hand.")]
     [SerializeField] private Vector3 offsetForRightHand;
     private Vector3 offsetForLeftHand;
     [Space(20)]
@@ -34,9 +37,10 @@ public class HandMenuBehaviour : MonoBehaviour
     [SerializeField] private GameObject handVisualLeft;
     [SerializeField] private GameObject handVisualRight;
     [Space(20)]
-    [Header("Exercise Quitting")]
+    [Header("Quit Exercise Menu")]
     [SerializeField] private GameObject anxietyButtonsParent;
     [SerializeField] private GameObject quitButton;
+    [SerializeField] private GameObject nextExerciseButton;
     [SerializeField] private GameObject exerciseNotFinishedLabel;
     [SerializeField] private GameObject exerciseFinishedLabel;
 
@@ -131,6 +135,7 @@ public class HandMenuBehaviour : MonoBehaviour
         exerciseFinishedLabel.SetActive(!exerciseInProgress);
         anxietyButtonsParent.SetActive(!exerciseInProgress);
         quitButton.SetActive(exerciseInProgress);
+        nextExerciseButton.SetActive(false);
     }
 
 
@@ -216,11 +221,11 @@ public class HandMenuBehaviour : MonoBehaviour
 
 
 
-    public void ChoseNextExercise(bool isOn)
+    public void ChoseExercise(bool isOn)
     {
-        if (!isOn)  // Avoid this function to be executed each time by the toggle switched on AND the toggle switched off.
+        if (!isOn)
         {
-            return;
+            return;  // To avoid this function to be executed each time by the toggle switched on AND the toggle switched off.
         }
 
         for (int i = 0; i < exercicesToggles.Length; i++)
@@ -235,7 +240,7 @@ public class HandMenuBehaviour : MonoBehaviour
 
         Debug.Log("[HandMenuBehaviour] No exercice toggle is on! Can't chose exercise.");
     }
-
+    
 
     public void MenuHandPoseSelected(ActiveStateSelector ass)
     {
@@ -274,7 +279,10 @@ public class HandMenuBehaviour : MonoBehaviour
 
     public void ChoseAnxietyLevel(int anxietyLevel)
     {
+        nextExerciseButton.SetActive(true);
         quitButton.SetActive(true);
+
+        // TODO: handle anxiety level.
     }
 
 

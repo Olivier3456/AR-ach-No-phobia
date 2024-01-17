@@ -55,3 +55,5 @@ MonoBehaviour:
       prefab: {fileID: 3494004331117181621, guid: 3e738cd569760b848887d29b770cad6f,
         type: 3}
     spidersToSpawn: []
+  endOfExerciseAudioClip: {fileID: 8300000, guid: 7a93f90745bf6184ebb71c3d9b25ed96,
+    type: 3}
