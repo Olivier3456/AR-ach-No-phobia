@@ -12,7 +12,6 @@ public class HandMenuBehaviour : MonoBehaviour
     [SerializeField] private GameObject noExerciceMainMenu;
     [SerializeField] private GameObject exerciceMainMenu;
     [SerializeField] private GameObject quitExerciceConfirmationMenu;
-    //[SerializeField] private GameObject exerciceEndMenu;
     [SerializeField] private GameObject levelsChoiceMenu;
     [SerializeField] private GameObject settingsMenu;
     [Space(20)]
@@ -57,6 +56,7 @@ public class HandMenuBehaviour : MonoBehaviour
         offsetForLeftHand = new Vector3(-offsetForRightHand.x, offsetForRightHand.y, offsetForRightHand.z);
     }
 
+
     private IEnumerator Start()
     {
         yield return null;
@@ -81,6 +81,7 @@ public class HandMenuBehaviour : MonoBehaviour
             }
         }
     }
+
 
     private void Update()
     {
@@ -139,19 +140,20 @@ public class HandMenuBehaviour : MonoBehaviour
     }
 
 
-
     public void DisplayActualMainMenu()
     {
         HideAllMenus(false);
 
         if (MainManager.Instance.GetCurrentExercise() == null)
         {
-            Debug.Log($"[HandMenuBehaviour] Displaying menu for NO exercise.");
+            Debug.Log($"[HandMenuBehaviour] Displaying main menu for NO exercise.");
 
             noExerciceMainMenu.SetActive(true);
         }
         else
         {
+            Debug.Log($"[HandMenuBehaviour] Displaying main menu for exercise.");
+
             exerciceMainMenu.SetActive(true);
 
             DisplayOrHidePreviousAndNextButtons();
@@ -202,6 +204,7 @@ public class HandMenuBehaviour : MonoBehaviour
         levelsChoiceMenu.SetActive(true);
     }
 
+
     public void HideAllMenus(bool isMenuDisappearing)
     {
         noExerciceMainMenu.SetActive(false);
@@ -209,7 +212,6 @@ public class HandMenuBehaviour : MonoBehaviour
         levelsChoiceMenu.SetActive(false);
         exerciceMainMenu.SetActive(false);
         quitExerciceConfirmationMenu.SetActive(false);
-        //exerciceEndMenu.SetActive(false);
 
         if (isMenuDisappearing)
         {
@@ -218,7 +220,6 @@ public class HandMenuBehaviour : MonoBehaviour
             handVisualRight.SetActive(false);
         }
     }
-
 
 
     public void ChoseExercise(bool isOn)
@@ -263,6 +264,7 @@ public class HandMenuBehaviour : MonoBehaviour
         DisplayActualMainMenu();
     }
 
+
     public void MenuHandPoseUnselected(ActiveStateSelector ass)
     {
         if (currentHandDisplayingMenu == ass)
@@ -276,6 +278,7 @@ public class HandMenuBehaviour : MonoBehaviour
     {
         quitButton.SetActive(false);
     }
+
 
     public void ChoseAnxietyLevel(int anxietyLevel)
     {

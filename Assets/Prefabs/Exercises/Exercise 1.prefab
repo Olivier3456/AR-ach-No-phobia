@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7885164126022714831}
+  - component: {fileID: 3312550378144736061}
   - component: {fileID: 8325988321296650655}
   m_Layer: 0
   m_Name: Exercise 1
@@ -32,6 +33,102 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &3312550378144736061
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4026354883139607430}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &8325988321296650655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44,16 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d487f822800fe304e9103e140131eeb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTimed: 1
-  exerciceLength: 30
+  exerciseAudioSource: {fileID: 3312550378144736061}
   exerciseEvents:
-  - time: 0
-    clipToPlay: {fileID: 0}
-    objectsToSpawn:
-    - anchorType: 0
-      spawnSituation: 0
-      prefab: {fileID: 3494004331117181621, guid: 3e738cd569760b848887d29b770cad6f,
-        type: 3}
-    spidersToSpawn: []
-  endOfExerciseAudioClip: {fileID: 8300000, guid: 7a93f90745bf6184ebb71c3d9b25ed96,
-    type: 3}
+  - {fileID: 11400000, guid: b33994a7af94fdd41a19b19a9d837af2, type: 2}
+  - {fileID: 11400000, guid: e1b54e31b62732447a4ca72f82f0cae8, type: 2}
+  - {fileID: 11400000, guid: 3ec6b1e72508a1043960e15447321b39, type: 2}
