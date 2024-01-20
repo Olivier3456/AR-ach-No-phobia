@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7885164126022714831}
   - component: {fileID: 3312550378144736061}
-  - component: {fileID: 8325988321296650655}
+  - component: {fileID: 7468501251916152618}
   m_Layer: 0
-  m_Name: Exercise 1
+  m_Name: Exercise1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,7 +129,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8325988321296650655
+--- !u!114 &7468501251916152618
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,11 +138,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4026354883139607430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d487f822800fe304e9103e140131eeb8, type: 3}
+  m_Script: {fileID: 11500000, guid: cda1d077933a6ca4b86c3f5b8654c3ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   exerciseAudioSource: {fileID: 3312550378144736061}
   exerciseEvents:
-  - {fileID: 11400000, guid: b33994a7af94fdd41a19b19a9d837af2, type: 2}
+  - {fileID: 11400000, guid: bde2375b989edfa46b37285fe04c12e9, type: 2}
+  - {fileID: 11400000, guid: 0709916d9dcb7dd41b6d4926ea14c02d, type: 2}
   - {fileID: 11400000, guid: e1b54e31b62732447a4ca72f82f0cae8, type: 2}
-  - {fileID: 11400000, guid: 3ec6b1e72508a1043960e15447321b39, type: 2}
+  - {fileID: 11400000, guid: 2fb7008c22913b54a93a53dddd81107a, type: 2}
+  - {fileID: 11400000, guid: cd342636fca73b049a094aa93e90a6ba, type: 2}
+  endExerciseEvent: {fileID: 11400000, guid: 2fb7008c22913b54a93a53dddd81107a, type: 2}

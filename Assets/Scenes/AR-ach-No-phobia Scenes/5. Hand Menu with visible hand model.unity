@@ -4494,7 +4494,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1282000537}
         m_TargetAssemblyTypeName: MainManager, Assembly-CSharp
-        m_MethodName: BeginExercice
+        m_MethodName: BeginExercise
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12615,7 +12615,7 @@ MonoBehaviour:
   spawnObjectOnSceneAnchor: {fileID: 1460845421}
   handMenuBehaviour: {fileID: 422400608}
   exercisesPrefabs:
-  - {fileID: 8325988321296650655, guid: 3fa0a59be63406c47924c620c48a60b3, type: 3}
+  - {fileID: 7468501251916152618, guid: 3fa0a59be63406c47924c620c48a60b3, type: 3}
 --- !u!4 &1282000538
 Transform:
   m_ObjectHideFlags: 0

@@ -5,23 +5,25 @@ using UnityEngine;
 
 public class BaseExercise : MonoBehaviour
 {
-    [SerializeField] private AudioSource exerciseAudioSource;
+    [SerializeField] protected AudioSource exerciseAudioSource;
     [Space(15)]
-    [SerializeField] private BaseExerciseEventSO[] exerciseEvents;
+    [SerializeField] protected BaseExerciseEventSO[] exerciseEvents;
 
-    private int currentEventIndex = 0;
-    private float currentEventTimer = 0f;
-    private bool isInProgress = true;
-    private List<GameObject> allObjectsSpawned = new List<GameObject>();
-    private ImagesPanel imagesPanel = null;
-    private int id;
-    private bool isPlayingCurrentPlayClipEvent = false;
-    private List<BaseExerciseEventSO> exercisesEventsWithBeginingConditionFullfiled = new List<BaseExerciseEventSO>();
+    protected int currentEventIndex = 0;
+    protected float currentEventTimer = 0f;
+    protected bool isInProgress = true;
+    protected List<GameObject> allObjectsSpawned = new List<GameObject>();
+    protected ImagesPanel imagesPanel = null;
+    protected int id;
+    protected bool isPlayingCurrentPlayClipEvent = false;
+    protected List<BaseExerciseEventSO> exercisesEventsWithBeginingConditionFullfiled = new List<BaseExerciseEventSO>();
 
     public bool IsInProgress { get { return isInProgress; } }
     public List<GameObject> AllObjectsSpawned { get { return allObjectsSpawned; } }
     public ImagesPanel ImagesPanel { get { return imagesPanel; } }
     public int Id { get { return id; } }
+    public BaseExerciseEventSO CurrentEvent { get { return exerciseEvents[currentEventIndex]; } }
+    public int CurrentEventIndex { get { return currentEventIndex; } }
 
 
 
@@ -33,7 +35,17 @@ public class BaseExercise : MonoBehaviour
 
 
 
-    void Update()
+    protected virtual void Awake()
+    {
+        if (exerciseAudioSource == null)
+        {
+            exerciseAudioSource = GetComponent<AudioSource>();
+        }
+    }
+
+
+
+    protected virtual void Update()
     {
         if (!isInProgress)
         {
@@ -107,6 +119,7 @@ public class BaseExercise : MonoBehaviour
                                                                                                                spawnIPSO.anchorType,
                                                                                                                spawnIPSO.spawnSituation));
             imagesPanel = allObjectsSpawned[allObjectsSpawned.Count - 1].GetComponent<ImagesPanel>();
+            SwitchToNextEvent();
         }
 
 
@@ -116,12 +129,15 @@ public class BaseExercise : MonoBehaviour
             SpawnSpiderSO spawnSpiderSO = eventSO as SpawnSpiderSO;
 
 
+
+
+            SwitchToNextEvent();
         }
     }
 
 
 
-    private void SwitchToNextEvent()
+    protected virtual void SwitchToNextEvent()
     {
         if (currentEventIndex < exerciseEvents.Length - 1)
         {
@@ -138,13 +154,18 @@ public class BaseExercise : MonoBehaviour
     }
 
 
+
     public void FulfillConditionForExerciseEvent(BaseExerciseEventSO exerciseEventSO)
     {
-        exercisesEventsWithBeginingConditionFullfiled.Add(exerciseEventSO);
+        if (!exercisesEventsWithBeginingConditionFullfiled.Contains(exerciseEventSO))
+        {
+            exercisesEventsWithBeginingConditionFullfiled.Add(exerciseEventSO);
+        }
     }
 
 
-    private void OnDestroy()
+
+    protected virtual void OnDestroy()
     {
         for (int i = 0; i < allObjectsSpawned.Count; i++)
         {
