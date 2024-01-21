@@ -12616,6 +12616,7 @@ MonoBehaviour:
   handMenuBehaviour: {fileID: 422400608}
   exercisesPrefabs:
   - {fileID: 7468501251916152618, guid: 3fa0a59be63406c47924c620c48a60b3, type: 3}
+  - {fileID: 357303405708955838, guid: d9f2ca28dcea04f41a25431023bd0970, type: 3}
 --- !u!4 &1282000538
 Transform:
   m_ObjectHideFlags: 0

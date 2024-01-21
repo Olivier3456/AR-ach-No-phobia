@@ -127,10 +127,9 @@ public class BaseExercise : MonoBehaviour
         else if (eventSO is SpawnSpiderSO)
         {
             SpawnSpiderSO spawnSpiderSO = eventSO as SpawnSpiderSO;
-
-
-
-
+            allObjectsSpawned.Add(MainManager.Instance.GetSpawnObjectOnSceneAnchor().SpawnObjectOnAnchorOfType(spawnSpiderSO.spider.gameObject,
+                                                                                                               spawnSpiderSO.anchorType,
+                                                                                                               spawnSpiderSO.spawnSituation));
             SwitchToNextEvent();
         }
     }

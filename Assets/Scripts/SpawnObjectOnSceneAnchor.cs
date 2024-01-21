@@ -1,6 +1,6 @@
+using Oculus.Platform;
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection.Emit;
 using UnityEngine;
 
 public class SpawnObjectOnSceneAnchor : MonoBehaviour
@@ -8,8 +8,9 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
     [SerializeField] private OVRSceneManager ovrSceneManager;
 
     private OVRSceneVolume tableVolume;
+    private List<OVRScenePlane> walls = new List<OVRScenePlane>();
 
-    public enum AnchorTypes { TABLE, WALL, FLOOR, CEILING }
+    public enum AnchorTypes { TABLE, RANDOM_WALL, FLOOR, CEILING, RANDOM_WALL_AND_CEILING, RANDOM_WALL_AND_FLOOR, RANDOM_WALL_AND_FLOOR_AND_CEILING }
     public enum SpawnSituation { SurfaceCenter, RandomPointOnSurface }
 
     private void Awake()
@@ -34,39 +35,54 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
                 {
                     tableVolume = sceneAnchors[i].transform.GetComponent<OVRSceneVolume>();
 
-                    Debug.Log("[SpawnObjectOnSceneAnchor] Table or desk found.");
+                    Debug.Log("[SpawnObjectOnSceneAnchor] Table or desk found in OVR scene anchors list.");
 
                     break;
+                }
+                else if (cla.Contains("WALL_FACE"))
+                {
+                    walls.Add(sceneAnchors[i].transform.GetComponent<OVRScenePlane>());
+
+                    Debug.Log("[SpawnObjectOnSceneAnchor] Wall found in OVR scene anchors list.");
                 }
             }
         }
     }
 
+
     public GameObject SpawnObjectOnAnchorOfType(GameObject obj, AnchorTypes anchorType, SpawnSituation spawnSituation)
     {
-        Debug.Log("[SpawnObjectOnSceneAnchor] SpawnObjectOnAnchorOfType() called");
-
-
         GameObject result = null;
 
-        if (anchorType == AnchorTypes.TABLE && tableVolume != null)
+        if (anchorType == AnchorTypes.TABLE)
         {
-            Debug.Log("[SpawnObjectOnSceneAnchor] Desired anchor type for object spawn is TABLE");
+            Debug.Log("[SpawnObjectOnSceneAnchor] Desired spawn place is on the table.");
+
+            if (tableVolume == null)
+            {
+                Debug.LogError("[SpawnObjectOnSceneAnchor] No table in the room! Can't spawn this object.");
+                return null;
+            }
 
 
-            Vector3 offsetY = Vector3.zero;
+            //Vector3 offsetY = Vector3.zero;
             Vector3 positionToSpawn = Vector3.zero;
 
             if (spawnSituation == SpawnSituation.SurfaceCenter)
             {
-                positionToSpawn = tableVolume.transform.position + offsetY;
+                positionToSpawn = tableVolume.transform.position; // + offsetY;
             }
-            else
+            else if (spawnSituation == SpawnSituation.RandomPointOnSurface)
             {
-                // TODO: define a random point on the anchor object.
+                float randomX = Random.Range(0, tableVolume.Width) - (tableVolume.Width * 0.5f);
+                float randomZ = Random.Range(0, tableVolume.Depth) - (tableVolume.Depth * 0.5f);
 
+                Vector3 offsetX = randomX * tableVolume.transform.right;
+                Vector3 offsetZ = randomZ * tableVolume.transform.up;
 
+                Vector3 offset = offsetX + offsetZ;
 
+                positionToSpawn = tableVolume.transform.position + offset;
             }
 
             Quaternion rotation = Quaternion.Euler(tableVolume.transform.forward);
@@ -74,24 +90,50 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
             result = Instantiate(obj, positionToSpawn, rotation);
 
             Debug.Log($"[SpawnObjectOnSceneAnchor] Object {result} instantiated at position {positionToSpawn}.");
-
-
-            //Vector3 fromObjectToCamera = Camera.main.transform.position - obj.transform.position;
-            //float dot = Vector3.Dot(fromObjectToCamera, obj.transform.forward);
-
-            //Debug.Log("[SpawnObjectOnSceneAnchor] dot = " + dot);
-
-            //if (dot < 0) // The object is not facing camera. We neet to flip it.
-            //{
-            //    Debug.Log("[SpawnObjectOnSceneAnchor] dot < 0: rotate game obejct.");
-
-            //    obj.transform.Rotate(Vector3.up, 180);
-            //}
-
-
-
-
         }
+
+
+        else if (anchorType == AnchorTypes.RANDOM_WALL)
+        {
+            Debug.Log("[SpawnObjectOnSceneAnchor] Desired spawn place is on a random wall.");
+
+            if (walls.Count == 0)
+            {
+                Debug.LogError("[SpawnObjectOnSceneAnchor] Walls list is empty! Can't spawn this object.");
+                return null;
+            }
+
+
+            int randomWallIndex = Random.Range(0, walls.Count);
+            OVRScenePlane wall = walls[randomWallIndex];
+
+            Vector3 positionToSpawn = Vector3.zero;
+
+            if (spawnSituation == SpawnSituation.SurfaceCenter)
+            {
+                positionToSpawn = wall.transform.position;
+            }
+            else if (spawnSituation == SpawnSituation.RandomPointOnSurface)
+            {
+                float randomX = Random.Range(0, wall.Width) - (wall.Width * 0.5f);
+                float randomZ = Random.Range(0, wall.Height) - (wall.Height * 0.5f);
+
+                Vector3 offsetX = randomX * wall.transform.up;
+                Vector3 offsetZ = randomZ * wall.transform.right;
+
+                Vector3 offset = offsetX + offsetZ;
+
+                positionToSpawn = wall.transform.position + offset;
+            }
+
+            Quaternion rotation = Quaternion.Euler(wall.transform.forward);
+
+            result = Instantiate(obj, positionToSpawn, rotation);
+
+            Debug.Log($"[SpawnObjectOnSceneAnchor] Object {result} instantiated at position {positionToSpawn}.");
+        }
+
+
 
         return result;
     }
