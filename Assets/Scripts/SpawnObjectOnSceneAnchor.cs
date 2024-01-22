@@ -7,8 +7,11 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
 {
     [SerializeField] private OVRSceneManager ovrSceneManager;
 
-    private OVRSceneVolume tableVolume;
-    private List<OVRScenePlane> walls = new List<OVRScenePlane>();
+    private OVRSceneAnchor tableSceneAnchor;
+    //private OVRSceneVolume tableSceneVolume;
+
+    private List<OVRSceneAnchor> wallsSceneAnchor = new List<OVRSceneAnchor>();
+    //private List<OVRScenePlane> wallsScenePlane = new List<OVRScenePlane>();
 
     public enum AnchorTypes { TABLE, RANDOM_WALL, FLOOR, CEILING, RANDOM_WALL_AND_CEILING, RANDOM_WALL_AND_FLOOR, RANDOM_WALL_AND_FLOOR_AND_CEILING }
     public enum SpawnSituation { SurfaceCenter, RandomPointOnSurface }
@@ -33,7 +36,8 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
 
                 if (cla.Contains("TABLE") || cla.Contains("DESK"))
                 {
-                    tableVolume = sceneAnchors[i].transform.GetComponent<OVRSceneVolume>();
+                    tableSceneAnchor = sceneAnchors[i];
+                    //tableSceneVolume = sceneAnchors[i].transform.GetComponent<OVRSceneVolume>();
 
                     Debug.Log("[SpawnObjectOnSceneAnchor] Table or desk found in OVR scene anchors list.");
 
@@ -41,7 +45,8 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
                 }
                 else if (cla.Contains("WALL_FACE"))
                 {
-                    walls.Add(sceneAnchors[i].transform.GetComponent<OVRScenePlane>());
+                    wallsSceneAnchor.Add(sceneAnchors[i]);
+                    //wallsScenePlane.Add(sceneAnchors[i].transform.GetComponent<OVRScenePlane>());
 
                     Debug.Log("[SpawnObjectOnSceneAnchor] Wall found in OVR scene anchors list.");
                 }
@@ -58,7 +63,8 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
         {
             Debug.Log("[SpawnObjectOnSceneAnchor] Desired spawn place is on the table.");
 
-            if (tableVolume == null)
+            //if (tableSceneVolume == null)
+            if (tableSceneAnchor == null)
             {
                 Debug.LogError("[SpawnObjectOnSceneAnchor] No table in the room! Can't spawn this object.");
                 return null;
@@ -68,24 +74,26 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
             //Vector3 offsetY = Vector3.zero;
             Vector3 positionToSpawn = Vector3.zero;
 
+            OVRSceneVolume tableSceneVolume = tableSceneAnchor.transform.GetComponent<OVRSceneVolume>();
+
             if (spawnSituation == SpawnSituation.SurfaceCenter)
             {
-                positionToSpawn = tableVolume.transform.position; // + offsetY;
+                positionToSpawn = tableSceneVolume.transform.position; // + offsetY;
             }
             else if (spawnSituation == SpawnSituation.RandomPointOnSurface)
             {
-                float randomX = Random.Range(0, tableVolume.Width) - (tableVolume.Width * 0.5f);
-                float randomZ = Random.Range(0, tableVolume.Depth) - (tableVolume.Depth * 0.5f);
+                float randomX = Random.Range(0, tableSceneVolume.Width) - (tableSceneVolume.Width * 0.5f);
+                float randomZ = Random.Range(0, tableSceneVolume.Depth) - (tableSceneVolume.Depth * 0.5f);
 
-                Vector3 offsetX = randomX * tableVolume.transform.right;
-                Vector3 offsetZ = randomZ * tableVolume.transform.up;
+                Vector3 offsetX = randomX * tableSceneVolume.transform.right;
+                Vector3 offsetZ = randomZ * tableSceneVolume.transform.up;
 
                 Vector3 offset = offsetX + offsetZ;
 
-                positionToSpawn = tableVolume.transform.position + offset;
+                positionToSpawn = tableSceneVolume.transform.position + offset;
             }
 
-            Quaternion rotation = Quaternion.Euler(tableVolume.transform.forward);
+            Quaternion rotation = Quaternion.Euler(tableSceneAnchor.transform.forward);
 
             result = Instantiate(obj, positionToSpawn, rotation);
 
@@ -97,15 +105,16 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
         {
             Debug.Log("[SpawnObjectOnSceneAnchor] Desired spawn place is on a random wall.");
 
-            if (walls.Count == 0)
+            if (wallsSceneAnchor.Count == 0)
             {
                 Debug.LogError("[SpawnObjectOnSceneAnchor] Walls list is empty! Can't spawn this object.");
                 return null;
             }
 
 
-            int randomWallIndex = Random.Range(0, walls.Count);
-            OVRScenePlane wall = walls[randomWallIndex];
+            int randomWallIndex = Random.Range(0, wallsSceneAnchor.Count);
+            OVRSceneAnchor wallSceneAnchor = wallsSceneAnchor[randomWallIndex];
+            OVRScenePlane wall = wallSceneAnchor.transform.GetComponent<OVRScenePlane>();
 
             Vector3 positionToSpawn = Vector3.zero;
 
@@ -118,15 +127,15 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
                 float randomX = Random.Range(0, wall.Width) - (wall.Width * 0.5f);
                 float randomZ = Random.Range(0, wall.Height) - (wall.Height * 0.5f);
 
-                Vector3 offsetX = randomX * wall.transform.up;
-                Vector3 offsetZ = randomZ * wall.transform.right;
+                Vector3 offsetX = randomX * wall.transform.right;
+                Vector3 offsetZ = randomZ * wall.transform.up;
 
                 Vector3 offset = offsetX + offsetZ;
 
                 positionToSpawn = wall.transform.position + offset;
             }
 
-            Quaternion rotation = Quaternion.Euler(wall.transform.forward);
+            Quaternion rotation = Quaternion.Euler(wallSceneAnchor.transform.forward);
 
             result = Instantiate(obj, positionToSpawn, rotation);
 
