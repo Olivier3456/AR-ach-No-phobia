@@ -1,6 +1,7 @@
 using Oculus.Platform;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnObjectOnSceneAnchor : MonoBehaviour
@@ -95,7 +96,7 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
 
             Quaternion rotation = Quaternion.Euler(tableSceneAnchor.transform.forward);
 
-            result = Instantiate(obj, positionToSpawn, rotation);
+            result = Instantiate(obj, positionToSpawn, rotation); //, tableSceneAnchor.transform);
 
             Debug.Log($"[SpawnObjectOnSceneAnchor] Object {result} instantiated at position {positionToSpawn}.");
         }
@@ -137,7 +138,7 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
 
             Quaternion rotation = Quaternion.Euler(wallSceneAnchor.transform.forward);
 
-            result = Instantiate(obj, positionToSpawn, rotation);
+            result = Instantiate(obj, positionToSpawn, rotation); //, wallSceneAnchor.transform);            
 
             Debug.Log($"[SpawnObjectOnSceneAnchor] Object {result} instantiated at position {positionToSpawn}.");
         }

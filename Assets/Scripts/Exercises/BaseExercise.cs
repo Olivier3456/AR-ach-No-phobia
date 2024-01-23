@@ -2,12 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class BaseExercise : MonoBehaviour
 {
+    [Flags]
+    public enum SurfaceType
+    {
+        None = 0,
+        Floor_And_Table = 1,
+        Ceiling = 2,
+        Walls = 4
+    }
+
     [SerializeField] protected AudioSource exerciseAudioSource;
     [Space(15)]
+    [SerializeField] private SurfaceType requireNavMesh;
+    [Space(15)]
     [SerializeField] protected BaseExerciseEventSO[] exerciseEvents;
+    [Space(15)]
 
     protected int currentEventIndex = 0;
     protected float currentEventTimer = 0f;
@@ -26,7 +39,6 @@ public class BaseExercise : MonoBehaviour
     public int CurrentEventIndex { get { return currentEventIndex; } }
 
 
-
     public void SetExerciseId(int id)
     {
         this.id = id;
@@ -41,6 +53,19 @@ public class BaseExercise : MonoBehaviour
         {
             exerciseAudioSource = GetComponent<AudioSource>();
         }
+
+        if (requireNavMesh.HasFlag(SurfaceType.Floor_And_Table))
+        {
+            MainManager.Instance.GetNavMeshHandler().BuildNavMesh(NavMeshHandler.SurfaceType.Floor_And_Table);
+        }
+        if (requireNavMesh.HasFlag(SurfaceType.Ceiling))
+        {
+            MainManager.Instance.GetNavMeshHandler().BuildNavMesh(NavMeshHandler.SurfaceType.Ceiling);
+        }
+        if (requireNavMesh.HasFlag(SurfaceType.Walls))
+        {
+            MainManager.Instance.GetNavMeshHandler().BuildNavMesh(NavMeshHandler.SurfaceType.Walls);
+        }       
     }
 
 

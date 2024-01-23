@@ -11,6 +11,8 @@ public class MainManager : MonoBehaviour
     [Space(20)]
     [SerializeField] private HandMenuBehaviour handMenuBehaviour;
     [Space(20)]
+    [SerializeField] private NavMeshHandler navMeshHandler;
+    [Space(20)]
     [SerializeField] private BaseExercise[] exercisesPrefabs;
 
     // Chosen exercice can be not the same as current exercice if the exercice is not yet begun.
@@ -22,6 +24,7 @@ public class MainManager : MonoBehaviour
     public int GetChosenExerciseID() { return chosenExerciseID; }
     public void ChoseNextExercise(int exerciceID) { chosenExerciseID = exerciceID; }
     public SpawnObjectOnSceneAnchor GetSpawnObjectOnSceneAnchor() { return spawnObjectOnSceneAnchor; }
+    public NavMeshHandler GetNavMeshHandler() { return navMeshHandler; }
     public BaseExercise GetCurrentExercise() { return currentExercise; }
     public int TotalNumberOfExercises { get { return exercisesPrefabs.Length; } }
 

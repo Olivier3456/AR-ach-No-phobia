@@ -28,7 +28,7 @@ using UnityEngine.AI;
 // By calling 'agent.SetDestination()' and providing a vector3, the agent will discover the best path to the target.
 // Object position and rotation will be animated to show movement along a chosen path.
 
-// Additionally, RandomNavPoint can be used for position finding (eg, discover a random floor area in the room for a minigolf hole)
+// Additionally, RandomNavPoint can be used for position finding (eg, discover a random floorAndTable area in the room for a minigolf hole)
 
 // RoomWander.cs simply discovers a random position (RandomNavPoint) and then tells the agent to move there.
 // The interval between changing positions is randomized as well as the characters speed)

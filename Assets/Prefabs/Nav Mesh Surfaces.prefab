@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 458484184070656831}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.016666668
   m_MinRegionArea: 0.1
-  m_NavMeshData: {fileID: 23800000, guid: 26887df0f9c5bb441bb3c63b2bd001a7, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 3ec9fdbf1b0ba5b41a715fcf12cc8191, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &664861457553703178
 GameObject:
@@ -245,7 +245,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1453040581856857772}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.016666668
   m_MinRegionArea: 0.1
-  m_NavMeshData: {fileID: 23800000, guid: 44fcf935426ed2f47becef69c3121075, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 966ddd3eb6ac61f4184ebd0b7d42d311, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &1661069350732932507
 GameObject:
@@ -382,7 +382,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1661069350732932507}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -467,7 +467,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.016666668
   m_MinRegionArea: 0.1
-  m_NavMeshData: {fileID: 23800000, guid: c165a23e2dab8bb44b71b7e94d650707, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: f03a468d1a2486f4abeea5a4bd8c84c8, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &3389915906509367302
 GameObject:
@@ -519,7 +519,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3389915906509367302}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -604,7 +604,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.016666668
   m_MinRegionArea: 0.1
-  m_NavMeshData: {fileID: 23800000, guid: b07887f4641d0f842b894f6dc7fb68d6, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: a221b1c79a3e1d1409f427736bc6601d, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &4614040380911723939
 GameObject:
@@ -656,7 +656,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4614040380911723939}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -741,7 +741,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.016666668
   m_MinRegionArea: 0.1
-  m_NavMeshData: {fileID: 23800000, guid: 3a6f49cde5c095245aa0d6877454616d, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: bd9cdd4ced5e4174e856dc7e46250143, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &7834408899899193929
 GameObject:
@@ -793,7 +793,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7834408899899193929}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -878,5 +878,5 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.016666668
   m_MinRegionArea: 0.1
-  m_NavMeshData: {fileID: 23800000, guid: b0ce6454c63ddaa479026f47d8a880bc, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 661158d22198f884aa7726efe836d919, type: 2}
   m_BuildHeightMesh: 0

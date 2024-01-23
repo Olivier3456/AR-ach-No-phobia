@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exerciseAudioSource: {fileID: 3312550378144736061}
+  requireNavMesh: 1
   exerciseEvents:
   - {fileID: 11400000, guid: 69411bade08b3aa4b815b0756c39f3ff, type: 2}
   - {fileID: 11400000, guid: 3a3e36f8a16d75341a9fa062e75debff, type: 2}
