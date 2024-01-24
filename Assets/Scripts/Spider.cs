@@ -8,31 +8,29 @@ public class Spider : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent agent;
 
-    private OVRSceneAnchor sceneAnchor;    
+
+    private OVRSceneAnchor sceneAnchor;
+
+    private float minRemainingDistance = 0.1f;
+
 
     public void SetSceneAnchor(OVRSceneAnchor sceneAnchor)
     {
-        this.sceneAnchor = sceneAnchor;       
+        this.sceneAnchor = sceneAnchor;
     }
 
     private void Start()
     {
-        agent.SetDestination(FindRandomDestination());
+        agent.SetDestination(SceneAnchorHelper.FindRandomPointOnAnchor(sceneAnchor));
     }
 
     private void Update()
     {
-        if (agent.remainingDistance < 0.1f)
+        if (agent.remainingDistance < minRemainingDistance)
         {
-            agent.SetDestination(FindRandomDestination());
+            agent.SetDestination(SceneAnchorHelper.FindRandomPointOnAnchor(sceneAnchor));
         }
     }
-
-    private Vector3 FindRandomDestination()
-    {
-        return SceneAnchorHelper.FindRandomPointOnAnchor(sceneAnchor);
-    }
-
 
 
 

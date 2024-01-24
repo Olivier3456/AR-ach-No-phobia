@@ -31,5 +31,4 @@ public class TEST_SpawnObjectsAtStart : MonoBehaviour
             spawner.SpawnObjectOnAnchorOfType(objectToSpawn, AnchorTypes.RANDOM_WALL, SpawnSituation.RandomPointOnSurface, out OVRSceneAnchor sceneAnchor);
         }
     }
-   
 }

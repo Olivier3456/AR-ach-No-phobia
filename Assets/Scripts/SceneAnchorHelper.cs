@@ -10,11 +10,11 @@ public class SceneAnchorHelper : MonoBehaviour
 {
     [SerializeField] private OVRSceneManager sceneManager;
 
-    
+
     private static OVRSceneAnchor tableSceneAnchor = null;
     public static OVRSceneAnchor TableSceneAnchor { get { return tableSceneAnchor; } }
 
-    
+
     private static List<OVRSceneAnchor> wallsSceneAnchors = new List<OVRSceneAnchor>();
     public static List<OVRSceneAnchor> WallsSceneAnchors { get { return wallsSceneAnchors; } }
 
@@ -47,28 +47,33 @@ public class SceneAnchorHelper : MonoBehaviour
                 {
                     tableSceneAnchor = sceneAnchors[i];
 
-                    Debug.Log("[SpawnObjectOnSceneAnchor] Table or desk found in OVR scene anchors list.");
+                    Debug.Log("Table or desk found in OVR scene anchors list.");
                 }
                 else if (cla.Contains("WALL_FACE"))
                 {
                     wallsSceneAnchors.Add(sceneAnchors[i]);
 
-                    Debug.Log("[SpawnObjectOnSceneAnchor] Wall found in OVR scene anchors list.");
+                    Debug.Log("Wall found in OVR scene anchors list.");
                 }
                 else if (cla.Contains("CEILING"))
                 {
                     ceilingSceneAnchor = sceneAnchors[i];
 
-                    Debug.Log("[SpawnObjectOnSceneAnchor] Ceiling found in OVR scene anchors list.");
+                    Debug.Log("Ceiling found in OVR scene anchors list.");
                 }
                 else if (cla.Contains("FLOOR"))
                 {
                     floorSceneAnchor = sceneAnchors[i];
 
-                    Debug.Log("[SpawnObjectOnSceneAnchor] Floor found in OVR scene anchors list.");
+                    Debug.Log("Floor found in OVR scene anchors list.");
                 }
             }
         }
+
+        if (tableSceneAnchor == null) Debug.LogError("No table found in anchors list!");
+        if (wallsSceneAnchors.Count == 0) Debug.LogError("No Wall found in anchors list!");
+        if (ceilingSceneAnchor == null) Debug.LogError("No ceiling found in anchors list!");
+        if (floorSceneAnchor == null) Debug.LogError("No floor found in anchors list!");
     }
 
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TEST Spawn Spider
   m_EditorClassIdentifier: 
   beginWithCondition: 0
-  anchorType: 1
+  anchorType: 0
   spawnSituation: 1
   spider: {fileID: 95891677325570308, guid: 3e0fbe196ba74274e893a0f89d7343c0, type: 3}
   size: 1

@@ -67,12 +67,12 @@ public class NavMeshHandler : MonoBehaviour
         // =================================================
     }
 
-    private IEnumerator WaitALittleAndBuildNavMesh()
-    {
-        yield return new WaitForSeconds(2);
+    //private IEnumerator WaitALittleAndBuildNavMesh()
+    //{
+    //    yield return new WaitForSeconds(2);
 
-        StartBuildNavMesh(SurfaceType.All_Surfaces);
-    }
+    //    StartBuildNavMesh(SurfaceType.All_Surfaces);
+    //}
 
 
     public void StartBuildNavMesh(SurfaceType surfaceType)
