@@ -28,7 +28,7 @@ public class TEST_SpawnObjectsAtStart : MonoBehaviour
 
         for (int i = 0; i < numberToSpawn; i++)
         {
-            spawner.SpawnObjectOnAnchorOfType(objectToSpawn, SpawnObjectOnSceneAnchor.AnchorTypes.RANDOM_WALL, SpawnObjectOnSceneAnchor.SpawnSituation.RandomPointOnSurface);
+            spawner.SpawnObjectOnAnchorOfType(objectToSpawn, SpawnObjectOnSceneAnchor.AnchorTypes.RANDOM_WALL, SpawnObjectOnSceneAnchor.SpawnSituation.RandomPointOnSurface, out OVRSceneAnchor sceneAnchor);
         }
     }
    

@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class BaseExercise : MonoBehaviour
 {
@@ -46,7 +45,6 @@ public class BaseExercise : MonoBehaviour
     }
 
 
-
     protected virtual void Awake()
     {
         if (exerciseAudioSource == null)
@@ -56,16 +54,16 @@ public class BaseExercise : MonoBehaviour
 
         if (requireNavMesh.HasFlag(SurfaceType.Floor_And_Table))
         {
-            MainManager.Instance.GetNavMeshHandler().BuildNavMesh(NavMeshHandler.SurfaceType.Floor_And_Table);
+            MainManager.Instance.GetNavMeshHandler().StartBuildNavMesh(NavMeshHandler.SurfaceType.Floor_And_Table);
         }
         if (requireNavMesh.HasFlag(SurfaceType.Ceiling))
         {
-            MainManager.Instance.GetNavMeshHandler().BuildNavMesh(NavMeshHandler.SurfaceType.Ceiling);
+            MainManager.Instance.GetNavMeshHandler().StartBuildNavMesh(NavMeshHandler.SurfaceType.Ceiling);
         }
         if (requireNavMesh.HasFlag(SurfaceType.Walls))
         {
-            MainManager.Instance.GetNavMeshHandler().BuildNavMesh(NavMeshHandler.SurfaceType.Walls);
-        }       
+            MainManager.Instance.GetNavMeshHandler().StartBuildNavMesh(NavMeshHandler.SurfaceType.Walls);
+        }
     }
 
 
@@ -142,7 +140,8 @@ public class BaseExercise : MonoBehaviour
             SpawnImagesPanelSO spawnIPSO = eventSO as SpawnImagesPanelSO;
             allObjectsSpawned.Add(MainManager.Instance.GetSpawnObjectOnSceneAnchor().SpawnObjectOnAnchorOfType(spawnIPSO.imagesPanel.gameObject,
                                                                                                                spawnIPSO.anchorType,
-                                                                                                               spawnIPSO.spawnSituation));
+                                                                                                               spawnIPSO.spawnSituation,
+                                                                                                               out OVRSceneAnchor sceneAnchor));
             imagesPanel = allObjectsSpawned[allObjectsSpawned.Count - 1].GetComponent<ImagesPanel>();
             SwitchToNextEvent();
         }
@@ -154,7 +153,11 @@ public class BaseExercise : MonoBehaviour
             SpawnSpiderSO spawnSpiderSO = eventSO as SpawnSpiderSO;
             allObjectsSpawned.Add(MainManager.Instance.GetSpawnObjectOnSceneAnchor().SpawnObjectOnAnchorOfType(spawnSpiderSO.spider.gameObject,
                                                                                                                spawnSpiderSO.anchorType,
-                                                                                                               spawnSpiderSO.spawnSituation));
+                                                                                                               spawnSpiderSO.spawnSituation,
+                                                                                                               out OVRSceneAnchor sceneAnchor));
+            Spider spider = allObjectsSpawned[allObjectsSpawned.Count - 1].GetComponent<Spider>();
+            spider.SetSceneAnchor(sceneAnchor);
+
             SwitchToNextEvent();
         }
     }

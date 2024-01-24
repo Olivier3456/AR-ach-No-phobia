@@ -34,7 +34,7 @@ public class FollowAnchor : MonoBehaviour
 
         if (!isInitDone)
         {
-            Debug.LogError("Cant Follow anchor! Init is not done.");
+            Debug.LogError("Init is not done! Can't follow anchor.");
             return;
         }        
 
