@@ -54,15 +54,15 @@ public class BaseExercise : MonoBehaviour
 
         if (requireNavMesh.HasFlag(SurfaceType.Floor_And_Table))
         {
-            MainManager.Instance.GetNavMeshHandler().StartBuildNavMesh(NavMeshHandler.SurfaceType.Floor_And_Table);
+            MainManager.Instance.NavMeshHandler.StartBuildNavMesh(NavMeshHandler.SurfaceType.Floor_And_Table);
         }
         if (requireNavMesh.HasFlag(SurfaceType.Ceiling))
         {
-            MainManager.Instance.GetNavMeshHandler().StartBuildNavMesh(NavMeshHandler.SurfaceType.Ceiling);
+            MainManager.Instance.NavMeshHandler.StartBuildNavMesh(NavMeshHandler.SurfaceType.Ceiling);
         }
         if (requireNavMesh.HasFlag(SurfaceType.Walls))
         {
-            MainManager.Instance.GetNavMeshHandler().StartBuildNavMesh(NavMeshHandler.SurfaceType.Walls);
+            MainManager.Instance.NavMeshHandler.StartBuildNavMesh(NavMeshHandler.SurfaceType.Walls);
         }
     }
 
@@ -138,7 +138,7 @@ public class BaseExercise : MonoBehaviour
         else if (eventSO is SpawnImagesPanelSO)
         {
             SpawnImagesPanelSO spawnIPSO = eventSO as SpawnImagesPanelSO;
-            allObjectsSpawned.Add(MainManager.Instance.GetSpawnObjectOnSceneAnchor().SpawnObjectOnAnchorOfType(spawnIPSO.imagesPanel.gameObject,
+            allObjectsSpawned.Add(MainManager.Instance.SpawnObjectOnSceneAnchor.SpawnObjectOnAnchorOfType(spawnIPSO.imagesPanel.gameObject,
                                                                                                                spawnIPSO.anchorType,
                                                                                                                spawnIPSO.spawnSituation,
                                                                                                                out OVRSceneAnchor sceneAnchor));
@@ -151,7 +151,7 @@ public class BaseExercise : MonoBehaviour
         else if (eventSO is SpawnSpiderSO)
         {
             SpawnSpiderSO spawnSpiderSO = eventSO as SpawnSpiderSO;
-            allObjectsSpawned.Add(MainManager.Instance.GetSpawnObjectOnSceneAnchor().SpawnObjectOnAnchorOfType(spawnSpiderSO.spider.gameObject,
+            allObjectsSpawned.Add(MainManager.Instance.SpawnObjectOnSceneAnchor.SpawnObjectOnAnchorOfType(spawnSpiderSO.spider.gameObject,
                                                                                                                spawnSpiderSO.anchorType,
                                                                                                                spawnSpiderSO.spawnSituation,
                                                                                                                out OVRSceneAnchor sceneAnchor));

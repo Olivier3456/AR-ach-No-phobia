@@ -130,7 +130,7 @@ public class HandMenuBehaviour : MonoBehaviour
         HideAllMenus(false);
         quitExerciceConfirmationMenu.SetActive(true);
 
-        bool exerciseInProgress = MainManager.Instance.GetCurrentExercise().IsInProgress;
+        bool exerciseInProgress = MainManager.Instance.CurrentExercise.IsInProgress;
 
         exerciseNotFinishedLabel.SetActive(exerciseInProgress);
         exerciseFinishedLabel.SetActive(!exerciseInProgress);
@@ -144,7 +144,7 @@ public class HandMenuBehaviour : MonoBehaviour
     {
         HideAllMenus(false);
 
-        if (MainManager.Instance.GetCurrentExercise() == null)
+        if (MainManager.Instance.CurrentExercise == null)
         {
             Debug.Log($"[HandMenuBehaviour] Displaying main menu for NO exercise.");
 
@@ -163,12 +163,12 @@ public class HandMenuBehaviour : MonoBehaviour
 
     public void DisplayOrHidePreviousAndNextButtons()
     {
-        if (MainManager.Instance.GetCurrentExercise() == null)
+        if (MainManager.Instance.CurrentExercise == null)
         {
             return;
         }
 
-        ImagesPanel imagesPanel = MainManager.Instance.GetCurrentExercise().ImagesPanel;
+        ImagesPanel imagesPanel = MainManager.Instance.CurrentExercise.ImagesPanel;
 
         if (imagesPanel == null)
         {

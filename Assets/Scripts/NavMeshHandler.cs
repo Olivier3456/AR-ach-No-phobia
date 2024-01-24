@@ -124,7 +124,7 @@ public class NavMeshHandler : MonoBehaviour
 
         int index = 0;
 
-        while (MainManager.Instance.GetCurrentExercise() != null)
+        while (MainManager.Instance.CurrentExercise != null)
         {
             yield return wait;
 

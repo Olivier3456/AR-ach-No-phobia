@@ -21,11 +21,11 @@ public class MainManager : MonoBehaviour
     private BaseExercise currentExercise;
 
 
-    public int GetChosenExerciseID() { return chosenExerciseID; }
+    public int ChosenExerciseID { get { return chosenExerciseID; } }
     public void ChoseNextExercise(int exerciceID) { chosenExerciseID = exerciceID; }
-    public SpawnObjectOnSceneAnchor GetSpawnObjectOnSceneAnchor() { return spawnObjectOnSceneAnchor; }
-    public NavMeshHandler GetNavMeshHandler() { return navMeshHandler; }
-    public BaseExercise GetCurrentExercise() { return currentExercise; }
+    public SpawnObjectOnSceneAnchor SpawnObjectOnSceneAnchor { get { return spawnObjectOnSceneAnchor; } }
+    public NavMeshHandler NavMeshHandler { get { return navMeshHandler; } }
+    public BaseExercise CurrentExercise { get { return currentExercise; } }
     public int TotalNumberOfExercises { get { return exercisesPrefabs.Length; } }
 
     private void Awake()
