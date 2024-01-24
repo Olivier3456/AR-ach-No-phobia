@@ -2,6 +2,6 @@ using UnityEngine;
 
 public class SpawnObjectBaseSO : BaseExerciseEventSO
 {
-    public SpawnObjectOnSceneAnchor.AnchorTypes anchorType;
-    public SpawnObjectOnSceneAnchor.SpawnSituation spawnSituation;
+    public AnchorTypes anchorType;
+    public SpawnSituation spawnSituation;
 }

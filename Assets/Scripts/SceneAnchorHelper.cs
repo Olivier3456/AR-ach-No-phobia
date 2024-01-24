@@ -3,8 +3,59 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public static class SceneAnchorHelper
+public enum AnchorTypes { TABLE, RANDOM_WALL, FLOOR, CEILING, RANDOM_WALL_AND_CEILING, RANDOM_WALL_AND_FLOOR, RANDOM_WALL_AND_FLOOR_AND_CEILING }
+public enum SpawnSituation { SurfaceCenter, RandomPointOnSurface }
+
+public class SceneAnchorHelper : MonoBehaviour
 {
+    [SerializeField] private OVRSceneManager sceneManager;
+
+    
+    private static OVRSceneAnchor tableSceneAnchor = null;
+    public static OVRSceneAnchor TableSceneAnchor { get { return tableSceneAnchor; } }
+
+    
+    private static List<OVRSceneAnchor> wallsSceneAnchors = new List<OVRSceneAnchor>();
+    public static List<OVRSceneAnchor> WallsSceneAnchors { get { return wallsSceneAnchors; } }
+    
+
+    private void Awake()
+    {
+        sceneManager.SceneModelLoadedSuccessfully += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded()
+    {
+        List<OVRSceneAnchor> sceneAnchors = new List<OVRSceneAnchor>();
+        OVRSceneAnchor.GetSceneAnchors(sceneAnchors);
+
+        for (int i = 0; i < sceneAnchors.Count; i++)
+        {
+            OVRSemanticClassification cla = sceneAnchors[i].transform.GetComponent<OVRSemanticClassification>();
+
+            if (cla != null)
+            {
+                if (cla.Contains("TABLE") || cla.Contains("DESK"))
+                {
+                    tableSceneAnchor = sceneAnchors[i];
+
+                    Debug.Log("[SpawnObjectOnSceneAnchor] Table or desk found in OVR scene anchors list.");
+
+                    break;
+                }
+                else if (cla.Contains("WALL_FACE"))
+                {
+                    wallsSceneAnchors.Add(sceneAnchors[i]);
+
+                    Debug.Log("[SpawnObjectOnSceneAnchor] Wall found in OVR scene anchors list.");
+                }
+            }
+        }
+    }
+
+
+    // Static methods
+
     public static Vector3 FindRandomPointOnAnchor(OVRSceneAnchor sceneAnchor)
     {
         if (sceneAnchor.TryGetComponent(out OVRScenePlane plane))
