@@ -17,7 +17,15 @@ public class SceneAnchorHelper : MonoBehaviour
     
     private static List<OVRSceneAnchor> wallsSceneAnchors = new List<OVRSceneAnchor>();
     public static List<OVRSceneAnchor> WallsSceneAnchors { get { return wallsSceneAnchors; } }
-    
+
+
+    private static OVRSceneAnchor ceilingSceneAnchor = null;
+    public static OVRSceneAnchor CeilingSceneAnchor { get { return ceilingSceneAnchor; } }
+
+
+    private static OVRSceneAnchor floorSceneAnchor = null;
+    public static OVRSceneAnchor FloorSceneAnchor { get { return floorSceneAnchor; } }
+
 
     private void Awake()
     {
@@ -40,14 +48,24 @@ public class SceneAnchorHelper : MonoBehaviour
                     tableSceneAnchor = sceneAnchors[i];
 
                     Debug.Log("[SpawnObjectOnSceneAnchor] Table or desk found in OVR scene anchors list.");
-
-                    break;
                 }
                 else if (cla.Contains("WALL_FACE"))
                 {
                     wallsSceneAnchors.Add(sceneAnchors[i]);
 
                     Debug.Log("[SpawnObjectOnSceneAnchor] Wall found in OVR scene anchors list.");
+                }
+                else if (cla.Contains("CEILING"))
+                {
+                    ceilingSceneAnchor = sceneAnchors[i];
+
+                    Debug.Log("[SpawnObjectOnSceneAnchor] Ceiling found in OVR scene anchors list.");
+                }
+                else if (cla.Contains("FLOOR"))
+                {
+                    floorSceneAnchor = sceneAnchors[i];
+
+                    Debug.Log("[SpawnObjectOnSceneAnchor] Floor found in OVR scene anchors list.");
                 }
             }
         }
