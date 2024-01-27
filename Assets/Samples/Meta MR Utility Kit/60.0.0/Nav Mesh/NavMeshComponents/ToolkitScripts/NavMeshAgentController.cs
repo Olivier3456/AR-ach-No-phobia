@@ -25,7 +25,7 @@ using Meta.XR.MRUtilityKit;
 using UnityEngine.AI;
 
 // Navmesh simplifies the job of navigating virtual characters through procedurally created environments.
-// By calling 'agent.SetDestination()' and providing a vector3, the agent will discover the best path to the target.
+// By calling 'agent.SetRandomDestinationOnAnchorSurface()' and providing a vector3, the agent will discover the best path to the target.
 // Object position and rotation will be animated to show movement along a chosen path.
 
 // Additionally, RandomNavPoint can be used for position finding (eg, discover a random floorAndTable area in the room for a minigolf hole)

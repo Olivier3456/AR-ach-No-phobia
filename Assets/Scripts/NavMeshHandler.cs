@@ -2,141 +2,126 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.AI.Navigation;
+using System.Linq;
+using System;
+using UnityEngine.Events;
 
 public class NavMeshHandler : MonoBehaviour
 {
-    public enum SurfaceType { Ceiling, Floor_And_Table, Walls, All_Surfaces }
+    [SerializeField] private GameObject navMeshSurfacePrefab;
+    [Space(15)]
+    //[SerializeField] private float timeBetweenEachNavMeshBuild = 1f;
+    //private float timer = 0;
+    //private int index = -1;
 
-    public bool DEBUG_BuildAllNavMeshsAtStart = false;
-    [Space(20)]
-    [SerializeField] private OVRSceneManager ovrSceneManager;
-    [Space(20), Tooltip("NavMesh Surfaces")]
-    [SerializeField] private NavMeshSurface ceiling;
-    [SerializeField] private NavMeshSurface floorAndTable;
-    [SerializeField] private NavMeshSurface[] walls;
-    [Space(20)]
-    [SerializeField] private float timeBetweenEachNavMeshBuild = 1f;
 
-    private List<NavMeshSurface> allNavMeshSurfaces = new List<NavMeshSurface>();
-    private List<NavMeshSurface> activeNavMeshSurfaces = new List<NavMeshSurface>();
-
-    private OVRSceneAnchor floorSceneAnchor = null;
+    private static List<NavMeshSurface> navMeshSurfaces = new List<NavMeshSurface>();
 
     private void Awake()
     {
-        ovrSceneManager.SceneModelLoadedSuccessfully += OnSceneLoaded;
-
-        allNavMeshSurfaces.Add(ceiling);
-        allNavMeshSurfaces.Add(floorAndTable);
-
-        foreach (NavMeshSurface surface in walls)
-        {
-            allNavMeshSurfaces.Add(surface);
-        }
+        MainManager.Instance.OnExerciseQuitted.AddListener(MainManager_OnExerciseQuitted);
     }
-
-
-    private void OnSceneLoaded()
+    private void OnDisable()
     {
-        List<OVRSceneAnchor> sceneAnchors = new List<OVRSceneAnchor>();
-        OVRSceneAnchor.GetSceneAnchors(sceneAnchors);
-
-        for (int i = 0; i < sceneAnchors.Count; i++)
-        {
-            OVRSemanticClassification cla = sceneAnchors[i].transform.GetComponent<OVRSemanticClassification>();
-
-            if (cla != null)
-            {
-                if (cla.Contains("FLOOR"))
-                {
-                    floorSceneAnchor = sceneAnchors[i];
-                    Debug.Log("[NavMeshHandler] Floor scene anchor found in OVR scene anchors list.");
-                    break;
-                }
-            }
-        }
-        if (floorSceneAnchor == null)
-        {
-            Debug.LogError("[NavMeshHandler] No floor scene anchor found in OVR scene anchors list!");
-        }
-
-
-        // ==================== DEBUG ======================
-        //if (DEBUG_BuildAllNavMeshsAtStart)
-        //    StartCoroutine(WaitALittleAndBuildNavMesh());
-        // =================================================
+        MainManager.Instance.OnExerciseQuitted.RemoveListener(MainManager_OnExerciseQuitted);
     }
 
-    //private IEnumerator WaitALittleAndBuildNavMesh()
-    //{
-    //    yield return new WaitForSeconds(2);
+    private void MainManager_OnExerciseQuitted()
+    {
+        for (int i = 0; i < navMeshSurfaces.Count; i++)
+        {
+            Destroy(navMeshSurfaces[i].gameObject);
+        }
 
-    //    StartBuildNavMesh(SurfaceType.All_Surfaces);
+        navMeshSurfaces.Clear();
+        Debug.Log("Exercise ended: all NavMesh surfaces have been destroyed");
+    }
+
+
+    // ===================== Apparently, their is no need to rebuild nav meshes periodically. =====================
+    //public void Update()
+    //{
+    //    timer += Time.deltaTime;
+
+    //    if (timer >= timeBetweenEachNavMeshBuild)
+    //    {
+    //        Debug.Log("Time to build a NavMesh.");
+
+    //        timer = 0;
+
+
+
+    //        if (navMeshSurfaces.Count == 0)
+    //        {
+    //            Debug.Log("navMeshSurfaces list is empty. Can't build NavMeshes");
+    //        }
+    //        else
+    //        {
+    //            Debug.Log($"{navMeshSurfaces.Count} elements in navMeshSurfaces List");
+    //            index = index < navMeshSurfaces.Count - 1 ? ++index : 0;
+    //            //navMeshSurfaces[index].BuildNavMesh();
+
+    //            Debug.Log($"Built NavMesh for element {index} of navMeshSurfaces List");
+    //        }
+    //    }
     //}
 
 
-    public void StartBuildNavMesh(SurfaceType surfaceType)
+    public void AddNavMeshSurface(OVRSceneAnchor sceneAnchor)
     {
-        if (activeNavMeshSurfaces.Count > 0)
+        //NavMeshSurface navMeshSurface = sceneAnchor.gameObject.GetComponent<NavMeshSurface>();
+
+        NavMeshSurface navMeshSurface = sceneAnchor.gameObject.GetComponentInChildren<NavMeshSurface>();
+
+        if (navMeshSurface == null)
         {
-            Debug.LogError("NavMesh build already started!");
-            return;
-        }
+            //navMeshSurface = sceneAnchor.gameObject.AddComponent<NavMeshSurface>();
+            //navMeshSurface.minRegionArea = 0.25f;
+            //navMeshSurface.collectObjects = CollectObjects.Children;   // TODO: TEST.
 
-        switch (surfaceType)
+
+            NavMeshSurfaceAnchor anchor = sceneAnchor.transform.GetComponentInChildren<NavMeshSurfaceAnchor>();
+            GameObject navMeshSurfaceGameObject = Instantiate(navMeshSurfacePrefab, anchor.transform);
+            
+
+            if (SceneAnchorHelper.GetAnchorType(sceneAnchor) == AnchorTypes.CEILING)
+            {
+                Debug.Log("Ceiling anchor type for nav mesh surface: inversing up axis");
+                navMeshSurfaceGameObject.transform.up = -anchor.transform.forward;
+            }
+            else
+            {
+                navMeshSurfaceGameObject.transform.up = anchor.transform.forward;
+                navMeshSurfaceGameObject.transform.forward = anchor.transform.up;
+            }
+
+            navMeshSurface = navMeshSurfaceGameObject.GetComponent<NavMeshSurface>();
+            navMeshSurface.BuildNavMesh();
+            navMeshSurfaces.Add(navMeshSurface);
+
+            Debug.Log($"NavMesh surface has been added to anchor {sceneAnchor.name}");
+        }
+        else
         {
-            case SurfaceType.Ceiling:
-                activeNavMeshSurfaces.Add(ceiling);
-                Debug.Log($"NavMesh will be built for ceiling every {timeBetweenEachNavMeshBuild} second");
-                break;
-            case SurfaceType.Floor_And_Table:
-                activeNavMeshSurfaces.Add(floorAndTable);
-                Debug.Log($"NavMesh will be built for floor and table every {timeBetweenEachNavMeshBuild} second");
-                break;
-            case SurfaceType.Walls:
-                foreach (NavMeshSurface surface in walls)
-                {
-                    activeNavMeshSurfaces.Add(surface);
-                    Debug.Log($"NavMesh will be built for wall every {timeBetweenEachNavMeshBuild} second");
-                }
-                break;
-            case SurfaceType.All_Surfaces:
-                foreach (NavMeshSurface surface in allNavMeshSurfaces)
-                {
-                    activeNavMeshSurfaces.Add(surface);
-                }
-                Debug.Log($"NavMesh will be built for all surfaces orientations every {timeBetweenEachNavMeshBuild} second");
-                break;
+            Debug.Log($"Scene anchor {sceneAnchor.name} already has a NavMesh surface");
         }
-
-        // Initial build for all active NavMeshes
-        foreach (NavMeshSurface surface in activeNavMeshSurfaces)
-        {
-            surface.BuildNavMesh();
-        }
-
-        StartCoroutine(BuildActiveNavMeshSurfacesRepetitively());
-    }    
-
-    private IEnumerator BuildActiveNavMeshSurfacesRepetitively()
-    {
-        WaitForSeconds wait = new WaitForSeconds(timeBetweenEachNavMeshBuild);
-
-        int index = 0;
-
-        while (MainManager.Instance.CurrentExercise != null)
-        {
-            yield return wait;
-
-            // Align NavMesh surfaces parent object with the orientation of the room before rebuilding NavMeshes.
-            transform.up = floorSceneAnchor.transform.forward;
-
-            activeNavMeshSurfaces[index].BuildNavMesh();
-
-            index = index < activeNavMeshSurfaces.Count - 1 ? ++index : 0;
-        }
-
-        Debug.Log($"Current exercise quitted: stopping to build nav mesh every {timeBetweenEachNavMeshBuild} second");
-        activeNavMeshSurfaces.Clear();
     }
+
+
+    //public void RemoveNavMeshSurface(OVRSceneAnchor sceneAnchor)
+    //{
+    //    NavMeshSurface navMeshSurface = sceneAnchor.gameObject.GetComponentInChildren<NavMeshSurface>();
+
+    //    if (navMeshSurface != null)
+    //    {
+    //        navMeshSurfaces.Remove(navMeshSurface);
+    //        Destroy(navMeshSurface);
+
+    //        Debug.Log($"NavMesh surface has been removed from scene anchor {sceneAnchor.name}");
+    //    }
+    //    else
+    //    {
+    //        Debug.Log($"No NavMesh surface to remove from scene anchor {sceneAnchor.name}");
+    //    }
+    //}
 }

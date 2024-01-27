@@ -21,6 +21,11 @@ public class MainManager : MonoBehaviour
     private BaseExercise currentExercise;
 
 
+    public UnityEvent<int> OnExerciseBegin = new UnityEvent<int>();
+
+    public UnityEvent OnExerciseQuitted = new UnityEvent();
+
+
     public int ChosenExerciseID { get { return chosenExerciseID; } }
     public void ChoseNextExercise(int exerciceID) { chosenExerciseID = exerciceID; }
     public SpawnObjectOnSceneAnchor SpawnObjectOnSceneAnchor { get { return spawnObjectOnSceneAnchor; } }
@@ -57,6 +62,8 @@ public class MainManager : MonoBehaviour
             currentExercise = Instantiate(exercisesPrefabs[chosenExerciseID - 1]);
             currentExercise.SetExerciseId(chosenExerciseID);
 
+            OnExerciseBegin.Invoke(chosenExerciseID);
+
             Debug.Log($"[MainManager] Begining exercise {currentExercise.Id}");
             Debug.Log($"[MainManager] Exercice Game Object name is: {currentExercise.name}.");
         }
@@ -70,6 +77,7 @@ public class MainManager : MonoBehaviour
         handMenuBehaviour.HideAllMenus(true);
         Destroy(currentExercise.gameObject);
         currentExercise = null;
+        OnExerciseQuitted.Invoke();
     }
 
 

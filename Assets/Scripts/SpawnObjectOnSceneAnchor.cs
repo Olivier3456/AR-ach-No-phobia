@@ -13,14 +13,7 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
         if (anchorType == AnchorTypes.TABLE)
         {
             Debug.Log("[SpawnObjectOnSceneAnchor] Desired spawn place is on the table.");
-
-            if (SceneAnchorHelper.TableSceneAnchor == null)
-            {
-                Debug.LogError("[SpawnObjectOnSceneAnchor] No table in the room! Can't spawn this object.");
-                sceneAnchor = null;
-                return null;
-            }
-
+            
             Vector3 positionToSpawn = Vector3.zero;
 
             sceneAnchor = SceneAnchorHelper.TableSceneAnchor;
@@ -31,7 +24,7 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
             }
             else if (spawnSituation == SpawnSituation.RandomPointOnSurface)
             {
-                positionToSpawn = SceneAnchorHelper.FindRandomPointOnAnchor(sceneAnchor);
+                positionToSpawn = SceneAnchorHelper.RandomPointOnAnchorSurface(sceneAnchor);
             }
 
             result = Instantiate(obj, positionToSpawn, Quaternion.identity); //, tableSceneAnchor.transform);
@@ -41,41 +34,44 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
 
             Debug.Log($"[SpawnObjectOnSceneAnchor] Object {result} instantiated at position {positionToSpawn}.");
         }
-
-
-        else // anchorType = AnchorTypes.RANDOM_WALL
+        else
         {
-            Debug.Log("[SpawnObjectOnSceneAnchor] Desired spawn place is on a random wall.");
+            OVRSceneAnchor sceneAnchorToSpawnObject = null;
 
-            if (SceneAnchorHelper.WallsSceneAnchors.Count == 0)
+            if (anchorType == AnchorTypes.RANDOM_WALL)
             {
-                Debug.LogError("[SpawnObjectOnSceneAnchor] Walls list is empty! Can't spawn this object.");
-                sceneAnchor = null;
-                return null;
+                Debug.Log("[SpawnObjectOnSceneAnchor] Desired spawn place is on a random wall.");
+                int randomWallIndex = Random.Range(0, SceneAnchorHelper.WallsSceneAnchors.Count);
+                sceneAnchorToSpawnObject = SceneAnchorHelper.WallsSceneAnchors[randomWallIndex];
+            }
+            else if (anchorType == AnchorTypes.CEILING)
+            {
+                Debug.Log("[SpawnObjectOnSceneAnchor] Desired spawn place is on the ceiling.");
+                sceneAnchorToSpawnObject = SceneAnchorHelper.CeilingSceneAnchor;
+            }
+            else if (anchorType == AnchorTypes.FLOOR)
+            {
+                Debug.Log("[SpawnObjectOnSceneAnchor] Desired spawn place is on the floor.");
+                sceneAnchorToSpawnObject = SceneAnchorHelper.FloorSceneAnchor;
             }
 
-
-            int randomWallIndex = Random.Range(0, SceneAnchorHelper.WallsSceneAnchors.Count);
-            OVRSceneAnchor wallSceneAnchor = SceneAnchorHelper.WallsSceneAnchors[randomWallIndex];
-            sceneAnchor = wallSceneAnchor;
+            sceneAnchor = sceneAnchorToSpawnObject;
 
             Vector3 positionToSpawn = Vector3.zero;
 
             if (spawnSituation == SpawnSituation.SurfaceCenter)
             {
-                positionToSpawn = wallSceneAnchor.transform.position;
+                positionToSpawn = sceneAnchorToSpawnObject.transform.position;
             }
             else if (spawnSituation == SpawnSituation.RandomPointOnSurface)
             {
-                positionToSpawn = SceneAnchorHelper.FindRandomPointOnAnchor(wallSceneAnchor);
+                positionToSpawn = SceneAnchorHelper.RandomPointOnAnchorSurface(sceneAnchorToSpawnObject);
             }
 
-            result = Instantiate(obj, positionToSpawn, Quaternion.identity); //, wallSceneAnchor.transform);
+            result = Instantiate(obj, positionToSpawn, Quaternion.identity); //, sceneAnchorToSpawnObject.transform);
 
             Debug.Log($"[SpawnObjectOnSceneAnchor] Object {result} instantiated at position {positionToSpawn}.");
         }
-
-
 
         return result;
     }

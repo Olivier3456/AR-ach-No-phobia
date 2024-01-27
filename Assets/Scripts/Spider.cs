@@ -1,59 +1,66 @@
-using Oculus.Interaction.Surfaces;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Unity.AI.Navigation;
+using Oculus.Platform.Models;
 
 public class Spider : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent agent;
-
-
-    private OVRSceneAnchor sceneAnchor;
+    [SerializeField] private GameObject destinationVisualPrefab;
 
     private float minRemainingDistance = 0.1f;
+    private GameObject destinationVisual;
 
+    private OVRSceneAnchor sceneAnchor = null;
 
-    public void SetSceneAnchor(OVRSceneAnchor sceneAnchor)
+    
+    public void InitNavigation(OVRSceneAnchor sceneAnchor)
     {
         this.sceneAnchor = sceneAnchor;
+        MainManager.Instance.NavMeshHandler.AddNavMeshSurface(this.sceneAnchor);
+
+        if (destinationVisualPrefab != null)
+        {
+            destinationVisual = Instantiate(destinationVisualPrefab);
+            Debug.Log("Instantiated visual marker for spider's destination");
+        }
+
+        SetRandomDestinationOnAnchorSurface();
+        Debug.Log("First spider destination is set");
     }
 
-    private void Start()
-    {
-        agent.SetDestination(SceneAnchorHelper.FindRandomPointOnAnchor(sceneAnchor));
-    }
 
     private void Update()
     {
-        if (agent.remainingDistance < minRemainingDistance)
+        if (sceneAnchor != null)
         {
-            agent.SetDestination(SceneAnchorHelper.FindRandomPointOnAnchor(sceneAnchor));
+            if (agent.remainingDistance < minRemainingDistance)
+            {
+                Debug.Log("Setting new destination for Spider");
+                SetRandomDestinationOnAnchorSurface();
+            }
         }
     }
 
 
+    private void SetRandomDestinationOnAnchorSurface()
+    {
+        Vector3 destination = SceneAnchorHelper.RandomPointOnAnchorSurface(sceneAnchor);
+        agent.SetDestination(destination);
+        if (destinationVisual != null)
+        {
+            destinationVisual.transform.position = destination;
+        }
+    }
 
 
-    //private Transform parentObject;
-    //public bool maintainScaleOf1 = true;
-
-
-    //private void Start()
-    //{
-    //    parentObject = transform.parent;
-
-    //    Debug.Log($"parent transform is: {parentObject.name}");
-    //}
-
-    //private void LateUpdate()
-    //{
-    //    if (maintainScaleOf1)
-    //    {
-    //        transform.localScale = new Vector3(1 / parentObject.localScale.x,
-    //                                           1 / parentObject.localScale.y,
-    //                                           1 / parentObject.localScale.z);
-    //    }
-    //}
-
+    private void OnDestroy()
+    {
+        if (destinationVisual != null)
+        {
+            Destroy(destinationVisual);
+        }
+    }
 }

@@ -5,18 +5,7 @@ using UnityEngine;
 
 public class BaseExercise : MonoBehaviour
 {
-    [Flags]
-    public enum SurfaceType
-    {
-        None = 0,
-        Floor_And_Table = 1,
-        Ceiling = 2,
-        Walls = 4
-    }
-
     [SerializeField] protected AudioSource exerciseAudioSource;
-    [Space(15)]
-    [SerializeField] private SurfaceType requireNavMesh;
     [Space(15)]
     [SerializeField] protected BaseExerciseEventSO[] exerciseEvents;
     [Space(15)]
@@ -51,19 +40,6 @@ public class BaseExercise : MonoBehaviour
         {
             exerciseAudioSource = GetComponent<AudioSource>();
         }
-
-        if (requireNavMesh.HasFlag(SurfaceType.Floor_And_Table))
-        {
-            MainManager.Instance.NavMeshHandler.StartBuildNavMesh(NavMeshHandler.SurfaceType.Floor_And_Table);
-        }
-        if (requireNavMesh.HasFlag(SurfaceType.Ceiling))
-        {
-            MainManager.Instance.NavMeshHandler.StartBuildNavMesh(NavMeshHandler.SurfaceType.Ceiling);
-        }
-        if (requireNavMesh.HasFlag(SurfaceType.Walls))
-        {
-            MainManager.Instance.NavMeshHandler.StartBuildNavMesh(NavMeshHandler.SurfaceType.Walls);
-        }
     }
 
 
@@ -89,80 +65,92 @@ public class BaseExercise : MonoBehaviour
 
         if (eventSO is WaitSO)
         {
-            WaitSO waitSO = eventSO as WaitSO;
-
-            if (waitSO.waitTime <= currentEventTimer)
-            {
-                currentEventTimer = 0f;
-                SwitchToNextEvent();
-            }
-            else
-            {
-                currentEventTimer += Time.deltaTime;
-            }
+            HandleWaitEvent(eventSO);
         }
-
-
-
         else if (eventSO is PlayClipSO)
         {
-            PlayClipSO playClipSO = eventSO as PlayClipSO;
-
-            if (!isPlayingCurrentPlayClipEvent)
-            {
-                exerciseAudioSource.clip = playClipSO.clipToPlay;
-                exerciseAudioSource.Play();
-
-                if (playClipSO.waitForEndOfClip)
-                {
-                    isPlayingCurrentPlayClipEvent = true;
-                }
-                else
-                {
-                    SwitchToNextEvent();
-                }
-            }
-            else
-            {
-                if (!exerciseAudioSource.isPlaying)
-                {
-                    isPlayingCurrentPlayClipEvent = false;
-                    exerciseAudioSource.clip = null;
-                    SwitchToNextEvent();
-                }
-            }
+            HandlePlayClipEvent(eventSO);
         }
-
-
-
         else if (eventSO is SpawnImagesPanelSO)
         {
-            SpawnImagesPanelSO spawnIPSO = eventSO as SpawnImagesPanelSO;
-            allObjectsSpawned.Add(MainManager.Instance.SpawnObjectOnSceneAnchor.SpawnObjectOnAnchorOfType(spawnIPSO.imagesPanel.gameObject,
-                                                                                                               spawnIPSO.anchorType,
-                                                                                                               spawnIPSO.spawnSituation,
-                                                                                                               out OVRSceneAnchor sceneAnchor));
-            imagesPanel = allObjectsSpawned[allObjectsSpawned.Count - 1].GetComponent<ImagesPanel>();
-            SwitchToNextEvent();
+            HandleSpawnImagesPanelEvent(eventSO);
         }
-
-
-
         else if (eventSO is SpawnSpiderSO)
         {
-            SpawnSpiderSO spawnSpiderSO = eventSO as SpawnSpiderSO;
-            allObjectsSpawned.Add(MainManager.Instance.SpawnObjectOnSceneAnchor.SpawnObjectOnAnchorOfType(spawnSpiderSO.spider.gameObject,
-                                                                                                               spawnSpiderSO.anchorType,
-                                                                                                               spawnSpiderSO.spawnSituation,
-                                                                                                               out OVRSceneAnchor sceneAnchor));
-            Spider spider = allObjectsSpawned[allObjectsSpawned.Count - 1].GetComponent<Spider>();
-            spider.SetSceneAnchor(sceneAnchor);
-
-            SwitchToNextEvent();
+            HandleSpawnSpiderEvent(eventSO);
         }
     }
 
 
+
+    private void HandleSpawnSpiderEvent(BaseExerciseEventSO eventSO)
+    {
+        SpawnSpiderSO spawnSpiderSO = eventSO as SpawnSpiderSO;
+        allObjectsSpawned.Add(MainManager.Instance.SpawnObjectOnSceneAnchor.SpawnObjectOnAnchorOfType(spawnSpiderSO.spider.gameObject,
+                                                                                                      spawnSpiderSO.anchorType,
+                                                                                                      spawnSpiderSO.spawnSituation,
+                                                                                                      out OVRSceneAnchor sceneAnchor));
+        Spider spider = allObjectsSpawned[allObjectsSpawned.Count - 1].GetComponent<Spider>();
+        spider.InitNavigation(sceneAnchor);
+
+        SwitchToNextEvent();
+    }
+
+    private void HandleSpawnImagesPanelEvent(BaseExerciseEventSO eventSO)
+    {
+        SpawnImagesPanelSO spawnIPSO = eventSO as SpawnImagesPanelSO;
+        allObjectsSpawned.Add(MainManager.Instance.SpawnObjectOnSceneAnchor.SpawnObjectOnAnchorOfType(spawnIPSO.imagesPanel.gameObject,
+                                                                                                      spawnIPSO.anchorType,
+                                                                                                      spawnIPSO.spawnSituation,
+                                                                                                      out OVRSceneAnchor sceneAnchor));
+        imagesPanel = allObjectsSpawned[allObjectsSpawned.Count - 1].GetComponent<ImagesPanel>();
+
+        SwitchToNextEvent();
+    }
+
+    private void HandlePlayClipEvent(BaseExerciseEventSO eventSO)
+    {
+        PlayClipSO playClipSO = eventSO as PlayClipSO;
+
+        if (!isPlayingCurrentPlayClipEvent)
+        {
+            exerciseAudioSource.clip = playClipSO.clipToPlay;
+            exerciseAudioSource.Play();
+
+            if (playClipSO.waitForEndOfClip)
+            {
+                isPlayingCurrentPlayClipEvent = true;
+            }
+            else
+            {
+                SwitchToNextEvent();
+            }
+        }
+        else
+        {
+            if (!exerciseAudioSource.isPlaying)
+            {
+                isPlayingCurrentPlayClipEvent = false;
+                exerciseAudioSource.clip = null;
+                SwitchToNextEvent();
+            }
+        }
+    }
+
+    private void HandleWaitEvent(BaseExerciseEventSO eventSO)
+    {
+        WaitSO waitSO = eventSO as WaitSO;
+
+        if (waitSO.waitTime <= currentEventTimer)
+        {
+            currentEventTimer = 0f;
+            SwitchToNextEvent();
+        }
+        else
+        {
+            currentEventTimer += Time.deltaTime;
+        }
+    }
 
     protected virtual void SwitchToNextEvent()
     {
@@ -179,8 +167,6 @@ public class BaseExercise : MonoBehaviour
             }
         }
     }
-
-
 
     public void FulfillConditionForExerciseEvent(BaseExerciseEventSO exerciseEventSO)
     {

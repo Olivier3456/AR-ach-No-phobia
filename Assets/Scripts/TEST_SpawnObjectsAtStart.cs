@@ -11,12 +11,17 @@ public class TEST_SpawnObjectsAtStart : MonoBehaviour
     public GameObject objectToSpawn;
     public int numberToSpawn = 10;
 
-    private void Awake()
+    private void OnEnable()
     {
-        sceneManager.SceneModelLoadedSuccessfully += OnSceneLoaded;
+        SceneAnchorHelper.OnSceneAnchorsFound.AddListener(OnSceneAnchorsFound);
     }
 
-    private void OnSceneLoaded()
+    private void OnDisable()
+    {
+        SceneAnchorHelper.OnSceneAnchorsFound.RemoveListener(OnSceneAnchorsFound);
+    }
+
+    private void OnSceneAnchorsFound()
     {
         StartCoroutine(WaitAndSpawnObjects());
     }
