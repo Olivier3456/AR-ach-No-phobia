@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using Unity.AI.Navigation;
-using Oculus.Platform.Models;
 
 public class Spider : MonoBehaviour
 {
@@ -15,11 +13,11 @@ public class Spider : MonoBehaviour
 
     private OVRSceneAnchor sceneAnchor = null;
 
-    
+
     public void InitNavigation(OVRSceneAnchor sceneAnchor)
     {
         this.sceneAnchor = sceneAnchor;
-        MainManager.Instance.NavMeshHandler.AddNavMeshSurface(this.sceneAnchor);
+        NavMeshHandler.BuildNavMesh(sceneAnchor);
 
         if (destinationVisualPrefab != null)
         {
