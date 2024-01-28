@@ -130,32 +130,7 @@ public class SceneAnchorHelper : MonoBehaviour
         return sceneAnchor.transform.position + offset;
     }
 
-
-
-    public static OVRScenePlane GetOVRScenePlane(OVRSceneAnchor anchor)
-    {
-        if (anchor.gameObject.TryGetComponent(out OVRScenePlane plane))
-        {
-            return plane;
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-    public static OVRSceneVolume GetOVRSceneVolume(OVRSceneAnchor anchor)
-    {
-        if (anchor.gameObject.TryGetComponent(out OVRSceneVolume volume))
-        {
-            return volume;
-        }
-        else
-        {
-            return null;
-        }
-    }
-
+       
     public static AnchorTypes GetAnchorType(OVRSceneAnchor sceneAnchor)
     {
         OVRSemanticClassification cla = sceneAnchor.transform.GetComponent<OVRSemanticClassification>();

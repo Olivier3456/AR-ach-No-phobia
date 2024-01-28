@@ -11,6 +11,8 @@ public class TEST_SpawnObjectsAtStart : MonoBehaviour
     public GameObject objectToSpawn;
     public int numberToSpawn = 10;
 
+    public bool oneSpawnByFrame = true;
+
     private void OnEnable()
     {
         SceneAnchorHelper.OnSceneAnchorsFound.AddListener(OnSceneAnchorsFound);
@@ -33,7 +35,12 @@ public class TEST_SpawnObjectsAtStart : MonoBehaviour
 
         for (int i = 0; i < numberToSpawn; i++)
         {
-            spawner.SpawnObjectOnAnchorOfType(objectToSpawn, AnchorTypes.RANDOM_WALL, SpawnSituation.RandomPointOnSurface, out OVRSceneAnchor sceneAnchor);
+            spawner.SpawnObjectOnAnchorOfType(objectToSpawn, AnchorTypes.FLOOR, SpawnSituation.RandomPointOnSurface, out OVRSceneAnchor sceneAnchor);
+
+            if (oneSpawnByFrame)
+            {
+                yield return null;
+            }
         }
     }
 }

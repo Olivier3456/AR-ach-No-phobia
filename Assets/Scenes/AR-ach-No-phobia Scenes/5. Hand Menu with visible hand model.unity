@@ -849,7 +849,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &70151599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -864,9 +864,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneManager: {fileID: 798431233}
   spawner: {fileID: 1460845421}
-  objectToSpawn: {fileID: 1013223178850462613, guid: 3e0fbe196ba74274e893a0f89d7343c0,
+  objectToSpawn: {fileID: 5915099663834770913, guid: f32bd98f17899f24ea6816b2db1d2895,
     type: 3}
-  numberToSpawn: 20
+  numberToSpawn: 500
+  oneSpawnByFrame: 1
 --- !u!4 &70151600
 Transform:
   m_ObjectHideFlags: 0
