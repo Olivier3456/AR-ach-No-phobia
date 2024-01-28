@@ -90,7 +90,7 @@ public class BaseExercise : MonoBehaviour
                                                                                                       spawnSpiderSO.anchorType,
                                                                                                       spawnSpiderSO.spawnSituation,
                                                                                                       out OVRSceneAnchor sceneAnchor));
-        Spider spider = allObjectsSpawned[allObjectsSpawned.Count - 1].GetComponent<Spider>();
+        SpiderSimpleAnim spider = allObjectsSpawned[allObjectsSpawned.Count - 1].GetComponent<SpiderSimpleAnim>();
         spider.InitNavigation(sceneAnchor);
 
         SwitchToNextEvent();
