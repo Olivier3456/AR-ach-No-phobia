@@ -7,7 +7,6 @@ public class SpiderSimpleAnim : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private GameObject destinationVisualPrefab;
-    [SerializeField] private float walkSpeed = 0.1f;
     [Space(20)]
     [SerializeField] private Animator animator;
     [SerializeField] private float walkAnimationSpeedFactor = 10f;
@@ -19,30 +18,26 @@ public class SpiderSimpleAnim : MonoBehaviour
 
     private bool isPaused = false;
 
+    private float walkSpeed = 0.1f;
+    private float scale = 1f;
 
 
-    private void Start()
+    public void InitSpider(OVRSceneAnchor sceneAnchor, SpawnSpiderSO spawnSpiderSO)
     {
+        walkSpeed = spawnSpiderSO.speed;
         agent.speed = walkSpeed;
+
+        scale = spawnSpiderSO.scale;
+        transform.localScale = Vector3.one * scale;
+
+        walkAnimationSpeedFactor /= scale;
+
+        InitNavigation(sceneAnchor);
         StartCoroutine(PauseWalkRepetitively());
-
-
-        // DEBUG
-        //InitNavigationDebug();
     }
 
 
-
-    // ==================== DEBUG ====================
-    //[SerializeField] private Transform DEBUG_Destination;
-    //private void InitNavigationDebug()
-    //{
-    //    agent.destination = DEBUG_Destination.position;
-    //}
-    // ===============================================
-
-
-    public void InitNavigation(OVRSceneAnchor sceneAnchor)
+    private void InitNavigation(OVRSceneAnchor sceneAnchor)
     {
         this.sceneAnchor = sceneAnchor;
         NavMeshHandler.BuildNavMesh(sceneAnchor);
@@ -61,10 +56,7 @@ public class SpiderSimpleAnim : MonoBehaviour
     private void Update()
     {
         float currentVelocity = agent.velocity.magnitude;
-        //Debug.Log($"Current velocity of spider agent: {currentVelocity}");
         animator.speed = currentVelocity * walkAnimationSpeedFactor;
-
-        //Debug.Log($"Spider animator speed set to: {animator.speed}");
 
         if (sceneAnchor != null)
         {

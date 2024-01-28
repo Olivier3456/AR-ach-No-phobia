@@ -52,7 +52,7 @@ public class ObjectSwapRandom : MonoBehaviour
             int newInt = Mathf.FloorToInt(seedNumber * 1000f) % 1000; //extract only the last 3 digits of our random value
             float seedFloat = (float)newInt / 1000.0f; // reduce the random int (between 000-999) to a float (betwen .000 and .999)
 
-            int count = objectsToChooseFrom.Count; // total size of the list of prefabs to space
+            int count = objectsToChooseFrom.Count; // total scale of the list of prefabs to space
             float multipliedFloat = seedFloat * count; // multiply this new float by the number of entries in the List
             int randomIndex = Mathf.FloorToInt(multipliedFloat); //round downwards, providing an int between list minimum and max
             // Debug.Log(randomIndex);

@@ -4,7 +4,7 @@ using UnityEngine;
 public class SpawnSpiderSO : SpawnObjectBaseSO
 {
     public SpiderSimpleAnim spider;
-    public float size = 1;
+    public float scale = 1;
     public float speed = 1;
     public float angle = 0;
 }

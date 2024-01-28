@@ -2676,10 +2676,8 @@ MonoBehaviour:
   agent: {fileID: 5193617889278986724}
   destinationVisualPrefab: {fileID: 1286772375847784257, guid: d46f05c7483be3544bcb39575afa41e4,
     type: 3}
-  walkSpeed: 0.1
   animator: {fileID: 2620335639172056276}
-  walkAnimationSpeedFactor: 50
-  DEBUG_Destination: {fileID: 0}
+  walkAnimationSpeedFactor: 65
 --- !u!1 &6768443354216449717
 GameObject:
   m_ObjectHideFlags: 0
