@@ -543,11 +543,6 @@ PrefabInstance:
       propertyPath: DEBUG_Destination
       value: 
       objectReference: {fileID: 946794391}
-    - target: {fileID: 3883620136390724306, guid: f4910a62cb5aea04dbc9db96829c74cd,
-        type: 3}
-      propertyPath: walkAnimationSpeedFactor
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 6765185090754520815, guid: f4910a62cb5aea04dbc9db96829c74cd,
         type: 3}
       propertyPath: m_Name

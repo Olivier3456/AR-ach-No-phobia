@@ -17,25 +17,29 @@ public class SpiderSimpleAnim : MonoBehaviour
 
     private OVRSceneAnchor sceneAnchor = null;
 
+    private bool isPaused = false;
+
+
 
     private void Start()
     {
         agent.speed = walkSpeed;
+        StartCoroutine(PauseWalkRepetitively());
 
 
         // DEBUG
-        InitNavigationDebug();
+        //InitNavigationDebug();
     }
 
 
 
-    // DEBUG
-    [SerializeField] private Transform DEBUG_Destination;
-    private void InitNavigationDebug()
-    {
-        agent.destination = DEBUG_Destination.position;
-    }
-
+    // ==================== DEBUG ====================
+    //[SerializeField] private Transform DEBUG_Destination;
+    //private void InitNavigationDebug()
+    //{
+    //    agent.destination = DEBUG_Destination.position;
+    //}
+    // ===============================================
 
 
     public void InitNavigation(OVRSceneAnchor sceneAnchor)
@@ -60,27 +64,52 @@ public class SpiderSimpleAnim : MonoBehaviour
         //Debug.Log($"Current velocity of spider agent: {currentVelocity}");
         animator.speed = currentVelocity * walkAnimationSpeedFactor;
 
+        //Debug.Log($"Spider animator speed set to: {animator.speed}");
+
         if (sceneAnchor != null)
         {
             if (!isPaused && agent.remainingDistance < minRemainingDistance)
             {
                 Debug.Log("Setting new destination for Spider");
                 SetRandomDestinationOnAnchorSurface();
-                StartCoroutine(PauseAndResumeWalk());
+                isPaused = true;
             }
+        }
+
+        if (isPaused)
+        {
+            agent.speed = 0;
+        }
+        else
+        {
+            agent.speed = walkSpeed;
         }
     }
 
 
-    private bool isPaused = false;
-    private IEnumerator PauseAndResumeWalk()
+    private IEnumerator PauseWalkRepetitively()
     {
-        isPaused = true;
-        agent.speed = 0;
-        float randomPauseTime = Random.Range(0.5f, 3f);
-        yield return new WaitForSeconds(randomPauseTime);
-        agent.speed = walkSpeed;
-        isPaused = false;
+        while (true)
+        {
+            isPaused = false;
+
+            float randomWalkTime = Random.Range(5, 10);
+            float timer = 0;
+            while (!isPaused && timer < randomWalkTime)
+            {
+                yield return null;
+                timer += Time.deltaTime;
+            }
+
+            isPaused = true;
+            float randomPauseTime = Random.Range(1, 3);
+            timer = 0;
+            while (isPaused && timer < randomPauseTime)
+            {
+                yield return null;
+                timer += Time.deltaTime;
+            }
+        }
     }
 
 
@@ -98,7 +127,6 @@ public class SpiderSimpleAnim : MonoBehaviour
     public void SetWalkSpeed(float value)
     {
         walkSpeed = value;
-        agent.speed = value;
     }
 
 

@@ -81,7 +81,7 @@ public class SceneAnchorHelper : MonoBehaviour
 
     // Static methods
 
-    public static Vector3 RandomPointOnAnchorSurface(OVRSceneAnchor sceneAnchor, float margin = 0.1f)
+    public static Vector3 RandomPointOnAnchorSurface(OVRSceneAnchor sceneAnchor, float marginDistance = 0.1f)
     {
         Debug.Log($"Finding random point on a scene anchor {sceneAnchor.name}");
 
@@ -89,8 +89,8 @@ public class SceneAnchorHelper : MonoBehaviour
         {
             Debug.Log("Scene anchor is a plane (Wall, ceiling or floor)");
 
-            float randomX = Random.Range(0, plane.Width - margin) - ((plane.Width - margin) * 0.5f);
-            float randomZ = Random.Range(0, plane.Height - margin) - ((plane.Height - margin) * 0.5f);
+            float randomX = Random.Range(0, plane.Width - marginDistance) - ((plane.Width - marginDistance) * 0.5f);
+            float randomZ = Random.Range(0, plane.Height - marginDistance) - ((plane.Height - marginDistance) * 0.5f);
 
             Vector3 offsetX = randomX * plane.transform.right;
             Vector3 offsetZ = randomZ * plane.transform.up;
@@ -103,8 +103,8 @@ public class SceneAnchorHelper : MonoBehaviour
         {
             Debug.Log("Scene anchor is a volume (table/desk)");
 
-            float randomX = Random.Range(0, volume.Width - margin) - ((volume.Width - margin) * 0.5f);
-            float randomZ = Random.Range(0, volume.Depth - margin) - ((volume.Depth - margin) * 0.5f);
+            float randomX = Random.Range(0, volume.Width - marginDistance) - ((volume.Width - marginDistance) * 0.5f);
+            float randomZ = Random.Range(0, volume.Depth - marginDistance) - ((volume.Depth - marginDistance) * 0.5f);
 
             Vector3 offsetX = randomX * volume.transform.right;
             Vector3 offsetZ = randomZ * volume.transform.up;
