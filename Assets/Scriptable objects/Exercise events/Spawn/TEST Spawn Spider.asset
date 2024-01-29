@@ -15,7 +15,7 @@ MonoBehaviour:
   beginWithCondition: 0
   anchorType: 0
   spawnSituation: 1
-  spider: {fileID: 3883620136390724306, guid: f4910a62cb5aea04dbc9db96829c74cd, type: 3}
+  spider: {fileID: 3883620136390724306, guid: 4d06f044d068d354c98e68d896e32928, type: 3}
   scale: 3
   speed: 0.1
   angle: 0

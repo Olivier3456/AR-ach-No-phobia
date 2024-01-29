@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Ex1 Play Start Clip
   m_EditorClassIdentifier: 
   beginWithCondition: 0
-  waitForEndOfClip: 0
+  waitForEndOfClip: 1
   clipToPlay: {fileID: 8300000, guid: 6be1614436b124140b17052a9f232c5c, type: 3}
