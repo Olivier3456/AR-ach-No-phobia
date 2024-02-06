@@ -1,0 +1,8 @@
+Intro:
+
+Bienvenue dans Arachnophobia. Cette application nécessite que vous ayez paramétré votre pièce dans le casque, avec au moins quatre murs et une table. Pour maximiser le réalisme de l'application, faites en sorte que votre table soit dégagée de tout objet, et soit de forme rectangulaire.
+
+[Lancement du paramétrage s'il n'a pas encore été fait]
+
+Pour accéder au menu, levez le pouce de votre main gauche, ou celui de votre main droite, et maintenez cette pose pendant que vous touchez les boutons avec l'index de l'autre main.
+

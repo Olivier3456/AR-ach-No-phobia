@@ -33,6 +33,8 @@ public class SpiderHandInteract : BaseSpider
 
         InitNavigation();
 
+        minRemainingDistance = 0.005f;
+
         Debug.Log("Spider init done");
     }
 
