@@ -13637,7 +13637,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1365423585
 Transform:
   m_ObjectHideFlags: 0
@@ -19277,7 +19277,7 @@ MonoBehaviour:
   _editor: {fileID: 1879654490}
   _width: 0.5
   _height: 0.5
-  _color: {r: 1, g: 1, b: 1, a: 0.078431375}
+  _color: {r: 1, g: 1, b: 1, a: 0.16470589}
   _borderColor: {r: 0, g: 0, b: 0, a: 1}
   _radiusTopLeft: 0.25
   _radiusTopRight: 0.25
