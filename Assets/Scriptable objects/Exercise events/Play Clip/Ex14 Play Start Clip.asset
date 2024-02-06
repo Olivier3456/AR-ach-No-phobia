@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2df6a1ca0b012c4b8a781b3ae2e065a, type: 3}
-  m_Name: TEST Spawn Spider
+  m_Script: {fileID: 11500000, guid: 95031698809709246ac0b98f943e9a83, type: 3}
+  m_Name: Ex14 Play Start Clip
   m_EditorClassIdentifier: 
   beginWithCondition: 0
-  anchorType: 0
-  spawnSituation: 1
-  spider: {fileID: 3883620136390724306, guid: 4d06f044d068d354c98e68d896e32928, type: 3}
-  scale: 3
-  speed: 0.1
-  angle: 0
+  waitForEndOfClip: 0
+  clipToPlay: {fileID: 8300000, guid: 5d888a978861fcf45acfb497789878a4, type: 3}

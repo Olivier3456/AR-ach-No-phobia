@@ -11,7 +11,7 @@ public class BaseSpider : MonoBehaviour
     [SerializeField] protected Animator animator;
     [SerializeField] protected float walkAnimationSpeedFactor = 10f;
 
-    protected float minRemainingDistance = 0.1f;
+    protected float minRemainingDistance = 0.05f;
     protected GameObject destinationVisual;
 
     protected OVRSceneAnchor sceneAnchor = null;

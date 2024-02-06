@@ -147,7 +147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7460514325401195833}
   m_Layer: 0
-  m_Name: Nav Mesh Surfaces 6 faces
+  m_Name: NavMesh Surfaces 6 faces
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -171,6 +171,7 @@ public class BaseExercise : MonoBehaviour
         if (!exercisesEventsWithBeginingConditionFullfiled.Contains(exerciseEventSO))
         {
             exercisesEventsWithBeginingConditionFullfiled.Add(exerciseEventSO);
+            Debug.Log($"Condition for conditional event {exerciseEventSO} is fulfulled.");
         }
     }
 

@@ -4727,7 +4727,7 @@ MonoBehaviour:
   - {fileID: 8873305688580129964}
   - {fileID: 8873305689165026892}
   - {fileID: 8873305688096191038}
-  offsetForRightHand: {x: -0.15, y: -0.1, z: 0}
+  offsetForRightHand: {x: -0.2, y: -0.1, z: 0}
   showHandsModelWhenMenuIsVisible: 1
   leftHandRenderer: {fileID: 1913207998}
   rightHandRenderer: {fileID: 151065030}
@@ -12916,6 +12916,7 @@ MonoBehaviour:
   exercisesPrefabs:
   - {fileID: 7468501251916152618, guid: 3fa0a59be63406c47924c620c48a60b3, type: 3}
   - {fileID: 9152334520391356821, guid: d9f2ca28dcea04f41a25431023bd0970, type: 3}
+  - {fileID: 6687948022285288, guid: ab325311c7de5864e9c735dcb0790435, type: 3}
   leftPalmCenterMarker: {fileID: 1056901739}
   rightPalmCenterMarker: {fileID: 1870312186}
   OnExerciseBegin:
@@ -24722,7 +24723,7 @@ GameObject:
   - component: {fileID: 8873305687253186094}
   - component: {fileID: 8873305687253186089}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Toggle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25153,7 +25154,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 176, y: 40}
+  m_SizeDelta: {x: 332.39, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8873305687340672427
 MonoBehaviour:
@@ -25289,7 +25290,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 176, y: 40}
+  m_SizeDelta: {x: 332.39, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8873305687419996048
 MonoBehaviour:
@@ -25451,7 +25452,7 @@ GameObject:
   - component: {fileID: 8873305687419996048}
   - component: {fileID: 8873305687419996051}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Toggle3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25528,7 +25529,7 @@ GameObject:
   - component: {fileID: 8873305687504130693}
   - component: {fileID: 8873305687504130692}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Toggle6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25814,7 +25815,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.0014954, y: 0}
-  m_SizeDelta: {x: 285.43, y: 40}
+  m_SizeDelta: {x: 332.39, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8873305687568963677
 MonoBehaviour:
@@ -26015,7 +26016,7 @@ GameObject:
   - component: {fileID: 8873305687570973664}
   - component: {fileID: 8873305687570973667}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Toggle4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26035,7 +26036,7 @@ GameObject:
   - component: {fileID: 8873305687592626308}
   - component: {fileID: 8873305687592626311}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Toggle7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27225,7 +27226,7 @@ GameObject:
   - component: {fileID: 8873305687985605048}
   - component: {fileID: 8873305687985605051}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Toggle12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27537,7 +27538,7 @@ GameObject:
   - component: {fileID: 8873305688096191032}
   - component: {fileID: 8873305688096191035}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Toggle16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27620,7 +27621,7 @@ GameObject:
   - component: {fileID: 8873305688191336855}
   - component: {fileID: 8873305688191336854}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Toggle9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27927,7 +27928,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: "14. Prendre une petite araign\xE9e dans sa main."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fc41d5815b9a5bb48be4c84a746c4ff6, type: 2}
   m_sharedMaterial: {fileID: 7032093815205813286, guid: fc41d5815b9a5bb48be4c84a746c4ff6,
@@ -28098,7 +28099,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.0014954, y: 0}
-  m_SizeDelta: {x: 285.43, y: 40}
+  m_SizeDelta: {x: 332.39, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8873305688350019629
 MonoBehaviour:
@@ -28263,7 +28264,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 176, y: 40}
+  m_SizeDelta: {x: 332.39, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8873305688361745817
 MonoBehaviour:
@@ -28357,7 +28358,7 @@ GameObject:
   - component: {fileID: 8873305688373529047}
   - component: {fileID: 8873305688373529046}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Toggle5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28526,7 +28527,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.0014954, y: 0}
-  m_SizeDelta: {x: 285.43, y: 40}
+  m_SizeDelta: {x: 332.39, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8873305688391885841
 MonoBehaviour:
@@ -28771,7 +28772,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 176, y: 40}
+  m_SizeDelta: {x: 332.39, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8873305688554716919
 MonoBehaviour:
@@ -28854,7 +28855,7 @@ GameObject:
   - component: {fileID: 8873305688580129966}
   - component: {fileID: 8873305688580129961}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Toggle14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28995,7 +28996,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.0014954, y: 0}
-  m_SizeDelta: {x: 285.43, y: 40}
+  m_SizeDelta: {x: 332.39, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8873305688607085880
 CanvasRenderer:
@@ -29092,7 +29093,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 176, y: 40}
+  m_SizeDelta: {x: 332.39, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8873305688615594804
 CanvasRenderer:
@@ -29227,7 +29228,7 @@ GameObject:
   - component: {fileID: 8873305688644759828}
   - component: {fileID: 8873305688644759831}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Toggle13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29458,7 +29459,7 @@ GameObject:
   - component: {fileID: 8873305688677269301}
   - component: {fileID: 8873305688677269300}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Toggle11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29637,7 +29638,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 176, y: 40}
+  m_SizeDelta: {x: 332.39, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8873305688725129169
 MonoBehaviour:
@@ -29804,7 +29805,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 176, y: 40}
+  m_SizeDelta: {x: 332.39, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8873305688797286586
 CanvasRenderer:
@@ -30071,7 +30072,7 @@ GameObject:
   - component: {fileID: 8873305688838979848}
   - component: {fileID: 8873305688838979851}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Toggle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30811,7 +30812,7 @@ GameObject:
   - component: {fileID: 8873305689035480105}
   - component: {fileID: 8873305689035480104}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Toggle10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31066,7 +31067,7 @@ GameObject:
   - component: {fileID: 8873305689100450888}
   - component: {fileID: 8873305689100450891}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Toggle8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31243,7 +31244,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.0014954, y: 0}
-  m_SizeDelta: {x: 285.43, y: 40}
+  m_SizeDelta: {x: 332.39, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8873305689128818068
 CanvasRenderer:
@@ -31365,7 +31366,7 @@ GameObject:
   - component: {fileID: 8873305689165026894}
   - component: {fileID: 8873305689165026889}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Toggle15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31796,7 +31797,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 176, y: 40}
+  m_SizeDelta: {x: 332.39, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8873305689295825779
 MonoBehaviour:
