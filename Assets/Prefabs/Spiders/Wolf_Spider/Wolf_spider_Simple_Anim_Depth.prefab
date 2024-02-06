@@ -2670,14 +2670,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6765185090754520815}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f73284f17b940ee4a8efe375fdf95366, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a4396967b03f7a4396630fce677baa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 5193617889278986724}
   destinationVisualPrefab: {fileID: 1286772375847784257, guid: d46f05c7483be3544bcb39575afa41e4,
     type: 3}
   animator: {fileID: 2620335639172056276}
-  walkAnimationSpeedFactor: 65
+  walkAnimationSpeedFactor: 10
 --- !u!1 &6768443354216449717
 GameObject:
   m_ObjectHideFlags: 0

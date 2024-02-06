@@ -3,27 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SpiderSimpleAnim : MonoBehaviour
+public class BaseSpider : MonoBehaviour
 {
-    [SerializeField] private NavMeshAgent agent;
-    [SerializeField] private GameObject destinationVisualPrefab;
+    [SerializeField] protected NavMeshAgent agent;
+    [SerializeField] protected GameObject destinationVisualPrefab;
     [Space(20)]
-    [SerializeField] private Animator animator;
-    [SerializeField] private float walkAnimationSpeedFactor = 10f;
+    [SerializeField] protected Animator animator;
+    [SerializeField] protected float walkAnimationSpeedFactor = 10f;
 
-    private float minRemainingDistance = 0.1f;
-    private GameObject destinationVisual;
+    protected float minRemainingDistance = 0.1f;
+    protected GameObject destinationVisual;
 
-    private OVRSceneAnchor sceneAnchor = null;
+    protected OVRSceneAnchor sceneAnchor = null;
 
-    private bool isPaused = false;
+    protected bool isPaused = false;
 
-    private float walkSpeed = 0.1f;
-    private float scale = 1f;
+    protected float walkSpeed = 0.1f;
+    protected float scale = 1f;
 
 
-    public void InitSpider(OVRSceneAnchor sceneAnchor, SpawnSpiderSO spawnSpiderSO)
+    public virtual void InitSpider(OVRSceneAnchor sceneAnchor, SpawnSpiderSO spawnSpiderSO)
     {
+        this.sceneAnchor = sceneAnchor;
+        
         walkSpeed = spawnSpiderSO.speed;
         agent.speed = walkSpeed;
 
@@ -32,14 +34,13 @@ public class SpiderSimpleAnim : MonoBehaviour
 
         walkAnimationSpeedFactor /= scale;
 
-        InitNavigation(sceneAnchor);
+        InitNavigation();
         StartCoroutine(PauseWalkRepetitively());
     }
 
 
-    private void InitNavigation(OVRSceneAnchor sceneAnchor)
+    protected virtual void InitNavigation()
     {
-        this.sceneAnchor = sceneAnchor;
         NavMeshHandler.BuildNavMesh(sceneAnchor);
 
         if (destinationVisualPrefab != null)
@@ -53,7 +54,7 @@ public class SpiderSimpleAnim : MonoBehaviour
     }
 
 
-    private void Update()
+    protected virtual void Update()
     {
         float currentVelocity = agent.velocity.magnitude;
         animator.speed = currentVelocity * walkAnimationSpeedFactor;
@@ -84,7 +85,6 @@ public class SpiderSimpleAnim : MonoBehaviour
         while (true)
         {
             isPaused = false;
-
             float randomWalkTime = Random.Range(5, 10);
             float timer = 0;
             while (!isPaused && timer < randomWalkTime)
@@ -116,13 +116,13 @@ public class SpiderSimpleAnim : MonoBehaviour
     }
 
 
-    public void SetWalkSpeed(float value)
+    public virtual void SetWalkSpeed(float value)
     {
         walkSpeed = value;
     }
 
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         if (destinationVisual != null)
         {

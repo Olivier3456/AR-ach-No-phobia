@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7885164126022714831}
   - component: {fileID: 3312550378144736061}
-  - component: {fileID: 357303405708955838}
+  - component: {fileID: 9152334520391356821}
   m_Layer: 0
   m_Name: Exercise2
   m_TagString: Untagged
@@ -129,7 +129,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &357303405708955838
+--- !u!114 &9152334520391356821
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,11 +138,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4026354883139607430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df201e9d7accb324cbe73536d0f9659a, type: 3}
+  m_Script: {fileID: 11500000, guid: d487f822800fe304e9103e140131eeb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   exerciseAudioSource: {fileID: 3312550378144736061}
-  requireNavMesh: 1
   exerciseEvents:
   - {fileID: 11400000, guid: 69411bade08b3aa4b815b0756c39f3ff, type: 2}
   - {fileID: 11400000, guid: 3a3e36f8a16d75341a9fa062e75debff, type: 2}

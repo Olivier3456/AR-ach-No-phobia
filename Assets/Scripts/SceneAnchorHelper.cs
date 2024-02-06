@@ -122,15 +122,15 @@ public class SceneAnchorHelper : MonoBehaviour
     }
 
 
-    public static Vector3 WorldPositionOfAPointOnSceneAnchorSurface(OVRSceneAnchor sceneAnchor, float offsetX, float offsetZ)
-    {
-        Vector3 offsetXInLocalSpace = offsetX * sceneAnchor.transform.right;
-        Vector3 offsetZInLocalSpace = offsetZ * sceneAnchor.transform.up;
-        Vector3 offset = offsetXInLocalSpace + offsetZInLocalSpace;
-        return sceneAnchor.transform.position + offset;
-    }
+    //public static Vector3 WorldPositionOfAPointOnSceneAnchorSurface(OVRSceneAnchor sceneAnchor, float offsetX, float offsetZ)
+    //{
+    //    Vector3 offsetXInLocalSpace = offsetX * sceneAnchor.transform.right;
+    //    Vector3 offsetZInLocalSpace = offsetZ * sceneAnchor.transform.up;
+    //    Vector3 offset = offsetXInLocalSpace + offsetZInLocalSpace;
+    //    return sceneAnchor.transform.position + offset;
+    //}
 
-       
+           
     public static AnchorTypes GetAnchorType(OVRSceneAnchor sceneAnchor)
     {
         OVRSemanticClassification cla = sceneAnchor.transform.GetComponent<OVRSemanticClassification>();

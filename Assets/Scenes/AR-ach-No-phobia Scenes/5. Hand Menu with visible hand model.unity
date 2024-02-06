@@ -1238,11 +1238,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 18475fce55916eb45affa0fec268d205, type: 2}
+      objectReference: {fileID: 2100000, guid: 2e76e508e993e414c83db08631c5442a, type: 2}
     - target: {fileID: 8662184561472330086, guid: 94313e563929cb3499e3989be338a213,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8961047544114658047, guid: 94313e563929cb3499e3989be338a213,
         type: 3}
@@ -1309,7 +1309,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 151065026}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1204743599}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9af9ea683544b184083cef283557012d, type: 3}
@@ -4729,8 +4729,11 @@ MonoBehaviour:
   - {fileID: 8873305688096191038}
   offsetForRightHand: {x: -0.15, y: -0.1, z: 0}
   showHandsModelWhenMenuIsVisible: 1
-  handVisualLeft: {fileID: 631710082}
-  handVisualRight: {fileID: 1204743599}
+  leftHandRenderer: {fileID: 1913207998}
+  rightHandRenderer: {fileID: 151065030}
+  visibleHandMaterial: {fileID: 2100000, guid: 18475fce55916eb45affa0fec268d205, type: 2}
+  invisibleHandMaterial: {fileID: 2100000, guid: 2e76e508e993e414c83db08631c5442a,
+    type: 2}
   anxietyButtonsParent: {fileID: 330519934}
   quitButton: {fileID: 1012965219}
   nextExerciseButton: {fileID: 324473000}
@@ -5179,7 +5182,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &565930671
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6048,12 +6051,6 @@ Transform:
   - {fileID: 1623399642}
   m_Father: {fileID: 166295856}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &631710082 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2143258140644656277, guid: e7fbb376593cff24f9db4ecf8d465aaf,
-    type: 3}
-  m_PrefabInstance: {fileID: 1913207994}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &636867932
 GameObject:
   m_ObjectHideFlags: 0
@@ -10690,6 +10687,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 858224905}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1056901739 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2143258141035287226, guid: e7fbb376593cff24f9db4ecf8d465aaf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1913207994}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1065675810
 GameObject:
   m_ObjectHideFlags: 0
@@ -12061,12 +12064,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pokeInteractable: {fileID: 904793333}
   _buttonBaseTransform: {fileID: 1496285619}
---- !u!1 &1204743599 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8662184561472330086, guid: 94313e563929cb3499e3989be338a213,
-    type: 3}
-  m_PrefabInstance: {fileID: 151065026}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1225195735
 GameObject:
   m_ObjectHideFlags: 0
@@ -12918,7 +12915,9 @@ MonoBehaviour:
   handMenuBehaviour: {fileID: 422400608}
   exercisesPrefabs:
   - {fileID: 7468501251916152618, guid: 3fa0a59be63406c47924c620c48a60b3, type: 3}
-  - {fileID: 357303405708955838, guid: d9f2ca28dcea04f41a25431023bd0970, type: 3}
+  - {fileID: 9152334520391356821, guid: d9f2ca28dcea04f41a25431023bd0970, type: 3}
+  leftPalmCenterMarker: {fileID: 1056901739}
+  rightPalmCenterMarker: {fileID: 1870312186}
   OnExerciseBegin:
     m_PersistentCalls:
       m_Calls: []
@@ -18795,6 +18794,12 @@ Transform:
   - {fileID: 833052068}
   m_Father: {fileID: 1604155929}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1870312186 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8662184561556803897, guid: 94313e563929cb3499e3989be338a213,
+    type: 3}
+  m_PrefabInstance: {fileID: 151065026}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1875945644
 GameObject:
   m_ObjectHideFlags: 0
@@ -19447,11 +19452,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 18475fce55916eb45affa0fec268d205, type: 2}
+      objectReference: {fileID: 2100000, guid: 2e76e508e993e414c83db08631c5442a, type: 2}
     - target: {fileID: 2143258140644656277, guid: e7fbb376593cff24f9db4ecf8d465aaf,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3512649495826482208, guid: e7fbb376593cff24f9db4ecf8d465aaf,
         type: 3}
@@ -19542,7 +19547,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1913207994}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 631710082}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9af9ea683544b184083cef283557012d, type: 3}

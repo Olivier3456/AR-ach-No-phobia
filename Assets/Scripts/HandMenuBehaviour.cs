@@ -33,8 +33,10 @@ public class HandMenuBehaviour : MonoBehaviour
     private Vector3 offsetForLeftHand;
     [Space(20)]
     [SerializeField] private bool showHandsModelWhenMenuIsVisible;
-    [SerializeField] private GameObject handVisualLeft;
-    [SerializeField] private GameObject handVisualRight;
+    [SerializeField] private SkinnedMeshRenderer leftHandRenderer;
+    [SerializeField] private SkinnedMeshRenderer rightHandRenderer;
+    [SerializeField] private Material visibleHandMaterial;
+    [SerializeField] private Material invisibleHandMaterial;
     [Space(20)]
     [Header("Quit Exercise Menu")]
     [SerializeField] private GameObject anxietyButtonsParent;
@@ -216,8 +218,8 @@ public class HandMenuBehaviour : MonoBehaviour
         if (isMenuDisappearing)
         {
             currentHandDisplayingMenu = null;
-            handVisualLeft.SetActive(false);
-            handVisualRight.SetActive(false);
+            leftHandRenderer.material = invisibleHandMaterial;
+            rightHandRenderer.material = invisibleHandMaterial;
         }
     }
 
@@ -241,7 +243,7 @@ public class HandMenuBehaviour : MonoBehaviour
 
         Debug.Log("[HandMenuBehaviour] No exercice toggle is on! Can't chose exercise.");
     }
-    
+
 
     public void MenuHandPoseSelected(ActiveStateSelector ass)
     {
@@ -256,8 +258,8 @@ public class HandMenuBehaviour : MonoBehaviour
 
         if (showHandsModelWhenMenuIsVisible)
         {
-            handVisualLeft.SetActive(true);
-            handVisualRight.SetActive(true);
+            leftHandRenderer.material = visibleHandMaterial;
+            rightHandRenderer.material = visibleHandMaterial;
         }
 
         UpdateMenuPositionAndRotation(false);

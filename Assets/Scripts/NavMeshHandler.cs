@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.AI.Navigation;
 
-
 public static class NavMeshHandler
 {
     public static void BuildNavMesh(OVRSceneAnchor sceneAnchor)

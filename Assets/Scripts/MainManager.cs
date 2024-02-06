@@ -12,6 +12,14 @@ public class MainManager : MonoBehaviour
     [SerializeField] private HandMenuBehaviour handMenuBehaviour;
     [Space(20)]
     [SerializeField] private BaseExercise[] exercisesPrefabs;
+    [Space(20)]
+    [SerializeField] private Transform leftPalmCenterMarker;
+    [SerializeField] private Transform rightPalmCenterMarker;
+    [Space(20)]
+    public UnityEvent<int> OnExerciseBegin = new UnityEvent<int>();
+
+    public UnityEvent OnExerciseQuitted = new UnityEvent();
+
 
     // Chosen exercice can be not the same as current exercice if the exercice is not yet begun.
     private int chosenExerciseID = 0;
@@ -19,16 +27,14 @@ public class MainManager : MonoBehaviour
     private BaseExercise currentExercise;
 
 
-    public UnityEvent<int> OnExerciseBegin = new UnityEvent<int>();
-
-    public UnityEvent OnExerciseQuitted = new UnityEvent();
-
-
     public int ChosenExerciseID { get { return chosenExerciseID; } }
     public void ChoseNextExercise(int exerciceID) { chosenExerciseID = exerciceID; }
     public SpawnObjectOnSceneAnchor SpawnObjectOnSceneAnchor { get { return spawnObjectOnSceneAnchor; } }
     public BaseExercise CurrentExercise { get { return currentExercise; } }
     public int TotalNumberOfExercises { get { return exercisesPrefabs.Length; } }
+    public Transform LeftPalmCenterMarker { get { return leftPalmCenterMarker; } }
+    public Transform RightPalmCenterMarker { get { return rightPalmCenterMarker; } }
+
 
     private void Awake()
     {

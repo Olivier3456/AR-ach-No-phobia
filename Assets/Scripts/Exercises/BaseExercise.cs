@@ -61,8 +61,6 @@ public class BaseExercise : MonoBehaviour
             }
         }
 
-
-
         if (eventSO is WaitSO)
         {
             HandleWaitEvent(eventSO);
@@ -83,20 +81,20 @@ public class BaseExercise : MonoBehaviour
 
 
 
-    private void HandleSpawnSpiderEvent(BaseExerciseEventSO eventSO)
+    protected virtual void HandleSpawnSpiderEvent(BaseExerciseEventSO eventSO)
     {
         SpawnSpiderSO spawnSpiderSO = eventSO as SpawnSpiderSO;
         allObjectsSpawned.Add(MainManager.Instance.SpawnObjectOnSceneAnchor.SpawnObjectOnAnchorOfType(spawnSpiderSO.spider.gameObject,
                                                                                                       spawnSpiderSO.anchorType,
                                                                                                       spawnSpiderSO.spawnSituation,
                                                                                                       out OVRSceneAnchor sceneAnchor));
-        SpiderSimpleAnim spider = allObjectsSpawned[allObjectsSpawned.Count - 1].GetComponent<SpiderSimpleAnim>();
+        BaseSpider spider = allObjectsSpawned[allObjectsSpawned.Count - 1].GetComponent<BaseSpider>();
         spider.InitSpider(sceneAnchor, spawnSpiderSO);
 
         SwitchToNextEvent();
     }
 
-    private void HandleSpawnImagesPanelEvent(BaseExerciseEventSO eventSO)
+    protected virtual void HandleSpawnImagesPanelEvent(BaseExerciseEventSO eventSO)
     {
         SpawnImagesPanelSO spawnIPSO = eventSO as SpawnImagesPanelSO;
         allObjectsSpawned.Add(MainManager.Instance.SpawnObjectOnSceneAnchor.SpawnObjectOnAnchorOfType(spawnIPSO.imagesPanel.gameObject,
@@ -108,7 +106,7 @@ public class BaseExercise : MonoBehaviour
         SwitchToNextEvent();
     }
 
-    private void HandlePlayClipEvent(BaseExerciseEventSO eventSO)
+    protected virtual void HandlePlayClipEvent(BaseExerciseEventSO eventSO)
     {
         PlayClipSO playClipSO = eventSO as PlayClipSO;
 
@@ -137,7 +135,7 @@ public class BaseExercise : MonoBehaviour
         }
     }
 
-    private void HandleWaitEvent(BaseExerciseEventSO eventSO)
+    protected virtual void HandleWaitEvent(BaseExerciseEventSO eventSO)
     {
         WaitSO waitSO = eventSO as WaitSO;
 
@@ -168,7 +166,7 @@ public class BaseExercise : MonoBehaviour
         }
     }
 
-    public void FulfillConditionForExerciseEvent(BaseExerciseEventSO exerciseEventSO)
+    public virtual void FulfillConditionForExerciseEvent(BaseExerciseEventSO exerciseEventSO)
     {
         if (!exercisesEventsWithBeginingConditionFullfiled.Contains(exerciseEventSO))
         {
