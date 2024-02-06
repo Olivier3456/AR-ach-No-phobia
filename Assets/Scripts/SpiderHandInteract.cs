@@ -40,39 +40,28 @@ public class SpiderHandInteract : BaseSpider
     protected override void InitNavigation()
     {
         NavMeshHandler.BuildNavMesh(sceneAnchor);
-
-        //if (destinationVisualPrefab != null)
-        //{
-        //    destinationVisual = Instantiate(destinationVisualPrefab);
-        //    Debug.Log("Instantiated visual marker for spider's destination");
-        //}
     }
 
     protected override void Update()
     {
+        float currentVelocity = agent.velocity.magnitude;
+        animator.speed = currentVelocity * walkAnimationSpeedFactor;
+
         if (!isSpiderOnHand)
         {
-            if (currentAnchor != null)
-            {
-                Debug.Log($"agent.remainingDistance = {agent.remainingDistance}");
-            }
-
-
             if (currentAnchor != null && agent.remainingDistance < minRemainingDistance)
             {
-                transform.position = currentAnchor.position;
-                transform.parent = currentAnchor;
-                transform.up = -currentAnchor.up;
                 agent.speed = 0;
                 agent.enabled = false;
+                transform.position = currentAnchor.position;
+                transform.parent = currentAnchor;
+                transform.up = currentAnchor.up;
+
                 isSpiderOnHand = true;
                 SpiderOnHand.Invoke();
 
                 Debug.Log("Spider is on hand!");
             }
-
-
-
 
             NavMeshHit hit;
             float margin = 0.05f;
@@ -80,39 +69,20 @@ public class SpiderHandInteract : BaseSpider
             if (NavMesh.SamplePosition(leftHandAnchor.position, out hit, margin, NavMesh.AllAreas))
             {
                 agent.SetDestination(hit.position);
-
-                //if (destinationVisual != null)
-                //{
-                //    destinationVisual.transform.position = hit.position;
-                //}
-
                 currentAnchor = leftHandAnchor;
                 agent.speed = walkSpeed;
-
-                Debug.Log("Left hand found near NavMesh");
             }
             else if (NavMesh.SamplePosition(rightHandAnchor.position, out hit, margin, NavMesh.AllAreas))
             {
                 agent.SetDestination(hit.position);
-
-                //if (destinationVisual != null)
-                //{
-                //    destinationVisual.transform.position = hit.position;
-                //}
-
                 currentAnchor = rightHandAnchor;
                 agent.speed = walkSpeed;
-
-                Debug.Log("Right hand found near NavMesh");
             }
             else
             {
                 agent.speed = 0;
                 currentAnchor = null;
             }
-
-
-            
         }
     }
 }
