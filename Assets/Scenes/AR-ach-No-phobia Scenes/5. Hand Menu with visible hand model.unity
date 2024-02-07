@@ -12917,7 +12917,20 @@ MonoBehaviour:
   exercisesPrefabs:
   - {fileID: 7468501251916152618, guid: 3fa0a59be63406c47924c620c48a60b3, type: 3}
   - {fileID: 9152334520391356821, guid: d9f2ca28dcea04f41a25431023bd0970, type: 3}
+  - {fileID: 3580597880042212003, guid: cfa86b0932878a447b3cb12552ede1da, type: 3}
+  - {fileID: 7952488886552557591, guid: 734b86021b32ca742ad0e71bb0e926a1, type: 3}
+  - {fileID: 4273189464356626468, guid: 2b02c2592fca84e499f9c02d090eb2b3, type: 3}
+  - {fileID: 8478099712242939773, guid: 092b7d5e06a937141926a05a7fad30df, type: 3}
+  - {fileID: 544167685289718998, guid: f08a837bdab0c8642a49aaf27d590f1e, type: 3}
+  - {fileID: 1127549882297690225, guid: 2d70f2c300195d24d8d4a403abe60602, type: 3}
+  - {fileID: 1158301803987764493, guid: 80e8db9aa428e134689b205a099c917c, type: 3}
+  - {fileID: 6835812789420086291, guid: 3133eeb17f0b8e8459bb601207991f3d, type: 3}
+  - {fileID: 2140410360181916811, guid: 5db31f2caaed2ab47819cd12a774c8ab, type: 3}
+  - {fileID: 3138103869183999600, guid: 08c6e68ef15b0e24285cd98a76ae4dd0, type: 3}
+  - {fileID: 444997336901752805, guid: 49079ae11f9f8ca46aad042b58671e08, type: 3}
   - {fileID: 6687948022285288, guid: ab325311c7de5864e9c735dcb0790435, type: 3}
+  - {fileID: 444997336901752805, guid: aa502f7b5be9bea4c8ba0b1a60ec82d5, type: 3}
+  - {fileID: 444997336901752805, guid: 10303c327ca72e143a2865ecf3e7594b, type: 3}
   leftPalmCenterMarker: {fileID: 1056901739}
   rightPalmCenterMarker: {fileID: 1870312186}
   OnExerciseBegin:
@@ -13637,7 +13650,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1365423585
 Transform:
   m_ObjectHideFlags: 0

@@ -14,7 +14,13 @@ public class SpiderHandInteract : BaseSpider
 
     private bool isSpiderOnHand;
 
+    private bool canSpiderBeReleased;
+    private bool isSpiderReleased;
+    private float timeBeforeCanReleaseSpider = 10f;
+
     public static UnityEvent SpiderOnHand = new UnityEvent();
+    public static UnityEvent SpiderCanBeReleased = new UnityEvent();
+    public static UnityEvent SpiderReleased = new UnityEvent();
 
     public override void InitSpider(OVRSceneAnchor sceneAnchor, SpawnSpiderSO spawnSpiderSO)
     {
@@ -49,7 +55,7 @@ public class SpiderHandInteract : BaseSpider
         float currentVelocity = agent.velocity.magnitude;
         animator.speed = currentVelocity * walkAnimationSpeedFactor;
 
-        if (!isSpiderOnHand)
+        if (!isSpiderOnHand && !isSpiderReleased)
         {
             if (currentAnchor != null && agent.remainingDistance < minRemainingDistance)
             {
@@ -63,6 +69,8 @@ public class SpiderHandInteract : BaseSpider
                 SpiderOnHand.Invoke();
 
                 Debug.Log("Spider is on hand!");
+
+                Invoke("CanReleaseSpider", timeBeforeCanReleaseSpider);
             }
 
             NavMeshHit hit;
@@ -86,5 +94,29 @@ public class SpiderHandInteract : BaseSpider
                 currentAnchor = null;
             }
         }
+        else
+        {
+            if (canSpiderBeReleased && !isSpiderReleased)
+            {
+                NavMeshHit hit;
+                float margin = 0.05f;
+                if (NavMesh.SamplePosition(currentAnchor.position, out hit, margin, NavMesh.AllAreas))
+                {
+                    transform.parent = null;
+                    agent.enabled = true;
+                    transform.position = hit.position;  // Probably not necessary
+                    isSpiderReleased = true;
+                    isSpiderOnHand = false;
+                    Debug.Log("Spider returned on the table");
+                    SpiderReleased.Invoke();
+                }
+            }
+        }
+    }
+
+    private void CanReleaseSpider()
+    {
+        canSpiderBeReleased = true;
+        SpiderCanBeReleased.Invoke();
     }
 }

@@ -27,12 +27,6 @@ public class BaseExercise : MonoBehaviour
     public int CurrentEventIndex { get { return currentEventIndex; } }
 
 
-    public void SetExerciseId(int id)
-    {
-        this.id = id;
-        Debug.Log($"[BaseExercise] Exercise id: {id}.");
-    }
-
 
     protected virtual void Awake()
     {
@@ -40,6 +34,9 @@ public class BaseExercise : MonoBehaviour
         {
             exerciseAudioSource = GetComponent<AudioSource>();
         }
+
+        id = MainManager.Instance.ChosenExerciseID;
+        Debug.Log($"[BaseExercise] Exercise id: {id}.");
     }
 
 

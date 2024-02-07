@@ -69,13 +69,7 @@ public class MainManager : MonoBehaviour
             handMenuBehaviour.HideAllMenus(true);
             handMenuBehaviour.DeactivateOkButton();
 
-            // =================================================================================================================== DEBUG pour tester l'araignée qui monte sur la main
-            //currentExercise = Instantiate(exercisesPrefabs[chosenExerciseID - 1]);
-            currentExercise = Instantiate(exercisesPrefabs[2]);
-            // ===================================================================================================================
-            
-
-            currentExercise.SetExerciseId(chosenExerciseID);
+            currentExercise = Instantiate(exercisesPrefabs[chosenExerciseID - 1]);
 
             OnExerciseBegin.Invoke(chosenExerciseID);
 
