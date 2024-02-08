@@ -287,8 +287,10 @@ public class HandMenuBehaviour : MonoBehaviour
         nextExerciseButton.SetActive(true);
         quitButton.SetActive(true);
 
-        // TODO: handle anxiety level.
+        AnxietyDataHandler.SetAnxietyLevel(anxietyLevel);
     }
+
+    
 
 
     public void ApplicationQuit()

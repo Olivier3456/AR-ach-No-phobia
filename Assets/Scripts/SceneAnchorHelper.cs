@@ -51,7 +51,7 @@ public class SceneAnchorHelper : MonoBehaviour
                 {
                     tableSceneAnchor = sceneAnchors[i];
                     Debug.Log("Table or desk found in OVR scene anchors list.");
-                }                
+                }
                 else if (GetAnchorType(sceneAnchors[i]) == AnchorTypes.RANDOM_WALL)
                 {
                     wallsSceneAnchors.Add(sceneAnchors[i]);
@@ -122,6 +122,23 @@ public class SceneAnchorHelper : MonoBehaviour
     }
 
 
+    //public static Vector3 CenterPointOfSurfaceAnchor(OVRSceneAnchor sceneAnchor)
+    //{
+    //    if (sceneAnchor.TryGetComponent(out OVRScenePlane plane))
+    //    {
+    //        return plane.transform.position;
+    //    }
+    //    else if (sceneAnchor.TryGetComponent(out OVRSceneVolume volume))
+    //    {
+    //        return volume.transform.position;
+    //    }
+    //    else
+    //    {
+    //        return Vector3.zero;
+    //    }
+    //}
+
+
     //public static Vector3 WorldPositionOfAPointOnSceneAnchorSurface(OVRSceneAnchor sceneAnchor, float offsetX, float offsetZ)
     //{
     //    Vector3 offsetXInLocalSpace = offsetX * sceneAnchor.transform.right;
@@ -130,7 +147,7 @@ public class SceneAnchorHelper : MonoBehaviour
     //    return sceneAnchor.transform.position + offset;
     //}
 
-           
+
     public static AnchorTypes GetAnchorType(OVRSceneAnchor sceneAnchor)
     {
         OVRSemanticClassification cla = sceneAnchor.transform.GetComponent<OVRSemanticClassification>();

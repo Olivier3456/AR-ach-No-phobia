@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2df6a1ca0b012c4b8a781b3ae2e065a, type: 3}
-  m_Name: Spawn Simple Spider - Size 3
+  m_Name: Spawn Spider On Random Wall - Size 3
   m_EditorClassIdentifier: 
   beginWithCondition: 0
-  anchorType: 0
+  anchorType: 1
   spawnSituation: 1
   spider: {fileID: 3883620136390724306, guid: 4d06f044d068d354c98e68d896e32928, type: 3}
   scale: 3
-  speed: 0.1
+  speed: 1
   angle: 0

@@ -105,6 +105,8 @@ public class SpiderHandInteract : BaseSpider
                     transform.parent = null;
                     agent.enabled = true;
                     transform.position = hit.position;  // Probably not necessary
+                    //agent.SetDestination(SceneAnchorHelper.CenterPointOfSurfaceAnchor(sceneAnchor));
+                    agent.SetDestination(sceneAnchor.transform.position);
                     isSpiderReleased = true;
                     isSpiderOnHand = false;
                     Debug.Log("Spider returned on the table");
