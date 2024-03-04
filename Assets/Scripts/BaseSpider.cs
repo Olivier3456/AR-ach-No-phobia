@@ -11,7 +11,7 @@ public class BaseSpider : MonoBehaviour
     [SerializeField] protected Animator animator;
     [SerializeField] protected float walkAnimationSpeedFactor = 10f;
 
-    protected float minRemainingDistance = 0.05f;
+    protected float minRemainingDistance = 0.1f;
     protected GameObject destinationVisual;
 
     protected OVRSceneAnchor sceneAnchor = null;
@@ -25,7 +25,7 @@ public class BaseSpider : MonoBehaviour
     public virtual void InitSpider(OVRSceneAnchor sceneAnchor, SpawnSpiderSO spawnSpiderSO)
     {
         this.sceneAnchor = sceneAnchor;
-        
+
         walkSpeed = spawnSpiderSO.speed;
         agent.speed = walkSpeed;
 
@@ -107,8 +107,34 @@ public class BaseSpider : MonoBehaviour
 
     private void SetRandomDestinationOnAnchorSurface()
     {
-        Vector3 destination = SceneAnchorHelper.RandomPointOnAnchorSurface(sceneAnchor);
+        bool shouldContinue = true;
+        Vector3 destination;
+        int iteration = 0;
+        int maxIterations = 100;
+
+        do
+        {
+            iteration++;
+            destination = SceneAnchorHelper.RandomPointOnAnchorSurface(sceneAnchor);
+
+            if (Vector3.Distance(destination, transform.position) > minRemainingDistance * 1.5f)
+            {
+                // We want to limit the angle from last trajectory to 90°:
+                Vector3 directionToCurrentTarget = (agent.destination - transform.position).normalized;
+                Vector3 directionToNextPossibleTarget = (destination - transform.position).normalized;
+
+                if (Vector3.Dot(directionToCurrentTarget, directionToNextPossibleTarget) > 0)
+                {
+                    shouldContinue = false;
+                }
+            }
+
+        } while (shouldContinue && iteration < maxIterations);
+
+        Debug.Log($"New destination found at iteration {iteration}. Maximum allowed was {maxIterations}.");
+
         agent.SetDestination(destination);
+
         if (destinationVisual != null)
         {
             destinationVisual.transform.position = destination;

@@ -25,7 +25,9 @@ public class MainManager : MonoBehaviour
     private int chosenExerciseID = 0;
 
     private BaseExercise currentExercise;
-    
+
+    private AudioSource audioSource;
+
 
     public int ChosenExerciseID { get { return chosenExerciseID; } }
     public void ChoseNextExercise(int exerciceID) { chosenExerciseID = exerciceID; }
@@ -47,14 +49,26 @@ public class MainManager : MonoBehaviour
         {
             Debug.Log("[MainManager] An instance of Main Manager already exist. Destroying new one.");
             Destroy(gameObject);
-        }        
+        }
+    }
+
+
+    private void Start()
+    {
+        // =============== DEBUG ===============
+        PlayerPrefs.DeleteAll();
+        // =====================================
+
+
+        audioSource = GetComponent<AudioSource>();
 
         if (!PlayerPrefs.HasKey("SecondLaunch"))
         {
-            GetComponent<AudioSource>().Play();
+            audioSource.Play();
             PlayerPrefs.SetInt("SecondLaunch", 1);
         }
     }
+
 
 
     public void BeginExercise()
@@ -66,6 +80,8 @@ public class MainManager : MonoBehaviour
         }
         else
         {
+            audioSource.Stop();
+
             handMenuBehaviour.HideAllMenus(true);
             handMenuBehaviour.DeactivateOkButton();
 

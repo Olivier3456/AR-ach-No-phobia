@@ -121,9 +121,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
+  - {fileID: 21300000, guid: dd381f0a70fd3314cbd72ee990904d93, type: 3}
+  - {fileID: 21300000, guid: e3c24ef6cd50c4749805f30f4f4ad6d3, type: 3}
+  - {fileID: 21300000, guid: f1778ff896f2649489dd4f998b4a8d2e, type: 3}
+  - {fileID: 21300000, guid: e919eba541d4b9b47b418ede7487590a, type: 3}
   - {fileID: 21300000, guid: f8f0aa4d5bc399b45a1402618cc113bb, type: 3}
+  - {fileID: 21300000, guid: c3711e697c4ffec459faa1edcb1e727c, type: 3}
   - {fileID: 21300000, guid: 630fab8557eec284d9b60bd5a2d96e8a, type: 3}
   - {fileID: 21300000, guid: d23ac755cf1f1b446a94f6eb0836ea31, type: 3}
+  - {fileID: 21300000, guid: aafdcc8635b835e4b929f7034f71158b, type: 3}
   image: {fileID: 7686651707325049435}
 --- !u!1 &5488556239533651027
 GameObject:
@@ -228,8 +234,8 @@ RectTransform:
   m_GameObject: {fileID: 6050599567558273239}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2765007778386722905}
   m_Father: {fileID: 982026192658043629}

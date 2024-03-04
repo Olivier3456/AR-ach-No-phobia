@@ -10,7 +10,6 @@ public class AnxietyData
     public ExerciseData[] exercises;
 }
 
-
 [Serializable]
 public class ExerciseData
 {
@@ -118,7 +117,7 @@ public class AnxietyDataHandler : MonoBehaviour
         newArray[newArray.Length - 1] = newExerciseData;
         anxietyData.exercises = newArray;
 
-        //Debug.Log($"Anxiety data for current exercise added to array. Total anxiety data number: {anxietyData.exercises.Length}.");
+        Debug.Log($"Anxiety data for current exercise added to array. Total anxiety data number: {anxietyData.exercises.Length}.");
 
         //for (int i = 0; i < anxietyData.exercises.Length; i++)
         //{

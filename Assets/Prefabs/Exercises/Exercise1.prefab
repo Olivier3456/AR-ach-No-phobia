@@ -142,11 +142,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exerciseAudioSource: {fileID: 3312550378144736061}
-  requireNavMesh: 0
   exerciseEvents:
   - {fileID: 11400000, guid: bde2375b989edfa46b37285fe04c12e9, type: 2}
   - {fileID: 11400000, guid: 0709916d9dcb7dd41b6d4926ea14c02d, type: 2}
   - {fileID: 11400000, guid: e1b54e31b62732447a4ca72f82f0cae8, type: 2}
   - {fileID: 11400000, guid: 2fb7008c22913b54a93a53dddd81107a, type: 2}
   - {fileID: 11400000, guid: cd342636fca73b049a094aa93e90a6ba, type: 2}
+  - {fileID: 11400000, guid: b33994a7af94fdd41a19b19a9d837af2, type: 2}
   endExerciseEvent: {fileID: 11400000, guid: 2fb7008c22913b54a93a53dddd81107a, type: 2}
