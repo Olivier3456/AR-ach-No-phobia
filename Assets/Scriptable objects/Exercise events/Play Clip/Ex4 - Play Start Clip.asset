@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95031698809709246ac0b98f943e9a83, type: 3}
-  m_Name: Ex14 Play Clip Spider On Hand
+  m_Name: Ex4 - Play Start Clip
   m_EditorClassIdentifier: 
-  beginWithCondition: 1
-  waitForEndOfClip: 0
-  clipToPlay: {fileID: 8300000, guid: ce9a975953461c64e9a625f05d348ebb, type: 3}
+  beginWithCondition: 0
+  waitForEndOfClip: 1
+  clipToPlay: {fileID: 8300000, guid: 468ae1bd4c2147d498a67c59a19c81c5, type: 3}

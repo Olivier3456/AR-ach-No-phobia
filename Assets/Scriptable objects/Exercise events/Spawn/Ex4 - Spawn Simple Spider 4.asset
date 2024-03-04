@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2df6a1ca0b012c4b8a781b3ae2e065a, type: 3}
-  m_Name: Spawn Simple Spider On Table - Size 1
+  m_Name: Ex4 - Spawn Simple Spider 4
   m_EditorClassIdentifier: 
   beginWithCondition: 0
   anchorType: 0
-  spawnSituation: 0
+  spawnSituation: 1
   spider: {fileID: 3883620136390724306, guid: 4d06f044d068d354c98e68d896e32928, type: 3}
-  scale: 0.5
-  speed: 0.1
+  scale: 1
+  speed: 0.075
   angle: 0

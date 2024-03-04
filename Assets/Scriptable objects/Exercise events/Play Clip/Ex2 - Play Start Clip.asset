@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95031698809709246ac0b98f943e9a83, type: 3}
-  m_Name: Ex2 Play Start Clip
+  m_Name: Ex2 - Play Start Clip
   m_EditorClassIdentifier: 
   beginWithCondition: 0
   waitForEndOfClip: 1

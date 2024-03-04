@@ -1,12 +1,33 @@
-Intro:
+Bienvenue 1 + 2 : Bienvenue dans Arachnophobia. Cette application nécessite que vous ayez paramétré votre pièce dans le casque, avec au moins quatre murs et une table. Pour maximiser le réalisme de l'application, faites en sorte que votre table soit dégagée de tout objet, et soit de forme rectangulaire. Pour accéder au menu, levez le pouce de votre main gauche, ou celui de votre main droite, et maintenez cette pose pendant que vous touchez les boutons avec l'index de l'autre main.
 
-Bienvenue dans Arachnophobia. Cette application nécessite que vous ayez paramétré votre pièce dans le casque, avec au moins quatre murs et une table. Pour maximiser le réalisme de l'application, faites en sorte que votre table soit dégagée de tout objet, et soit de forme rectangulaire. Pour accéder au menu, levez le pouce de votre main gauche, ou celui de votre main droite, et maintenez cette pose pendant que vous touchez les boutons avec l'index de l'autre main.
 
-Ex 2 : Détendez-vous, vous ne risquez rien. L'araignée se contente d'aller et venir sur la table, sans vous prêter attention. Observez-la à votre guise. Quand vous vous sentirez prêt, vous pourrez passer à l'exercice suivant.
+
+Ex 1 début : Dans ce premier exercice, vous allez pouvoir commencer à vous familiariser en douceur avec les araignées. Un panneau va apparaître sur la table, affichant des photos d'araignées de plus en plus grandes. Vous êtes libre de vous approcher ou de vous éloigner autant que vous voulez. Pour passer à l'image suivant, levez simplement le pouce et appuyez sur le bouton avec la flèche.
+
+Ex 1 fin : Qu'avez-vous ressenti ? Vous avez peut-être eu l'impression que les araignées vous menaçaient, et voulaient vous attaquer. Il n'en est rien. Ce ne sont que de petits animaux craintifs, elles ont bien plus peur de vous que vous n'avez peur d'elles. L'exercice est maintenant terminé. Vous pouvez continuer à regarder les images, revenir au menu, ou bien passer à l'exercice suivant.
+
+
+
+Ex 2 début : Dans ce deuxième exercice, vous allez voir sur la table une petite araignée qui marche lentement. Vous êtes libre de vous rapprocher ou de vous éloigner autant que vous le souhaitez.
+
+Ex 2 fin : Détendez-vous, vous ne risquez rien. L'araignée se contente d'aller et venir sur la table, sans vous prêter attention. Observez-la à votre guise. Quand vous vous sentirez prêt, vous pourrez passer à l'exercice suivant.
+
+
+Ex 3 début : Dans ce troisième exercice, l'araignée sur la table sera plus grosse, et marchera plus vite. Respirez profondément. Vous ne risquez rien.
+
+Ex 3 fin : Bravo, vous vous en sortez très bien. Si vous êtes prêt à passer à l'exercice suivant, vous pouvez le faire dès à présent.
+
+
+Ex 4 début : Dans ce nouvel exercice, les choses vont un peu s'accélérer. L'araignée sur la table aura sa taille et sa vitesse maximales. Au bout d'un moment, d'autres araignées vont apparaître, de tailles variées. Elles ne vont pas s'intéresser à vous. Mais vous, vous êtes libre de les observer, ou de les ignorer.
+
+Ex 4 milieu : Vous êtes prêt ? D'autres araignées vont rejoindre la première.
+
+Ex 4 fin : Maintenant, si cela vous convient, vous pouvez laisser les araignées faire leur vie, et passer à l'exercice suivant, ou bien revenir au menu principal. 
 
 
 
 Ex 8 : Dans cet exercice et les suivants, les araignées ne seront plus situées sur la table, mais sur les murs de votre pièce, allant et venant à leur guise. Pour commencer, vous en verrez deux.
+
 
 
 Ex 14: Vous pouvez maintenant reposer l'araignée sur la table, quand vous le souhaitez, pour terminer l'exercice.

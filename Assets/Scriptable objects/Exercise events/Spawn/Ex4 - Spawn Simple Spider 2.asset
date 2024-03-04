@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e6ee2b832e476b43967b75f61ae21fe, type: 3}
-  m_Name: Spawn Images Panel
-  m_EditorClassIdentifier: Assembly-CSharp::SpawnImagesPanelSO
+  m_Script: {fileID: 11500000, guid: e2df6a1ca0b012c4b8a781b3ae2e065a, type: 3}
+  m_Name: Ex4 - Spawn Simple Spider 2
+  m_EditorClassIdentifier: 
   beginWithCondition: 0
   anchorType: 0
-  spawnSituation: 0
-  imagesPanel: {fileID: 6644135920285991051, guid: 3e738cd569760b848887d29b770cad6f,
-    type: 3}
+  spawnSituation: 1
+  spider: {fileID: 3883620136390724306, guid: 4d06f044d068d354c98e68d896e32928, type: 3}
+  scale: 2
+  speed: 0.055
+  angle: 0

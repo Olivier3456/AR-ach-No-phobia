@@ -145,6 +145,6 @@ MonoBehaviour:
   exerciseEvents:
   - {fileID: 11400000, guid: bde2375b989edfa46b37285fe04c12e9, type: 2}
   - {fileID: 11400000, guid: 69411bade08b3aa4b815b0756c39f3ff, type: 2}
-  - {fileID: 11400000, guid: 3a3e36f8a16d75341a9fa062e75debff, type: 2}
+  - {fileID: 11400000, guid: e19d93edc62967c4b8a43a131ccb82d8, type: 2}
   - {fileID: 11400000, guid: eabe4f05f7e18324285e02c0e92df78a, type: 2}
   - {fileID: 11400000, guid: ae70e57162d3f694a864b667a86a59aa, type: 2}

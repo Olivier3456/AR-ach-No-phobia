@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -2079629177909910756}
   - component: {fileID: 3580597880042212003}
   m_Layer: 0
-  m_Name: Exercise3 - TODO
+  m_Name: Exercise3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,5 +141,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d487f822800fe304e9103e140131eeb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exerciseAudioSource: {fileID: 0}
-  exerciseEvents: []
+  exerciseAudioSource: {fileID: -2079629177909910756}
+  exerciseEvents:
+  - {fileID: 11400000, guid: bde2375b989edfa46b37285fe04c12e9, type: 2}
+  - {fileID: 11400000, guid: 26fcdfd42d19bc94eb0b49e138c77d92, type: 2}
+  - {fileID: 11400000, guid: fadf0572e56eccb47b95c4a7331450b2, type: 2}
+  - {fileID: 11400000, guid: 6213441cc149d684a99f7513488c261c, type: 2}
+  - {fileID: 11400000, guid: b195674a5b860014a98ebca201c12e3c, type: 2}

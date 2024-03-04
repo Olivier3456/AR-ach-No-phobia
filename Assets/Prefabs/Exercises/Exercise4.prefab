@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5112039089857898229}
   - component: {fileID: 7952488886552557591}
   m_Layer: 0
-  m_Name: Exercise4 - TODO
+  m_Name: Exercise4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,5 +141,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d487f822800fe304e9103e140131eeb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exerciseAudioSource: {fileID: 0}
-  exerciseEvents: []
+  exerciseAudioSource: {fileID: 5112039089857898229}
+  exerciseEvents:
+  - {fileID: 11400000, guid: bde2375b989edfa46b37285fe04c12e9, type: 2}
+  - {fileID: 11400000, guid: 33cae6a4123134d4689bfdef29ce93e5, type: 2}
+  - {fileID: 11400000, guid: c6a2bd935271dcb4fb84a88570682d81, type: 2}
+  - {fileID: 11400000, guid: fbc1dbe68f2a114478d8478fe0882aeb, type: 2}
+  - {fileID: 11400000, guid: 75df5fb4b83d65e48a20971a791bcc15, type: 2}
+  - {fileID: 11400000, guid: bde2375b989edfa46b37285fe04c12e9, type: 2}
+  - {fileID: 11400000, guid: 665209ef432aee84c817f981517df799, type: 2}
+  - {fileID: 11400000, guid: b33994a7af94fdd41a19b19a9d837af2, type: 2}
+  - {fileID: 11400000, guid: 5aa93d894791d6a4cadc8828b445fbd4, type: 2}
+  - {fileID: 11400000, guid: 29020874fcee96c48a9170ce2394b586, type: 2}
+  - {fileID: 11400000, guid: b33994a7af94fdd41a19b19a9d837af2, type: 2}
+  - {fileID: 11400000, guid: a35d6d845750fe746a2f3e3f13cf10b6, type: 2}
+  - {fileID: 11400000, guid: fbc1dbe68f2a114478d8478fe0882aeb, type: 2}
+  - {fileID: 11400000, guid: d72d7a97375eb6a4d983d6161fab87be, type: 2}

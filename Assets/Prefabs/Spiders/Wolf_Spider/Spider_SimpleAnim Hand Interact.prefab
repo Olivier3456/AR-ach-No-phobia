@@ -2674,8 +2674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 5193617889278986724}
-  destinationVisualPrefab: {fileID: 1286772375847784257, guid: d46f05c7483be3544bcb39575afa41e4,
-    type: 3}
+  destinationVisualPrefab: {fileID: 0}
   animator: {fileID: 2620335639172056276}
   walkAnimationSpeedFactor: 65
 --- !u!1 &6768443354216449717

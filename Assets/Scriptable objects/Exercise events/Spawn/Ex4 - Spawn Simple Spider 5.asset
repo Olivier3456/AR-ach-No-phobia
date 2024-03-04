@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95031698809709246ac0b98f943e9a83, type: 3}
-  m_Name: Ex1 Play Start Clip
+  m_Script: {fileID: 11500000, guid: e2df6a1ca0b012c4b8a781b3ae2e065a, type: 3}
+  m_Name: Ex4 - Spawn Simple Spider 5
   m_EditorClassIdentifier: 
   beginWithCondition: 0
-  waitForEndOfClip: 1
-  clipToPlay: {fileID: 8300000, guid: 6be1614436b124140b17052a9f232c5c, type: 3}
+  anchorType: 0
+  spawnSituation: 1
+  spider: {fileID: 3883620136390724306, guid: 4d06f044d068d354c98e68d896e32928, type: 3}
+  scale: 2.5
+  speed: 0.065
+  angle: 0
