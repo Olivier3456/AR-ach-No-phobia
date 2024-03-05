@@ -14,12 +14,14 @@ public class SpiderHandInteract : BaseSpider
 
     private bool isSpiderOnHand;
 
-    private bool canSpiderBeReleased;
+    private float verticalOffsetFromHandAnchor = 0.04f;
+
+    private static bool canSpiderBeReleased;
     private bool isSpiderReleased;
-    private float timeBeforeCanReleaseSpider = 10f;
+    //public static float timeBeforeUserCanReleaseSpider = 10f;
 
     public static UnityEvent SpiderOnHand = new UnityEvent();
-    public static UnityEvent SpiderCanBeReleased = new UnityEvent();
+    //public static UnityEvent SpiderCanBeReleased = new UnityEvent();
     public static UnityEvent SpiderReleased = new UnityEvent();
 
     public override void InitSpider(OVRSceneAnchor sceneAnchor, SpawnSpiderSO spawnSpiderSO)
@@ -41,6 +43,8 @@ public class SpiderHandInteract : BaseSpider
 
         minRemainingDistance = 0.005f;
 
+        canSpiderBeReleased = false;
+
         Debug.Log("Spider init done");
     }
 
@@ -61,16 +65,16 @@ public class SpiderHandInteract : BaseSpider
             {
                 agent.speed = 0;
                 agent.enabled = false;
-                transform.position = currentAnchor.position;
-                transform.parent = currentAnchor;
-                transform.up = currentAnchor.up;
+                //transform.position = currentAnchor.position + (currentAnchor.up * verticalOffsetFromHandAnchor);
+                ////transform.parent = currentAnchor;
+                //transform.up = currentAnchor.up;
 
                 isSpiderOnHand = true;
                 SpiderOnHand.Invoke();
 
                 Debug.Log("Spider is on hand!");
 
-                Invoke("CanReleaseSpider", timeBeforeCanReleaseSpider);
+                //Invoke("CanBeReleasedByUser", timeBeforeUserCanReleaseSpider);
             }
 
             NavMeshHit hit;
@@ -102,10 +106,9 @@ public class SpiderHandInteract : BaseSpider
                 float margin = 0.05f;
                 if (NavMesh.SamplePosition(currentAnchor.position, out hit, margin, NavMesh.AllAreas))
                 {
-                    transform.parent = null;
+                    //transform.parent = null;
                     agent.enabled = true;
                     transform.position = hit.position;  // Probably not necessary
-                    //agent.SetDestination(SceneAnchorHelper.CenterPointOfSurfaceAnchor(sceneAnchor));
                     agent.SetDestination(sceneAnchor.transform.position);
                     isSpiderReleased = true;
                     isSpiderOnHand = false;
@@ -114,11 +117,17 @@ public class SpiderHandInteract : BaseSpider
                 }
             }
         }
+
+        if (isSpiderOnHand && !isSpiderReleased)
+        {
+            transform.position = currentAnchor.position + (currentAnchor.up * verticalOffsetFromHandAnchor);
+            transform.up = currentAnchor.up;
+        }
     }
 
-    private void CanReleaseSpider()
+    public static void CanBeReleasedByUser()
     {
         canSpiderBeReleased = true;
-        SpiderCanBeReleased.Invoke();
+        //SpiderCanBeReleased.Invoke();
     }
 }

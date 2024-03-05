@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2df6a1ca0b012c4b8a781b3ae2e065a, type: 3}
-  m_Name: Ex7 - Spawn Hand Interact  Spider
+  m_Script: {fileID: 11500000, guid: 95031698809709246ac0b98f943e9a83, type: 3}
+  m_Name: Ex8 - Play Start Clip
   m_EditorClassIdentifier: 
   beginWithCondition: 0
-  anchorType: 0
-  spawnSituation: 0
-  spider: {fileID: 5127887226303612654, guid: e8381829a8e6ac54299775fc00655193, type: 3}
-  scale: 1
-  speed: 0.05
-  angle: 0
+  waitForEndOfClip: 1
+  clipToPlay: {fileID: 8300000, guid: ecef001697ecc5445971aa668f2a6fdb, type: 3}

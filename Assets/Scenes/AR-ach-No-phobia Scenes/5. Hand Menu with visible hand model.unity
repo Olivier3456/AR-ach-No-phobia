@@ -12819,7 +12819,7 @@ MonoBehaviour:
   - {fileID: 4273189464356626468, guid: 2b02c2592fca84e499f9c02d090eb2b3, type: 3}
   - {fileID: 8478099712242939773, guid: 092b7d5e06a937141926a05a7fad30df, type: 3}
   - {fileID: -8377835736815453801, guid: 2d70f2c300195d24d8d4a403abe60602, type: 3}
-  - {fileID: 544167685289718998, guid: f08a837bdab0c8642a49aaf27d590f1e, type: 3}
+  - {fileID: -8377835736815453801, guid: 9ab4d3f651227b64993abaee8a40ed28, type: 3}
   leftPalmCenterMarker: {fileID: 1056901739}
   rightPalmCenterMarker: {fileID: 1870312186}
   OnExerciseBegin:
@@ -27964,7 +27964,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: "8. Grosse araign\xE9e sur la main"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fc41d5815b9a5bb48be4c84a746c4ff6, type: 2}
   m_sharedMaterial: {fileID: 7032093815205813286, guid: fc41d5815b9a5bb48be4c84a746c4ff6,
@@ -30693,7 +30693,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "7. Petite araign\xE9e dans la main"
+  m_text: "7. Petite araign\xE9e sur la main"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fc41d5815b9a5bb48be4c84a746c4ff6, type: 2}
   m_sharedMaterial: {fileID: 7032093815205813286, guid: fc41d5815b9a5bb48be4c84a746c4ff6,
