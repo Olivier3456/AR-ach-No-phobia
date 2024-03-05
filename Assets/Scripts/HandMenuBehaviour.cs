@@ -1,7 +1,7 @@
 using Oculus.Interaction;
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,6 +27,8 @@ public class HandMenuBehaviour : MonoBehaviour
     [Space(20)]
     [Header("Exercises toggles of the levels choice menu.")]
     [SerializeField] private Toggle[] exercicesToggles;
+    [Space(20)]
+    [SerializeField] private TextMeshPro exerciseLabelText;
     [Space(20)]
     [Header("Offset for all menus. The offset for left hand will be symetrical to the offset for right hand.")]
     [SerializeField] private Vector3 offsetForRightHand;
@@ -148,14 +150,15 @@ public class HandMenuBehaviour : MonoBehaviour
 
         if (MainManager.Instance.CurrentExercise == null)
         {
-            Debug.Log($"[HandMenuBehaviour] Displaying main menu for NO exercise.");
+            Debug.Log("[HandMenuBehaviour] Displaying main menu for NO exercise.");
 
             noExerciceMainMenu.SetActive(true);
         }
         else
         {
-            Debug.Log($"[HandMenuBehaviour] Displaying main menu for exercise.");
+            Debug.Log($"[HandMenuBehaviour] Displaying main menu for exercise {MainManager.Instance.CurrentExercise.Id}.");
 
+            exerciseLabelText.text = $"Exercice {MainManager.Instance.CurrentExercise.Id}";
             exerciceMainMenu.SetActive(true);
 
             DisplayOrHidePreviousAndNextButtons();

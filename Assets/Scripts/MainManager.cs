@@ -21,7 +21,7 @@ public class MainManager : MonoBehaviour
     public UnityEvent OnExerciseQuitted = new UnityEvent();
 
 
-    // Chosen exercice can be not the same as current exercice if the exercice is not yet begun.
+    // Chosen exercice can be not the same as current exercice if chosen exercice is not yet begun.
     private int chosenExerciseID = 0;
 
     private BaseExercise currentExercise;
