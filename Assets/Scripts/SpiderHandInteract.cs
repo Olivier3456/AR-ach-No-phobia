@@ -73,8 +73,6 @@ public class SpiderHandInteract : BaseSpider
                 SpiderOnHand.Invoke();
 
                 Debug.Log("Spider is on hand!");
-
-                //Invoke("CanBeReleasedByUser", timeBeforeUserCanReleaseSpider);
             }
 
             NavMeshHit hit;
@@ -128,6 +126,5 @@ public class SpiderHandInteract : BaseSpider
     public static void CanBeReleasedByUser()
     {
         canSpiderBeReleased = true;
-        //SpiderCanBeReleased.Invoke();
     }
 }

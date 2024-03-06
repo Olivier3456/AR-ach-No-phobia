@@ -13,7 +13,8 @@ public class HandMenuBehaviour : MonoBehaviour
     [SerializeField] private GameObject exerciceMainMenu;
     [SerializeField] private GameObject quitExerciceConfirmationMenu;
     [SerializeField] private GameObject levelsChoiceMenu;
-    [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject progressionMenu;
+    [SerializeField] private GameObject reinitializeProgressionConfirmationMenu;
     [Space(20)]
     [Header("Buttons previous/next for images panel")]
     [SerializeField] private GameObject previousButton;
@@ -210,10 +211,25 @@ public class HandMenuBehaviour : MonoBehaviour
     }
 
 
+    public void DisplayProgressionMenu()
+    {
+        HideAllMenus(false);
+        progressionMenu.SetActive(true);
+    }
+
+
+    public void DisplayReinitializeProgressionConfirmationMenu()
+    {
+        HideAllMenus(false);
+        reinitializeProgressionConfirmationMenu.SetActive(true);
+    }
+
+
+
     public void HideAllMenus(bool isMenuDisappearing)
     {
         noExerciceMainMenu.SetActive(false);
-        settingsMenu.SetActive(false);      // TODO
+        progressionMenu.SetActive(false);
         levelsChoiceMenu.SetActive(false);
         exerciceMainMenu.SetActive(false);
         quitExerciceConfirmationMenu.SetActive(false);
@@ -293,7 +309,7 @@ public class HandMenuBehaviour : MonoBehaviour
         AnxietyDataHandler.SetAnxietyLevel(anxietyLevel);
     }
 
-    
+
 
 
     public void ApplicationQuit()

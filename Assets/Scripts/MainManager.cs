@@ -16,9 +16,14 @@ public class MainManager : MonoBehaviour
     [SerializeField] private Transform leftPalmCenterMarker;
     [SerializeField] private Transform rightPalmCenterMarker;
     [Space(20)]
+    [SerializeField] private AudioClip introClip_1;
+    [SerializeField] private AudioClip introClip_2;
+    [Space(20)]
     public UnityEvent<int> OnExerciseBegin = new UnityEvent<int>();
 
     public UnityEvent OnExerciseQuitted = new UnityEvent();
+
+    public const string SECOND_LAUNCH_PLAYERPREFS_KEY = "SecondLaunch";
 
 
     // Chosen exercice can be not the same as current exercice if chosen exercice is not yet begun.
@@ -27,6 +32,8 @@ public class MainManager : MonoBehaviour
     private BaseExercise currentExercise;
 
     private AudioSource audioSource;
+
+    private bool isInitDone;
 
 
     public int ChosenExerciseID { get { return chosenExerciseID; } }
@@ -55,20 +62,51 @@ public class MainManager : MonoBehaviour
 
     private void Start()
     {
-        // =============== DEBUG ===============
-        PlayerPrefs.DeleteAll();
-        // =====================================
+        //// =============== DEBUG ===============
+        //PlayerPrefs.DeleteAll();
+        //// =====================================
 
 
         audioSource = GetComponent<AudioSource>();
 
-        if (!PlayerPrefs.HasKey("SecondLaunch"))
+        if (!PlayerPrefs.HasKey(SECOND_LAUNCH_PLAYERPREFS_KEY))
         {
+            audioSource.clip = introClip_1;
             audioSource.Play();
-            PlayerPrefs.SetInt("SecondLaunch", 1);
+            PlayerPrefs.SetInt(SECOND_LAUNCH_PLAYERPREFS_KEY, 1);
         }
+
+        StartCoroutine(RequestSpaceSetup());    // The coroutine just waits the end of intro speach if this is the first launch.
     }
 
+    private IEnumerator RequestSpaceSetup()
+    {
+        WaitForSeconds waitForOneSecond = new WaitForSeconds(1);
+
+        while (audioSource.isPlaying)
+        {
+            yield return waitForOneSecond;
+        }
+
+        var classifications = new[]
+            {
+        OVRSceneManager.Classification.Table,
+        OVRSceneManager.Classification.Floor,
+        OVRSceneManager.Classification.Ceiling,
+        OVRSceneManager.Classification.WallFace,
+        OVRSceneManager.Classification.WallFace,
+        OVRSceneManager.Classification.WallFace,
+        OVRSceneManager.Classification.WallFace
+            };
+
+        var sceneManager = FindObjectOfType<OVRSceneManager>();
+        sceneManager.RequestSceneCapture(classifications);
+
+        isInitDone = true;
+
+        audioSource.clip = introClip_2;
+        audioSource.Play();
+    }
 
 
     public void BeginExercise()

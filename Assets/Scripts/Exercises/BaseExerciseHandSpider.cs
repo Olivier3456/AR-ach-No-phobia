@@ -17,7 +17,6 @@ public class BaseExerciseHandSpider : BaseExercise
     {
         base.Awake();
         SpiderHandInteract.SpiderOnHand.AddListener(SpiderOnHand);
-        //SpiderHandInteract.SpiderCanBeReleased.AddListener(SpiderCanBeReleased);
         SpiderHandInteract.SpiderReleased.AddListener(SpiderReleased);
     }
 
@@ -48,7 +47,6 @@ public class BaseExerciseHandSpider : BaseExercise
     private void SpiderCanBeReleased()
     {
         FulfillConditionForExerciseEvent(playClipSpiderCanBeReleased);
-        //SpiderHandInteract.SpiderCanBeReleased.RemoveListener(SpiderCanBeReleased);
     }
 
     private void SpiderReleased()
@@ -62,7 +60,6 @@ public class BaseExerciseHandSpider : BaseExercise
     {
         base.OnDestroy();
         SpiderHandInteract.SpiderOnHand.RemoveListener(SpiderOnHand);
-        //SpiderHandInteract.SpiderCanBeReleased.RemoveListener(SpiderCanBeReleased);
         SpiderHandInteract.SpiderReleased.RemoveListener(SpiderReleased);
     }
 }

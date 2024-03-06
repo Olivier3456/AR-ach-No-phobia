@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Events;
 
 [Serializable]
 public class AnxietyData
@@ -28,6 +29,10 @@ public class AnxietyDataHandler : MonoBehaviour
 
     private static int anxietyLevel = 0;
     public static void SetAnxietyLevel(int level) { anxietyLevel = level; }
+
+    public static AnxietyData AnxietyData { get { return anxietyData; } }
+
+    public static UnityEvent OnAnxietyDataUpdated = new UnityEvent();
 
 
     private void Awake()
@@ -55,6 +60,7 @@ public class AnxietyDataHandler : MonoBehaviour
         {
             Debug.Log("No file to load yet");
             anxietyData = new AnxietyData();
+            OnAnxietyDataUpdated.Invoke();
             return;
         }
 
@@ -73,6 +79,9 @@ public class AnxietyDataHandler : MonoBehaviour
             Debug.LogError("Error loading JSON data: " + e.Message);
             anxietyData = new AnxietyData();
         }
+
+        Debug.Log("Anxiety data loaded from file");
+        OnAnxietyDataUpdated.Invoke();
     }
 
 
@@ -89,7 +98,7 @@ public class AnxietyDataHandler : MonoBehaviour
         Debug.Log("Exercise data saved in file " + path);
     }
 
-    public void AddAnxietyDataAndSaveToFile()
+    public void AddAnxietyData()
     {
         if (anxietyData == null)
         {
@@ -119,11 +128,26 @@ public class AnxietyDataHandler : MonoBehaviour
 
         Debug.Log($"Anxiety data for current exercise added to array. Total anxiety data number: {anxietyData.exercises.Length}.");
 
+        OnAnxietyDataUpdated.Invoke();
+
         //for (int i = 0; i < anxietyData.exercises.Length; i++)
         //{
         //    Debug.Log($"Anxiety Data {i}: time = {anxietyData.exercises[i].time}, exercise ID = {anxietyData.exercises[i].exerciseId}, anxiety note = {anxietyData.exercises[i].anxietyNote}.");
         //}
     }
+
+
+    public void ReinitializeData()
+    {
+        anxietyData = new AnxietyData();
+        OnAnxietyDataUpdated.Invoke();
+
+        if (PlayerPrefs.HasKey(MainManager.SECOND_LAUNCH_PLAYERPREFS_KEY))
+        {
+            PlayerPrefs.DeleteKey(MainManager.SECOND_LAUNCH_PLAYERPREFS_KEY);   // Intro sound will be played by MainManager next launch.
+        }
+    }
+
 
     private void OnApplicationQuit()
     {
