@@ -33,7 +33,7 @@ public class MainManager : MonoBehaviour
 
     private AudioSource audioSource;
 
-    private bool isInitDone;
+    private bool isFirstLaunch;
 
 
     public int ChosenExerciseID { get { return chosenExerciseID; } }
@@ -57,13 +57,15 @@ public class MainManager : MonoBehaviour
             Debug.Log("[MainManager] An instance of Main Manager already exist. Destroying new one.");
             Destroy(gameObject);
         }
+
+        SceneAnchorHelper.OnSceneAnchorsLoaded.AddListener(OnSceneAnchorsLoaded);
     }
 
 
     private void Start()
     {
         //// =============== DEBUG ===============
-        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
         //// =====================================
 
 
@@ -74,12 +76,18 @@ public class MainManager : MonoBehaviour
             audioSource.clip = introClip_1;
             audioSource.Play();
             PlayerPrefs.SetInt(SECOND_LAUNCH_PLAYERPREFS_KEY, 1);
+            isFirstLaunch = true;
         }
-
-        StartCoroutine(RequestSpaceSetup());    // The coroutine just waits the end of intro speach if this is the first launch.
     }
 
-    private IEnumerator RequestSpaceSetup()
+
+    private void OnSceneAnchorsLoaded(bool areAllNeededAnchorsFound)
+    {
+        bool isSpaceSetupRequired = !areAllNeededAnchorsFound;
+        StartCoroutine(RequestSpaceSetupIfNeeded(isSpaceSetupRequired));
+    }
+
+    private IEnumerator RequestSpaceSetupIfNeeded(bool isRequired)
     {
         WaitForSeconds waitForOneSecond = new WaitForSeconds(1);
 
@@ -88,8 +96,10 @@ public class MainManager : MonoBehaviour
             yield return waitForOneSecond;
         }
 
-        var classifications = new[]
-            {
+        if (isRequired)
+        {
+            var classifications = new[]
+                {
         OVRSceneManager.Classification.Table,
         OVRSceneManager.Classification.Floor,
         OVRSceneManager.Classification.Ceiling,
@@ -99,13 +109,16 @@ public class MainManager : MonoBehaviour
         OVRSceneManager.Classification.WallFace
             };
 
-        var sceneManager = FindObjectOfType<OVRSceneManager>();
-        sceneManager.RequestSceneCapture(classifications);
+            var sceneManager = FindObjectOfType<OVRSceneManager>();
+            sceneManager.RequestSceneCapture(classifications);
+        }
 
-        isInitDone = true;
 
-        audioSource.clip = introClip_2;
-        audioSource.Play();
+        if (isFirstLaunch && currentExercise == null)
+        {
+            audioSource.clip = introClip_2;
+            audioSource.Play();
+        }
     }
 
 
@@ -128,7 +141,7 @@ public class MainManager : MonoBehaviour
             OnExerciseBegin.Invoke(chosenExerciseID);
 
             Debug.Log($"[MainManager] Begining exercise {currentExercise.Id}");
-            Debug.Log($"[MainManager] Exercice Game Object name is: {currentExercise.name}.");
+            Debug.Log($"[MainManager] Exercise Game Object name is: {currentExercise.name}.");
         }
     }
 

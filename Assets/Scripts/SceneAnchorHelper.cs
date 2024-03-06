@@ -11,7 +11,7 @@ public class SceneAnchorHelper : MonoBehaviour
 {
     [SerializeField] private OVRSceneManager sceneManager;
 
-    public static UnityEvent OnSceneAnchorsFound = new UnityEvent();
+    public static UnityEvent<bool> OnSceneAnchorsLoaded = new UnityEvent<bool>();
 
 
     private static OVRSceneAnchor tableSceneAnchor = null;
@@ -70,12 +70,19 @@ public class SceneAnchorHelper : MonoBehaviour
             }
         }
 
-        if (tableSceneAnchor == null) Debug.LogError("No table found in anchors list!");
-        if (wallsSceneAnchors.Count == 0) Debug.LogError("No Wall found in anchors list!");
-        if (ceilingSceneAnchor == null) Debug.LogError("No ceiling found in anchors list!");
-        if (floorSceneAnchor == null) Debug.LogError("No floor found in anchors list!");
+        //if (tableSceneAnchor == null) Debug.LogError("No table found in anchors list!");
+        //if (wallsSceneAnchors.Count == 0) Debug.LogError("No Wall found in anchors list!");
+        //if (ceilingSceneAnchor == null) Debug.LogError("No ceiling found in anchors list!");
+        //if (floorSceneAnchor == null) Debug.LogError("No floor found in anchors list!");
 
-        OnSceneAnchorsFound.Invoke();
+        if (tableSceneAnchor == null || wallsSceneAnchors.Count < 4 || ceilingSceneAnchor == null || floorSceneAnchor == null)
+        {
+            OnSceneAnchorsLoaded.Invoke(false); // All necessary anchors have NOT been found: MainManager needs to call Meta Space Setup.
+        }
+        else
+        {
+            OnSceneAnchorsLoaded.Invoke(true);
+        }
     }
 
 

@@ -140,6 +140,8 @@ public class AnxietyDataHandler : MonoBehaviour
     public void ReinitializeData()
     {
         anxietyData = new AnxietyData();
+
+        Debug.Log("User's anxiety data reinitialized");
         OnAnxietyDataUpdated.Invoke();
 
         if (PlayerPrefs.HasKey(MainManager.SECOND_LAUNCH_PLAYERPREFS_KEY))

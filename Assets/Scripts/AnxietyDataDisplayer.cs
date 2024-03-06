@@ -28,21 +28,23 @@ public class AnxietyDataDisplayer : MonoBehaviour
     {
         Debug.Log("Update progression display");
 
-        foreach (var item in instantiatedInputFields)
+        for (int i = 0; i < instantiatedInputFields.Count; i++)
         {
-            Destroy(item.gameObject);
+            Destroy(instantiatedInputFields[i].gameObject);
         }
+        instantiatedInputFields.Clear();
+        Debug.Log("All instantiated input fields deleted");
 
         ExerciseData[] exercises = AnxietyDataHandler.AnxietyData.exercises;
 
-        if (exercises.Length > 0)
+        if (exercises != null && exercises.Length > 0)
         {
             foreach (var item in exercises)
             {
                 TMP_InputField inputField = Instantiate(inputFieldTemplate.gameObject.GetComponent<TMP_InputField>(), inputFieldsParentTransform);
                 instantiatedInputFields.Add(inputField);
 
-                string inputFieldText = $"Date : {item.time} | Exercice {item.exerciseId} | Note d'anxiété : {item.anxietyNote}.";
+                string inputFieldText = $"{item.time} | Exercice {item.exerciseId} | Anxiété : {item.anxietyNote}";
                 inputField.text = inputFieldText;
                 inputField.gameObject.SetActive(true);
             }
@@ -51,7 +53,7 @@ public class AnxietyDataDisplayer : MonoBehaviour
         {
             TMP_InputField inputField = Instantiate(inputFieldTemplate.gameObject.GetComponent<TMP_InputField>(), inputFieldsParentTransform);
             instantiatedInputFields.Add(inputField);
-            string inputFieldText = $"Vous n'avez pas encore fini d'exercice.";
+            string inputFieldText = "Vous n'avez encore fini aucun exercice.";
             inputField.text = inputFieldText;
             inputField.gameObject.SetActive(true);
         }

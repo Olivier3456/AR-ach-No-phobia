@@ -230,6 +230,7 @@ public class HandMenuBehaviour : MonoBehaviour
     {
         noExerciceMainMenu.SetActive(false);
         progressionMenu.SetActive(false);
+        reinitializeProgressionConfirmationMenu.SetActive(false);
         levelsChoiceMenu.SetActive(false);
         exerciceMainMenu.SetActive(false);
         quitExerciceConfirmationMenu.SetActive(false);
