@@ -18,14 +18,14 @@ public class SpiderHandInteract : BaseSpider
 
     private static bool canSpiderBeReleased;
     private bool isSpiderReleased;
-    //public static float timeBeforeUserCanReleaseSpider = 10f;
 
     public static UnityEvent SpiderOnHand = new UnityEvent();
-    //public static UnityEvent SpiderCanBeReleased = new UnityEvent();
     public static UnityEvent SpiderReleased = new UnityEvent();
 
     public override void InitSpider(OVRSceneAnchor sceneAnchor, SpawnSpiderSO spawnSpiderSO)
     {
+        // Same as base.InitSpider:
+
         base.sceneAnchor = sceneAnchor;
 
         walkSpeed = spawnSpiderSO.speed;
@@ -36,6 +36,10 @@ public class SpiderHandInteract : BaseSpider
 
         walkAnimationSpeedFactor /= scale;
 
+
+
+        // Different from base.InitSpider:
+
         leftHandAnchor = MainManager.Instance.LeftPalmCenterMarker;
         rightHandAnchor = MainManager.Instance.RightPalmCenterMarker;
 
@@ -44,8 +48,6 @@ public class SpiderHandInteract : BaseSpider
         minRemainingDistance = 0.005f;
 
         canSpiderBeReleased = false;
-
-        Debug.Log("Spider init done");
     }
 
 

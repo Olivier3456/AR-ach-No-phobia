@@ -2616,6 +2616,7 @@ GameObject:
   - component: {fileID: 9037695131208763197}
   - component: {fileID: 5193617889278986724}
   - component: {fileID: 5127887226303612654}
+  - component: {fileID: 1515097510509188289}
   m_Layer: 0
   m_Name: Spider_SimpleAnim Hand Interact
   m_TagString: Untagged
@@ -2677,6 +2678,18 @@ MonoBehaviour:
   destinationVisualPrefab: {fileID: 0}
   animator: {fileID: 2620335639172056276}
   walkAnimationSpeedFactor: 65
+--- !u!114 &1515097510509188289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6765185090754520815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42304ba8d853d8742921a175ee4f9be0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6768443354216449717
 GameObject:
   m_ObjectHideFlags: 0

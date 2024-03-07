@@ -23,6 +23,10 @@ public class BaseSpider : MonoBehaviour
     protected float scale = 1f;
 
 
+    // Related to spider distance from cam:
+
+
+
     public virtual void InitSpider(OVRSceneAnchor sceneAnchor, SpawnSpiderSO spawnSpiderSO)
     {
         this.sceneAnchor = sceneAnchor;

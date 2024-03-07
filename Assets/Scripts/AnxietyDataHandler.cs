@@ -17,6 +17,8 @@ public class ExerciseData
     public string time;
     public int exerciseId;
     public int anxietyNote;
+    public float minDistanceFromSpider;
+    public float averageDistanceFromNearestSpider;
 }
 
 public class AnxietyDataHandler : MonoBehaviour
@@ -110,6 +112,8 @@ public class AnxietyDataHandler : MonoBehaviour
         newExerciseData.time = DateTime.Now.ToString();
         newExerciseData.exerciseId = MainManager.Instance.CurrentExercise.Id;
         newExerciseData.anxietyNote = anxietyLevel;
+        newExerciseData.minDistanceFromSpider = DistanceUpdater.MinDistanceFromCamEver;
+        newExerciseData.averageDistanceFromNearestSpider = DistanceUpdater.AverageDistanceFromCam;
 
         ExerciseData[] newArray;
         if (anxietyData.exercises == null)
