@@ -109,7 +109,7 @@ public class AnxietyDataHandler : MonoBehaviour
         }
 
         ExerciseData newExerciseData = new ExerciseData();
-        newExerciseData.time = DateTime.Now.ToString();
+        newExerciseData.time = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
         newExerciseData.exerciseId = MainManager.Instance.CurrentExercise.Id;
         newExerciseData.anxietyNote = anxietyLevel;
         newExerciseData.minDistanceFromSpider = DistanceUpdater.MinDistanceFromCamEver;

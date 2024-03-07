@@ -16,9 +16,9 @@ public class DistanceCanvas : MonoBehaviour
             minimumDistanceText.gameObject.SetActive(true);
             averageDistanceText.gameObject.SetActive(true);
 
-            currentDistanceText.text = $"actuelle : {DistanceUpdater.MinDistanceFromCam.ToString("0.00")} m";
-            minimumDistanceText.text = $"minimale : {DistanceUpdater.MinDistanceFromCamEver.ToString("0.00")} m";
-            averageDistanceText.text = $"moyenne : {DistanceUpdater.AverageDistanceFromCam.ToString("0.00")} m";
+            currentDistanceText.text = $"{DistanceUpdater.MinDistanceFromCam.ToString("0.00")} m";
+            minimumDistanceText.text = $"mini : {DistanceUpdater.MinDistanceFromCamEver.ToString("0.00")} m";
+            averageDistanceText.text = $"moy : {DistanceUpdater.AverageDistanceFromCam.ToString("0.00")} m";
         }
         else
         {

@@ -44,7 +44,7 @@ public class AnxietyDataDisplayer : MonoBehaviour
                 TMP_InputField inputField = Instantiate(inputFieldTemplate.gameObject.GetComponent<TMP_InputField>(), inputFieldsParentTransform);
                 instantiatedInputFields.Add(inputField);
 
-                string inputFieldText = $"{item.time} | Exercice {item.exerciseId} | Anxiété : {item.anxietyNote} | Dist min : {item.minDistanceFromSpider.ToString("0.00")} | Dist moy : {item.averageDistanceFromNearestSpider.ToString("0.00")}";
+                string inputFieldText = $"{item.time} | Ex {item.exerciseId} | Anx {item.anxietyNote} | Dist min {item.minDistanceFromSpider.ToString("0.00")} | Dist moy {item.averageDistanceFromNearestSpider.ToString("0.00")}";
                 inputField.text = inputFieldText;
                 inputField.gameObject.SetActive(true);
             }
