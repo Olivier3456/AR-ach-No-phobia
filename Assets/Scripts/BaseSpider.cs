@@ -69,13 +69,17 @@ public class BaseSpider : MonoBehaviour
             }
         }
 
+        float changeSpeedLength = walkSpeed * scale;
+
         if (isPaused)
         {
-            agent.speed = 0;
+            agent.speed = Mathf.Lerp(agent.speed, 0, Time.deltaTime / changeSpeedLength);
+            //agent.speed = 0f;
         }
         else
         {
-            agent.speed = walkSpeed;
+            agent.speed = Mathf.Lerp(agent.speed, walkSpeed, Time.deltaTime / changeSpeedLength);
+            //agent.speed = walkSpeed;
         }
     }
 
