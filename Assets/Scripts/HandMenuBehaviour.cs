@@ -47,6 +47,9 @@ public class HandMenuBehaviour : MonoBehaviour
     [SerializeField] private GameObject nextExerciseButton;
     [SerializeField] private GameObject exerciseNotFinishedLabel;
     [SerializeField] private GameObject exerciseFinishedLabel;
+    [Space(20)]
+    [SerializeField] private GameObject distancesCanvasGameObject;
+    [SerializeField] private TextMeshPro displayDistancesButtonText;
 
 
 
@@ -311,6 +314,11 @@ public class HandMenuBehaviour : MonoBehaviour
     }
 
 
+    public void ToggleDisplayOrHideDistances()
+    {
+        distancesCanvasGameObject.SetActive(!distancesCanvasGameObject.activeSelf);
+        displayDistancesButtonText.text = distancesCanvasGameObject.activeSelf ? "Masquer les distances" : "Afficher les distances";
+    }
 
 
     public void ApplicationQuit()

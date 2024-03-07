@@ -3,28 +3,28 @@ using UnityEngine;
 
 public class DistanceCanvas : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI distanceText1;
-    [SerializeField] private TextMeshProUGUI distanceText2;
-    [SerializeField] private TextMeshProUGUI distanceText3;
+    [SerializeField] private TextMeshProUGUI currentDistanceText;
+    [SerializeField] private TextMeshProUGUI minimumDistanceText;
+    [SerializeField] private TextMeshProUGUI averageDistanceText;
 
 
     void Update()
     {
         if (DistanceUpdater.DistanceUpdatersInstantiated > 0)
         {
-            distanceText1.gameObject.SetActive(true);
-            distanceText2.gameObject.SetActive(true);
-            distanceText3.gameObject.SetActive(true);
+            currentDistanceText.gameObject.SetActive(true);
+            minimumDistanceText.gameObject.SetActive(true);
+            averageDistanceText.gameObject.SetActive(true);
 
-            distanceText1.text = $"distance: {DistanceUpdater.MinDistanceFromCam.ToString("0.00")}";
-            distanceText2.text = $"average dist: {DistanceUpdater.AverageDistanceFromCam.ToString("0.00")}";
-            distanceText3.text = $"min dist: {DistanceUpdater.MinDistanceFromCamEver.ToString("0.00")}";
+            currentDistanceText.text = $"actuelle : {DistanceUpdater.MinDistanceFromCam.ToString("0.00")} m";
+            minimumDistanceText.text = $"minimale : {DistanceUpdater.MinDistanceFromCamEver.ToString("0.00")} m";
+            averageDistanceText.text = $"moyenne : {DistanceUpdater.AverageDistanceFromCam.ToString("0.00")} m";
         }
         else
         {
-            distanceText1.gameObject.SetActive(false);
-            distanceText2.gameObject.SetActive(false);
-            distanceText3.gameObject.SetActive(false);
+            currentDistanceText.gameObject.SetActive(false);
+            minimumDistanceText.gameObject.SetActive(false);
+            averageDistanceText.gameObject.SetActive(false);
         }
     }
 }
