@@ -17,6 +17,7 @@ public class BaseSpider : MonoBehaviour
     protected OVRSceneAnchor sceneAnchor = null;
 
     protected bool isPaused = false;
+    protected bool hasChangedDestination = false;
 
     protected float walkSpeed = 0.1f;
     protected float scale = 1f;
@@ -65,7 +66,7 @@ public class BaseSpider : MonoBehaviour
             {
                 Debug.Log("Setting new destination for Spider");
                 SetRandomDestinationOnAnchorSurface();
-                isPaused = true;
+                hasChangedDestination = true;
             }
         }
 
@@ -91,16 +92,17 @@ public class BaseSpider : MonoBehaviour
             isPaused = false;
             float randomWalkTime = Random.Range(5, 10);
             float timer = 0;
-            while (!isPaused && timer < randomWalkTime)
+            while (!hasChangedDestination && timer < randomWalkTime)
             {
                 yield return null;
                 timer += Time.deltaTime;
             }
 
             isPaused = true;
+            hasChangedDestination = false;
             float randomPauseTime = Random.Range(1, 3);
             timer = 0;
-            while (isPaused && timer < randomPauseTime)
+            while (timer < randomPauseTime)
             {
                 yield return null;
                 timer += Time.deltaTime;
@@ -111,10 +113,10 @@ public class BaseSpider : MonoBehaviour
 
     private void SetRandomDestinationOnAnchorSurface()
     {
-        bool shouldContinue = true;
+        bool shouldContinueToSearchOptimalDestination = true;
         Vector3 destination;
         int iteration = 0;
-        int maxIterations = 100;
+        int maxIterations = 50;
 
         do
         {
@@ -129,11 +131,11 @@ public class BaseSpider : MonoBehaviour
 
                 if (Vector3.Dot(directionToCurrentTarget, directionToNextPossibleTarget) > 0)
                 {
-                    shouldContinue = false;
+                    shouldContinueToSearchOptimalDestination = false;
                 }
             }
 
-        } while (shouldContinue && iteration < maxIterations);
+        } while (shouldContinueToSearchOptimalDestination && iteration < maxIterations);
 
         Debug.Log($"New destination found at iteration {iteration}. Maximum allowed was {maxIterations}.");
 
