@@ -143,11 +143,6 @@ public class AnxietyDataHandler : MonoBehaviour
 
         Debug.Log("User's anxiety data reinitialized");
         OnAnxietyDataUpdated.Invoke();
-
-        if (PlayerPrefs.HasKey(MainManager.SECOND_LAUNCH_PLAYERPREFS_KEY))
-        {
-            PlayerPrefs.DeleteKey(MainManager.SECOND_LAUNCH_PLAYERPREFS_KEY);   // Intro sound will be played by MainManager next launch.
-        }
     }
 
 

@@ -104,7 +104,6 @@ public class SpiderHandInteract : BaseSpider
                 float margin = 0.05f;
                 if (NavMesh.SamplePosition(currentAnchor.position, out hit, margin, NavMesh.AllAreas))
                 {
-                    //transform.parent = null;
                     agent.enabled = true;
                     transform.position = hit.position;  // Probably not necessary
                     agent.SetDestination(sceneAnchor.transform.position);

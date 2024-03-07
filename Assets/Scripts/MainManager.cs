@@ -18,6 +18,8 @@ public class MainManager : MonoBehaviour
     [Space(20)]
     [SerializeField] private AudioClip introClip_1;
     [SerializeField] private AudioClip introClip_2;
+    [SerializeField] private AudioClip introClip_3;
+    [SerializeField] private AudioClip introClip_4;
     [Space(20)]
     public UnityEvent<int> OnExerciseBegin = new UnityEvent<int>();
 
@@ -64,19 +66,18 @@ public class MainManager : MonoBehaviour
 
     private void Start()
     {
-        //// =============== DEBUG ===============
-        PlayerPrefs.DeleteAll();
-        //// =====================================
-
-
         audioSource = GetComponent<AudioSource>();
 
-        if (!PlayerPrefs.HasKey(SECOND_LAUNCH_PLAYERPREFS_KEY))
+        if (AnxietyDataHandler.AnxietyData.exercises == null || AnxietyDataHandler.AnxietyData.exercises.Length < 1)
         {
-            audioSource.clip = introClip_1;
+            audioSource.clip = introClip_1; // Welcome in AR-ach-NO-Phobia.
             audioSource.Play();
-            PlayerPrefs.SetInt(SECOND_LAUNCH_PLAYERPREFS_KEY, 1);
             isFirstLaunch = true;
+        }
+        else
+        {
+            audioSource.clip = introClip_3; // Welcome back in AR-ach-NO-Phobia.
+            audioSource.Play();
         }
     }
 
@@ -84,12 +85,18 @@ public class MainManager : MonoBehaviour
     private void OnSceneAnchorsLoaded(bool areAllNeededAnchorsFound)
     {
         bool isSpaceSetupRequired = !areAllNeededAnchorsFound;
-        StartCoroutine(RequestSpaceSetupIfNeeded(isSpaceSetupRequired));
+        StartCoroutine(RequestSpaceSetupIfNeeded(isSpaceSetupRequired));    // We execute this coroutine even if space setup is not needed, to play the 2e intro audio clip for the first launch.
     }
 
     private IEnumerator RequestSpaceSetupIfNeeded(bool isRequired)
     {
         WaitForSeconds waitForOneSecond = new WaitForSeconds(1);
+
+        if (!isFirstLaunch && isRequired)
+        {
+            audioSource.clip = introClip_4; // The room is not set correctly anymore. You'll need to add the missing elements.
+            audioSource.Play();
+        }
 
         while (audioSource.isPlaying)
         {
@@ -113,10 +120,9 @@ public class MainManager : MonoBehaviour
             sceneManager.RequestSceneCapture(classifications);
         }
 
-
         if (isFirstLaunch && currentExercise == null)
         {
-            audioSource.clip = introClip_2;
+            audioSource.clip = introClip_2; // Your room is now set correctly + instructions for accessing the menu.
             audioSource.Play();
         }
     }

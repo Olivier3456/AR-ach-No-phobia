@@ -914,12 +914,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c748c266b63c3c4c848b0554016c175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneManager: {fileID: 798431233}
-  spawner: {fileID: 1460845421}
-  objectToSpawn: {fileID: 5915099663834770913, guid: f32bd98f17899f24ea6816b2db1d2895,
-    type: 3}
-  numberToSpawn: 500
-  oneSpawnByFrame: 1
 --- !u!4 &70151600
 Transform:
   m_ObjectHideFlags: 0
@@ -16388,6 +16382,8 @@ MonoBehaviour:
   rightPalmCenterMarker: {fileID: 1870312186}
   introClip_1: {fileID: 8300000, guid: 88fb58d4dfa7647489a8e7cc4d297af9, type: 3}
   introClip_2: {fileID: 8300000, guid: 4a1653252afc4ab4ebdf9de620c26297, type: 3}
+  introClip_3: {fileID: 8300000, guid: 644f3045cd7bea740832b446b19bb51c, type: 3}
+  introClip_4: {fileID: 8300000, guid: f3fb5c0fabde4e0469eea4dca9562499, type: 3}
   OnExerciseBegin:
     m_PersistentCalls:
       m_Calls: []
@@ -20284,10 +20280,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 295cc99054ad9354481a19ff21b9735e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ceiling: 0
-  floor: 0
-  walls: 0
-  table: 0
 --- !u!4 &1602721735
 Transform:
   m_ObjectHideFlags: 0

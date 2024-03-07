@@ -1,8 +1,10 @@
-Bienvenue 1 : Bienvenue dans Arachnophobia. Cette application nécessite que vous ayez paramétré votre pièce dans le casque, avec au moins quatre murs, un sol, un plafond et une table. Pour maximiser le réalisme de l'application, faites en sorte que votre table soit dégagée de tout objet, et soit de forme rectangulaire.
+Bienvenue 1 (premier lancement) : Bienvenue dans Arachnophobia. Cette application nécessite que vous ayez paramétré votre pièce dans le casque, avec au moins quatre murs, un sol, un plafond et une table. Pour maximiser le réalisme de l'application, faites en sorte que votre table soit dégagée de tout objet, et soit de forme rectangulaire.
 
-Bienvenue 2 : Votre pièce est paramétrée. Pour accéder au menu, levez le pouce de votre main gauche, ou celui de votre main droite, et maintenez cette pose pendant que vous touchez les boutons avec l'index de l'autre main.
+Bienvenue 2 (premier lancement) : Votre pièce est paramétrée. Pour accéder au menu, levez le pouce de votre main gauche, ou celui de votre main droite, et maintenez cette pose pendant que vous touchez les boutons avec l'index de l'autre main.
 
+Bienvenue 3 (pas le premier lancement) : Heureuse de vous revoir. Êtes-vous prêt à continuer votre thérapie ? Vous avez déjà fait des progrès, et en vous entraînant régulièrement, vous allez continuer à en faire.
 
+Bienvenue 4 (pas le premier lancement) : Il semble que votre pièce ne soit plus correctement paramétrée. Vous allez devoir ajouter les éléments manquants.
 
 
 Ex 1 début : Dans ce premier exercice, vous allez pouvoir commencer à vous familiariser en douceur avec les araignées. Un panneau va apparaître sur la table, affichant des photos d'araignées de plus en plus grandes. Vous êtes libre de vous approcher ou de vous éloigner autant que vous voulez. Pour passer à l'image suivant, levez simplement le pouce et appuyez sur le bouton avec la flèche.
