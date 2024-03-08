@@ -111,7 +111,7 @@ public class BaseSpider : MonoBehaviour
     }
 
 
-    private void SetRandomDestinationOnAnchorSurface()
+    protected void SetRandomDestinationOnAnchorSurface()
     {
         bool shouldContinueToSearchOptimalDestination = true;
         Vector3 destination;

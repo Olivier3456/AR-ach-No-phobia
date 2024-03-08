@@ -6,8 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/AR-ach-No-phobia Scenes/6. += Hand Grab Setup.unity
+    guid: 9a92369105ac1a449982d732f49ab6d7
+  - enabled: 0
     path: Assets/Scenes/AR-ach-No-phobia Scenes/5. Hand Menu with visible hand model.unity
     guid: 476e2dae77608944798e4a534f699945
+  - enabled: 0
+    path: Assets/Scenes/AR-ach-No-phobia Scenes/_Tests Grab.unity
+    guid: 25ffe8a11c9fdcf4bb605edc3fc22cfd
+  - enabled: 0
+    path: Assets/Samples/Meta XR Interaction SDK OVR Samples/60.0.0/Feature Scenes/HandGrab.unity
+    guid: 1ca1035b12c67f24d81e7bc5ad627d76
+  - enabled: 0
+    path: Assets/Samples/Meta XR Interaction SDK OVR Samples/60.0.0/Example Scenes/HandGrabExamples.unity
+    guid: 39ae0e546b9edc0408d3b11c6a7c2814
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 3cb75574dec8de04db87fc240bc68aff,
       type: 2}
