@@ -23,10 +23,6 @@ public class BaseSpider : MonoBehaviour
     protected float scale = 1f;
 
 
-    // Related to spider distance from cam:
-
-
-
     public virtual void InitSpider(OVRSceneAnchor sceneAnchor, SpawnSpiderSO spawnSpiderSO)
     {
         this.sceneAnchor = sceneAnchor;
@@ -66,11 +62,11 @@ public class BaseSpider : MonoBehaviour
 
         if (sceneAnchor != null)
         {
-            if (!isPaused && agent.remainingDistance < minRemainingDistance)
+            if (!isPaused && !hasChangedDestination && agent.remainingDistance < minRemainingDistance)
             {
                 Debug.Log("Setting new destination for Spider");
-                SetRandomDestinationOnAnchorSurface();
                 hasChangedDestination = true;
+                SetRandomDestinationOnAnchorSurface();
             }
         }
 
@@ -141,7 +137,7 @@ public class BaseSpider : MonoBehaviour
 
         } while (shouldContinueToSearchOptimalDestination && iteration < maxIterations);
 
-        Debug.Log($"New destination found at iteration {iteration}. Maximum allowed was {maxIterations}.");
+        //Debug.Log($"New destination found at iteration {iteration}. Maximum allowed was {maxIterations}.");
 
         agent.SetDestination(destination);
 

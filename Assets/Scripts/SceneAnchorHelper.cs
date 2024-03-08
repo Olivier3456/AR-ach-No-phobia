@@ -90,11 +90,11 @@ public class SceneAnchorHelper : MonoBehaviour
 
     public static Vector3 RandomPointOnAnchorSurface(OVRSceneAnchor sceneAnchor, float marginDistance = 0.1f)
     {
-        Debug.Log($"Finding random point on a scene anchor {sceneAnchor.name}");
+        //Debug.Log($"Finding random point on scene anchor {sceneAnchor.name}");
 
         if (sceneAnchor.TryGetComponent(out OVRScenePlane plane))
         {
-            Debug.Log("Scene anchor is a plane (Wall, ceiling or floor)");
+            //Debug.Log("Scene anchor is a plane (Wall, ceiling or floor)");
 
             float randomX = Random.Range(0, plane.Width - marginDistance) - ((plane.Width - marginDistance) * 0.5f);
             float randomZ = Random.Range(0, plane.Height - marginDistance) - ((plane.Height - marginDistance) * 0.5f);
@@ -108,7 +108,7 @@ public class SceneAnchorHelper : MonoBehaviour
         }
         else if (sceneAnchor.TryGetComponent(out OVRSceneVolume volume))
         {
-            Debug.Log("Scene anchor is a volume (table/desk)");
+            //Debug.Log("Scene anchor is a volume (table/desk)");
 
             float randomX = Random.Range(0, volume.Width - marginDistance) - ((volume.Width - marginDistance) * 0.5f);
             float randomZ = Random.Range(0, volume.Depth - marginDistance) - ((volume.Depth - marginDistance) * 0.5f);
