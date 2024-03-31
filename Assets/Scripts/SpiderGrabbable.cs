@@ -19,6 +19,8 @@ public class SpiderGrabbable : BaseSpider
 
     private const string BOX_TAG = "BoxForSpider";
 
+    private bool isInBox = false;
+
 
     protected override void OnDestroy()
     {
@@ -82,6 +84,8 @@ public class SpiderGrabbable : BaseSpider
         {
             SpiderInBox.Invoke();
             agent.speed = 0f;
+            isInBox = true;
+            Debug.Log("Spider is in a spider box.");
         }
     }
 
@@ -110,7 +114,10 @@ public class SpiderGrabbable : BaseSpider
                 hasChangedDestination = false;
             }
 
-            base.Update();
+            if (!isInBox)
+            {
+                base.Update();
+            }
         }
     }
 }
