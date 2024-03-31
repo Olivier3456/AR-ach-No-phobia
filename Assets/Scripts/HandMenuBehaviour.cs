@@ -307,7 +307,8 @@ public class HandMenuBehaviour : MonoBehaviour
 
     public void ChoseAnxietyLevel(int anxietyLevel)
     {
-        nextExerciseButton.SetActive(true);
+        bool isLastExercise = MainManager.Instance.CurrentExercise.Id == MainManager.Instance.TotalExercisesNumber;        
+        nextExerciseButton.SetActive(!isLastExercise);
         quitButton.SetActive(true);
 
         AnxietyDataHandler.SetAnxietyLevel(anxietyLevel);

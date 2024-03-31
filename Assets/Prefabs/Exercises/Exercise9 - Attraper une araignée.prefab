@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 976080439359972392}
   - component: {fileID: 8559681706451235236}
-  - component: {fileID: 5754254354610372799}
+  - component: {fileID: 3335345971039003643}
   m_Layer: 0
   m_Name: "Exercise9 - Attraper une araign\xE9e"
   m_TagString: Untagged
@@ -129,7 +129,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5754254354610372799
+--- !u!114 &3335345971039003643
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,10 +138,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 2543138501926538309}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d487f822800fe304e9103e140131eeb8, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ec0ee5276d19c44183801f9d1e427a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   exerciseAudioSource: {fileID: 8559681706451235236}
   exerciseEvents:
   - {fileID: 11400000, guid: bde2375b989edfa46b37285fe04c12e9, type: 2}
+  - {fileID: 11400000, guid: 9ad99c2c8fa385142a89ac73cb76a46b, type: 2}
   - {fileID: 11400000, guid: 2cbbd6efdfbae2e4cb14dedf9bd4f227, type: 2}
+  - {fileID: 11400000, guid: 38f61c2653d66234b97c2802b668c06e, type: 2}
+  - {fileID: 11400000, guid: d854c5b49a38aeb4b9ab4516703e034e, type: 2}
+  spiderBoxPrefab: {fileID: 7112695367821292445, guid: 27b622a9cdedfd64ab4339f15b6d0b86,
+    type: 3}
+  playClipSpiderInBox: {fileID: 11400000, guid: d854c5b49a38aeb4b9ab4516703e034e,
+    type: 2}

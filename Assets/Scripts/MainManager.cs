@@ -45,6 +45,7 @@ public class MainManager : MonoBehaviour
     public int TotalNumberOfExercises { get { return exercisesPrefabs.Length; } }
     public Transform LeftPalmCenterMarker { get { return leftPalmCenterMarker; } }
     public Transform RightPalmCenterMarker { get { return rightPalmCenterMarker; } }
+    public int TotalExercisesNumber { get { return exercisesPrefabs.Length; } }
 
 
     private void Awake()
@@ -146,8 +147,8 @@ public class MainManager : MonoBehaviour
 
             OnExerciseBegin.Invoke(chosenExerciseID);
 
-            Debug.Log($"[MainManager] Begining exercise {currentExercise.Id}");
-            Debug.Log($"[MainManager] Exercise Game Object name is: {currentExercise.name}.");
+            //Debug.Log($"[MainManager] Begining exercise {currentExercise.Id}");
+            //Debug.Log($"[MainManager] Exercise Game Object name is: {currentExercise.name}.");
         }
     }
 

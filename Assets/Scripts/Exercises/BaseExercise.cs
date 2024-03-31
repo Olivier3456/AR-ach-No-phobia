@@ -74,6 +74,10 @@ public class BaseExercise : MonoBehaviour
         {
             HandleSpawnSpiderEvent(eventSO);
         }
+        else if (eventSO is SpawnGameObjectSO)
+        {
+            HandleSpawnGameObjectEvent(eventSO);
+        }
     }
 
 
@@ -100,6 +104,16 @@ public class BaseExercise : MonoBehaviour
                                                                                                       out OVRSceneAnchor sceneAnchor));
         imagesPanel = allObjectsSpawned[allObjectsSpawned.Count - 1].GetComponent<ImagesPanel>();
 
+        SwitchToNextEvent();
+    }
+
+    protected virtual void HandleSpawnGameObjectEvent(BaseExerciseEventSO eventSO)
+    {
+        SpawnGameObjectSO spawnGOSO = eventSO as SpawnGameObjectSO;
+        allObjectsSpawned.Add(MainManager.Instance.SpawnObjectOnSceneAnchor.SpawnObjectOnAnchorOfType(spawnGOSO.gameObject,
+                                                                                                      spawnGOSO.anchorType,
+                                                                                                      spawnGOSO.spawnSituation,
+                                                                                                      out OVRSceneAnchor sceneAnchor));
         SwitchToNextEvent();
     }
 

@@ -79,3 +79,7 @@ Ex 8 l'araignée peut être reposée : Vous pouvez maintenant reposer l'araignée su
 
 
 
+Ex 9 début : Dans ce dernier exercice, une araignée va apparaître sur la table. Cette fois, vous allez devoir l'attraper entre votre pouce et votre index. Vous la déposerez ou la laisserez tomber dans la boîte située sur le sol, au centre de la pièce. Si jamais vous laissez tomber l'araignée par terre, ce n'est pas grave : vous pouvez la ramasser.
+
+Ex 9 fin : Bravo ! Vous avez terminé tous les exercices de ce programme. Vous êtes maintenant capable d'attraper une grosse araignée, certes virtuelle, mais réaliste, et de la mettre en lieu sûr. C'est formidable ! Merci encore de nous avoir fait confiance pour vous accompagner dans ce voyage. Nous espérons vous avoir été utile.
+

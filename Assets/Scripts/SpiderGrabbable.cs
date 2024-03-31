@@ -2,16 +2,22 @@ using Oculus.Interaction;
 using Oculus.Interaction.HandGrab;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class SpiderGrabbable : BaseSpider
 {
     [SerializeField] private Rigidbody rb;
     [SerializeField] private HandGrabInteractable handGrabInteractable;
 
+
+    public static UnityEvent SpiderGrabbed = new UnityEvent();
+    public static UnityEvent SpiderInBox = new UnityEvent();
+
     private bool isThrowed = false;
+
+    private const string BOX_TAG = "BoxForSpider";
 
 
     protected override void OnDestroy()
@@ -36,6 +42,8 @@ public class SpiderGrabbable : BaseSpider
     {
         rb.useGravity = false;
         agent.enabled = false;
+
+        SpiderGrabbed.Invoke();
 
         Debug.Log("Spider grabbed!");
     }
@@ -65,9 +73,18 @@ public class SpiderGrabbable : BaseSpider
         InitNavigation();
 
         handGrabInteractable.WhenStateChanged += HandGrabInteractable_WhenStateChanged;
-
-        //StartCoroutine(PauseWalkRepetitively());
     }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(BOX_TAG))
+        {
+            SpiderInBox.Invoke();
+            agent.speed = 0f;
+        }
+    }
+
 
 
     protected override void Update()

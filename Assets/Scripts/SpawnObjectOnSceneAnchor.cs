@@ -65,20 +65,21 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
                 if (spawnSituation == SpawnSituation.SurfaceCenter)
                 {
                     positionToSpawn = sceneAnchorToSpawnObject.transform.position;
+                    isPositionValid = true;
                 }
                 else if (spawnSituation == SpawnSituation.RandomPointOnSurface)
                 {
                     positionToSpawn = SceneAnchorHelper.RandomPointOnAnchorSurface(sceneAnchorToSpawnObject);
-                }
 
-                if (!Physics.CheckSphere(positionToSpawn, 0.01f))
-                {
-                    isPositionValid = true;
-                    Debug.Log("Position to spawn object is valid because it is NOT in a collider.");
-                }
-                else
-                {
-                    Debug.Log("Position to spawn object is in a collider. Finding new position...");
+                    if (!Physics.CheckSphere(positionToSpawn, 0.01f))
+                    {
+                        isPositionValid = true;
+                        Debug.Log("Position to spawn object is valid because it is NOT in a collider.");
+                    }
+                    else
+                    {
+                        Debug.Log("Position to spawn object is in a collider. Finding new position...");
+                    }
                 }
             }
             while (isPositionValid == false);
