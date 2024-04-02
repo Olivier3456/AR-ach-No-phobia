@@ -24,7 +24,7 @@ public class SpiderHandInteract : BaseSpider
 
     public override void InitSpider(OVRSceneAnchor sceneAnchor, SpawnSpiderSO spawnSpiderSO)
     {
-        // Same as base.InitSpider:
+        // =========> Same as base.InitSpider:
 
         base.sceneAnchor = sceneAnchor;
 
@@ -38,7 +38,7 @@ public class SpiderHandInteract : BaseSpider
 
 
 
-        // Different from base.InitSpider:
+        // =========> Different from base.InitSpider:
 
         leftHandAnchor = MainManager.Instance.LeftPalmCenterMarker;
         rightHandAnchor = MainManager.Instance.RightPalmCenterMarker;
@@ -67,26 +67,22 @@ public class SpiderHandInteract : BaseSpider
             {
                 agent.speed = 0;
                 agent.enabled = false;
-                //transform.position = currentAnchor.position + (currentAnchor.up * verticalOffsetFromHandAnchor);
-                ////transform.parent = currentAnchor;
-                //transform.up = currentAnchor.up;
-
                 isSpiderOnHand = true;
                 SpiderOnHand.Invoke();
 
-                Debug.Log("Spider is on hand!");
+                //Debug.Log("Spider is on hand!");
             }
 
             NavMeshHit hit;
             float margin = 0.05f;
 
-            if (NavMesh.SamplePosition(leftHandAnchor.position, out hit, margin, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(leftHandAnchor.position, out hit, margin, NavMesh.AllAreas)) // Left hand is on the table: spider can walk towards it.
             {
                 agent.SetDestination(hit.position);
                 currentAnchor = leftHandAnchor;
                 agent.speed = walkSpeed;
             }
-            else if (NavMesh.SamplePosition(rightHandAnchor.position, out hit, margin, NavMesh.AllAreas))
+            else if (NavMesh.SamplePosition(rightHandAnchor.position, out hit, margin, NavMesh.AllAreas)) // Right hand is on the table: spider can walk towards it.
             {
                 agent.SetDestination(hit.position);
                 currentAnchor = rightHandAnchor;
@@ -100,7 +96,7 @@ public class SpiderHandInteract : BaseSpider
         }
         else
         {
-            if (canSpiderBeReleased && !isSpiderReleased)
+            if (canSpiderBeReleased && !isSpiderReleased)   // Spider is on a hand and can be released: we must detect if the hand is near the table, for the spider to return on the table.
             {
                 NavMeshHit hit;
                 float margin = 0.05f;
@@ -111,16 +107,25 @@ public class SpiderHandInteract : BaseSpider
                     agent.SetDestination(sceneAnchor.transform.position);
                     isSpiderReleased = true;
                     isSpiderOnHand = false;
-                    Debug.Log("Spider returned on the table");
                     SpiderReleased.Invoke();
+
+                    //Debug.Log("Spider returned on the table");
                 }
             }
         }
 
-        if (isSpiderOnHand && !isSpiderReleased)
+        if (isSpiderOnHand && !isSpiderReleased)    // Spider is on a hand: we place the spider manually on the correct hand anchor.
         {
-            transform.position = currentAnchor.position + (currentAnchor.up * verticalOffsetFromHandAnchor);
-            transform.up = currentAnchor.up;
+            if (currentAnchor == rightHandAnchor)
+            {
+                transform.position = currentAnchor.position + (currentAnchor.up * verticalOffsetFromHandAnchor);
+                transform.up = currentAnchor.up;
+            }
+            else // To fix the bug of the spider not placed correctly on left hand. Currently I don't understand why left palm center and right palm center don't have the same up vector.
+            {
+                transform.position = currentAnchor.position + (-currentAnchor.up * verticalOffsetFromHandAnchor);
+                transform.up = -currentAnchor.up;
+            }
         }
     }
 

@@ -18,7 +18,7 @@ public static class NavMeshHandler
         navMeshSurface.BuildNavMesh();
         ActivateNoNavMeshObjects();
 
-        Debug.Log($"NavMesh built for anchor {sceneAnchor.name}");
+        //Debug.Log($"NavMesh built for anchor {sceneAnchor.name}");
     }
 
     
@@ -44,17 +44,18 @@ public static class NavMeshHandler
 
 
 
+
     // Related to No Nav Mesh Objects
     public static void AddObjectToNoNavMeshList(GameObject go)
     {
         if (!objectsToDisableWhenBakingNavMeshes.Contains(go))
         {
             objectsToDisableWhenBakingNavMeshes.Add(go);
-            Debug.Log($"{go.name} added to no nav mesh objects");
+            //Debug.Log($"{go.name} added to no nav mesh objects");
         }
         else
         {
-            Debug.Log("The list already contains this object: no need to add it again.");
+            //Debug.Log("The list already contains this object: no need to add it again.");
         }
     }
 
@@ -63,11 +64,11 @@ public static class NavMeshHandler
         if (objectsToDisableWhenBakingNavMeshes.Contains(go))
         {
             objectsToDisableWhenBakingNavMeshes.Remove(go);
-            Debug.Log($"{go.name} removed from no nav mesh objects");
+            //Debug.Log($"{go.name} removed from no nav mesh objects");
         }
         else
         {
-            Debug.Log("The list does not contains this object: cant remove it.");
+            //Debug.Log("The list does not contains this object: cant remove it.");
         }
     }
 

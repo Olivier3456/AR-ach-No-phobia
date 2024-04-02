@@ -133,7 +133,7 @@ public class MainManager : MonoBehaviour
     {
         if (chosenExerciseID == 0)
         {
-            Debug.Log("[MainManager] No exercise chosen yet. Can't begin exercice.");
+            //Debug.Log("[MainManager] No exercise chosen yet. Can't begin exercice.");
             return;
         }
         else
@@ -155,7 +155,7 @@ public class MainManager : MonoBehaviour
 
     public void QuitExercise()
     {
-        Debug.Log($"[MainManager] Quitting exercise {currentExercise.Id}");
+        //Debug.Log($"[MainManager] Quitting exercise {currentExercise.Id}");
 
         handMenuBehaviour.HideAllMenus(true);
         Destroy(currentExercise.gameObject);

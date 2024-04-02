@@ -40,22 +40,26 @@ public class SpiderGrabbable : BaseSpider
         }
     }
 
+
     public void OnGrab()
     {
         rb.useGravity = false;
         agent.enabled = false;
+        float animatorSpeedMultiplierWhenSpiderIsGrabbed = 5f;   // The spider wriggles when the user catches it.
+        animator.speed *= animatorSpeedMultiplierWhenSpiderIsGrabbed;
 
         SpiderGrabbed.Invoke();
 
-        Debug.Log("Spider grabbed!");
+        //Debug.Log("Spider grabbed!");
     }
     public void OnThrow()
     {
         rb.useGravity = true;
         isThrowed = true;
+
         NavMeshHandler.BuildAllNavMeshes(true);
 
-        Debug.Log("Spider released!");
+        //Debug.Log("Spider released!");
     }
 
 
@@ -84,8 +88,9 @@ public class SpiderGrabbable : BaseSpider
         {
             SpiderInBox.Invoke();
             agent.speed = 0f;
+            animator.speed = 0f;
             isInBox = true;
-            Debug.Log("Spider is in a spider box.");
+            //Debug.Log("Spider is in a spider box.");
         }
     }
 

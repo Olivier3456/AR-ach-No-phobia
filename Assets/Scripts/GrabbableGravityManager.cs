@@ -35,7 +35,7 @@ public class GrabbableGravityManager : MonoBehaviour
         rb.useGravity = true;
         //col.isTrigger = false;
 
-        Debug.Log("Object released!");
+        //Debug.Log("Object released!");
     }
 
     public void OnGrab()
@@ -43,6 +43,6 @@ public class GrabbableGravityManager : MonoBehaviour
         rb.useGravity = false;
         //col.isTrigger = true;
 
-        Debug.Log("Object grabbed!");
+        //Debug.Log("Object grabbed!");
     }
 }

@@ -75,7 +75,7 @@ public class HandMenuBehaviour : MonoBehaviour
             {
                 leftThumbTip = bone;
 
-                Debug.Log("Left Thumb tip found");
+                //Debug.Log("Left Thumb tip found");
             }
         }
 
@@ -85,7 +85,7 @@ public class HandMenuBehaviour : MonoBehaviour
             {
                 rightThumbTip = bone;
 
-                Debug.Log("Right Thumb tip found");
+                //Debug.Log("Right Thumb tip found");
             }
         }
     }
@@ -154,13 +154,13 @@ public class HandMenuBehaviour : MonoBehaviour
 
         if (MainManager.Instance.CurrentExercise == null)
         {
-            Debug.Log("[HandMenuBehaviour] Displaying main menu for NO exercise.");
+            //Debug.Log("[HandMenuBehaviour] Displaying main menu for NO exercise.");
 
             noExerciceMainMenu.SetActive(true);
         }
         else
         {
-            Debug.Log($"[HandMenuBehaviour] Displaying main menu for exercise {MainManager.Instance.CurrentExercise.Id}.");
+            //Debug.Log($"[HandMenuBehaviour] Displaying main menu for exercise {MainManager.Instance.CurrentExercise.Id}.");
 
             exerciseLabelText.text = $"Exercice {MainManager.Instance.CurrentExercise.Id}";
             exerciceMainMenu.SetActive(true);
@@ -259,12 +259,12 @@ public class HandMenuBehaviour : MonoBehaviour
             if (exercicesToggles[i].isOn)
             {
                 MainManager.Instance.ChoseNextExercise(i + 1);
-                Debug.Log($"[HandMenuBehaviour] Exercise chosen: exercice {i + 1}.");
+                //Debug.Log($"[HandMenuBehaviour] Exercise chosen: exercice {i + 1}.");
                 return;
             }
         }
 
-        Debug.Log("[HandMenuBehaviour] No exercice toggle is on! Can't chose exercise.");
+        //Debug.Log("[HandMenuBehaviour] No exercice toggle is on! Can't chose exercise.");
     }
 
 
@@ -277,7 +277,7 @@ public class HandMenuBehaviour : MonoBehaviour
 
         currentHandDisplayingMenu = ass;
 
-        Debug.Log("Hand pose for menu detected.");
+        //Debug.Log("Hand pose for menu detected.");
 
         if (showHandsModelWhenMenuIsVisible)
         {
@@ -307,7 +307,7 @@ public class HandMenuBehaviour : MonoBehaviour
 
     public void ChoseAnxietyLevel(int anxietyLevel)
     {
-        bool isLastExercise = MainManager.Instance.CurrentExercise.Id == MainManager.Instance.TotalExercisesNumber;        
+        bool isLastExercise = MainManager.Instance.CurrentExercise.Id == MainManager.Instance.TotalExercisesNumber;
         nextExerciseButton.SetActive(!isLastExercise);
         quitButton.SetActive(true);
 

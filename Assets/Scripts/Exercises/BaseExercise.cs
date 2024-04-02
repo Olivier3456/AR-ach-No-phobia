@@ -36,7 +36,7 @@ public class BaseExercise : MonoBehaviour
         }
 
         id = MainManager.Instance.ChosenExerciseID;
-        Debug.Log($"[BaseExercise] Exercise id: {id}.");
+        //Debug.Log($"[BaseExercise] Exercise id: {id}.");
     }
 
 
@@ -172,7 +172,7 @@ public class BaseExercise : MonoBehaviour
             if (isInProgress)
             {
                 isInProgress = false;
-                Debug.Log("[BaseExercise] Current exercise is finished.");
+                //Debug.Log("[BaseExercise] Current exercise is finished.");
             }
         }
     }
@@ -182,7 +182,7 @@ public class BaseExercise : MonoBehaviour
         if (!exercisesEventsWithBeginingConditionFullfiled.Contains(exerciseEventSO))
         {
             exercisesEventsWithBeginingConditionFullfiled.Add(exerciseEventSO);
-            Debug.Log($"Condition for conditional event {exerciseEventSO} is fulfilled.");
+            //Debug.Log($"Condition for conditional event {exerciseEventSO} is fulfilled.");
         }
     }
 

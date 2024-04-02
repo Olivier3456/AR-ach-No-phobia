@@ -12,7 +12,7 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
 
         if (anchorType == AnchorTypes.TABLE)    // Anchor is a volume
         {
-            Debug.Log("[SpawnObjectOnSceneAnchor] Desired spawn place is on the table.");
+            //Debug.Log("[SpawnObjectOnSceneAnchor] Desired spawn place is on the table.");
 
             Vector3 positionToSpawn = Vector3.zero;
 
@@ -32,7 +32,7 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
             result.transform.up = SceneAnchorHelper.TableSceneAnchor.transform.forward;
             result.transform.forward = SceneAnchorHelper.TableSceneAnchor.transform.up;
 
-            Debug.Log($"[SpawnObjectOnSceneAnchor] Object {result} instantiated at position {positionToSpawn}.");
+            //Debug.Log($"[SpawnObjectOnSceneAnchor] Object {result} instantiated at position {positionToSpawn}.");
         }
         else    // Anchor is a plane 
         {
@@ -45,18 +45,18 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
             {
                 if (anchorType == AnchorTypes.RANDOM_WALL)
                 {
-                    Debug.Log("[SpawnObjectOnSceneAnchor] Desired spawn place is on a random wall.");
+                    //Debug.Log("[SpawnObjectOnSceneAnchor] Desired spawn place is on a random wall.");
                     int randomWallIndex = Random.Range(0, SceneAnchorHelper.WallsSceneAnchors.Count);
                     sceneAnchorToSpawnObject = SceneAnchorHelper.WallsSceneAnchors[randomWallIndex];
                 }
                 else if (anchorType == AnchorTypes.CEILING)
                 {
-                    Debug.Log("[SpawnObjectOnSceneAnchor] Desired spawn place is on the ceiling.");
+                    //Debug.Log("[SpawnObjectOnSceneAnchor] Desired spawn place is on the ceiling.");
                     sceneAnchorToSpawnObject = SceneAnchorHelper.CeilingSceneAnchor;
                 }
                 else if (anchorType == AnchorTypes.FLOOR)
                 {
-                    Debug.Log("[SpawnObjectOnSceneAnchor] Desired spawn place is on the floor.");
+                    //Debug.Log("[SpawnObjectOnSceneAnchor] Desired spawn place is on the floor.");
                     sceneAnchorToSpawnObject = SceneAnchorHelper.FloorSceneAnchor;
                 }
 
@@ -74,11 +74,11 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
                     if (!Physics.CheckSphere(positionToSpawn, 0.01f))
                     {
                         isPositionValid = true;
-                        Debug.Log("Position to spawn object is valid because it is NOT in a collider.");
+                        //Debug.Log("Position to spawn object is valid because it is NOT in a collider.");
                     }
                     else
                     {
-                        Debug.Log("Position to spawn object is in a collider. Finding new position...");
+                        //Debug.Log("Position to spawn object is in a collider. Finding new position...");
                     }
                 }
             }
@@ -88,7 +88,7 @@ public class SpawnObjectOnSceneAnchor : MonoBehaviour
 
             result = Instantiate(obj, positionToSpawn, Quaternion.identity); //, sceneAnchorToSpawnObject.transform);
 
-            Debug.Log($"[SpawnObjectOnSceneAnchor] Object {result} instantiated at position {positionToSpawn}.");
+            //Debug.Log($"[SpawnObjectOnSceneAnchor] Object {result} instantiated at position {positionToSpawn}.");
         }
 
         return result;

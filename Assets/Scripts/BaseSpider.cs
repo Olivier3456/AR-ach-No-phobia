@@ -47,11 +47,11 @@ public class BaseSpider : MonoBehaviour
         if (destinationVisualPrefab != null)
         {
             destinationVisual = Instantiate(destinationVisualPrefab);
-            Debug.Log("Instantiated visual marker for spider's destination");
+            //Debug.Log("Instantiated visual marker for spider's destination");
         }
 
         SetRandomDestinationOnAnchorSurface();
-        Debug.Log("First spider destination is set");
+        //Debug.Log("First spider destination is set");
     }
 
 
@@ -64,7 +64,7 @@ public class BaseSpider : MonoBehaviour
         {
             if (!isPaused && !hasChangedDestination && agent.remainingDistance < minRemainingDistance)
             {
-                Debug.Log("Setting new destination for Spider");
+                //Debug.Log("Setting new destination for Spider");
                 hasChangedDestination = true;
                 SetRandomDestinationOnAnchorSurface();
             }
