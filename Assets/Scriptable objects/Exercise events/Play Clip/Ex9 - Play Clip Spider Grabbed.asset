@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71efc12e42d080946b1ffb17a5c733d4, type: 3}
-  m_Name: Ex9 - Spawn Box For Spider SO
+  m_Script: {fileID: 11500000, guid: 95031698809709246ac0b98f943e9a83, type: 3}
+  m_Name: Ex9 - Play Clip Spider Grabbed
   m_EditorClassIdentifier: 
-  beginWithCondition: 0
-  anchorType: 2
-  spawnSituation: 0
-  gameObject: {fileID: 7112695367821292445, guid: 27b622a9cdedfd64ab4339f15b6d0b86,
-    type: 3}
+  beginWithCondition: 1
+  waitForEndOfClip: 1
+  clipToPlay: {fileID: 8300000, guid: 32869690c0a20d04695e1efe28f2a9a1, type: 3}

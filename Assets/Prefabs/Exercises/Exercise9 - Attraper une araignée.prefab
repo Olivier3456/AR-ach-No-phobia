@@ -146,9 +146,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bde2375b989edfa46b37285fe04c12e9, type: 2}
   - {fileID: 11400000, guid: 9ad99c2c8fa385142a89ac73cb76a46b, type: 2}
   - {fileID: 11400000, guid: 2cbbd6efdfbae2e4cb14dedf9bd4f227, type: 2}
-  - {fileID: 11400000, guid: 38f61c2653d66234b97c2802b668c06e, type: 2}
+  - {fileID: 11400000, guid: fd8ab8eefd3e3954a9aa3f4db6c3d94f, type: 2}
+  - {fileID: 11400000, guid: d72c77b8499601749b32dc204a163f32, type: 2}
   - {fileID: 11400000, guid: d854c5b49a38aeb4b9ab4516703e034e, type: 2}
   spiderBoxPrefab: {fileID: 7112695367821292445, guid: 27b622a9cdedfd64ab4339f15b6d0b86,
     type: 3}
+  playClipSpiderGrabbed: {fileID: 11400000, guid: fd8ab8eefd3e3954a9aa3f4db6c3d94f,
+    type: 2}
   playClipSpiderInBox: {fileID: 11400000, guid: d854c5b49a38aeb4b9ab4516703e034e,
     type: 2}

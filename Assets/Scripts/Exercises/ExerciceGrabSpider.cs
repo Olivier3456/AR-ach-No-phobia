@@ -5,6 +5,7 @@ using UnityEngine;
 public class ExerciceGrabSpider : BaseExercise
 {
     [SerializeField] private GameObject spiderBoxPrefab;
+    [SerializeField] private BaseExerciseEventSO playClipSpiderGrabbed;
     [SerializeField] private BaseExerciseEventSO playClipSpiderInBox;
 
 
@@ -14,8 +15,17 @@ public class ExerciceGrabSpider : BaseExercise
         base.Awake();
 
         SpiderGrabbable.SpiderInBox.AddListener(SpiderInBox);
+        SpiderGrabbable.SpiderGrabbed.AddListener(SpiderGrabbed);
     }
-    
+
+
+
+
+    private void SpiderGrabbed()
+    {
+        FulfillConditionForExerciseEvent(playClipSpiderGrabbed);
+    }
+
 
 
     private void SpiderInBox()
@@ -29,5 +39,6 @@ public class ExerciceGrabSpider : BaseExercise
     {
         base.OnDestroy();
         SpiderGrabbable.SpiderInBox.RemoveListener(SpiderInBox);
+        SpiderGrabbable.SpiderGrabbed.RemoveListener(SpiderGrabbed);
     }
 }

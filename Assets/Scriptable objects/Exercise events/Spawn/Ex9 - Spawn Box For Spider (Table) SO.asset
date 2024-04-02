@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2df6a1ca0b012c4b8a781b3ae2e065a, type: 3}
-  m_Name: Spawn Spider Hand Interact - Size 1.5
+  m_Script: {fileID: 11500000, guid: 71efc12e42d080946b1ffb17a5c733d4, type: 3}
+  m_Name: Ex9 - Spawn Box For Spider (Table) SO
   m_EditorClassIdentifier: 
   beginWithCondition: 0
   anchorType: 0
   spawnSituation: 0
-  spider: {fileID: 5127887226303612654, guid: e8381829a8e6ac54299775fc00655193, type: 3}
-  scale: 1.5
-  speed: 0.05
-  angle: 0
+  gameObject: {fileID: 7112695367821292445, guid: 27b622a9cdedfd64ab4339f15b6d0b86,
+    type: 3}
