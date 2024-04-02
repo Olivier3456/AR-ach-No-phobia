@@ -17,5 +17,5 @@ MonoBehaviour:
   spawnSituation: 0
   spider: {fileID: 3883620136390724306, guid: 4d06f044d068d354c98e68d896e32928, type: 3}
   scale: 1
-  speed: 0.025
+  speed: 0.035
   angle: 0
