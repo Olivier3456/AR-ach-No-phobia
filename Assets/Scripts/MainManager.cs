@@ -28,14 +28,13 @@ public class MainManager : MonoBehaviour
 
 
     // Chosen exercice can be not the same as current exercice if chosen exercice is not yet begun.
-    private int chosenExerciseID = 0;
+    private int chosenExerciseID = 1;
 
     private BaseExercise currentExercise;
 
     private AudioSource audioSource;
 
     private bool isFirstLaunch;
-
 
     public int ChosenExerciseID { get { return chosenExerciseID; } }
     public void ChoseNextExercise(int exerciceID) { chosenExerciseID = exerciceID; }
@@ -78,7 +77,7 @@ public class MainManager : MonoBehaviour
         {
             audioSource.clip = introClip_3; // Welcome back in AR-ach-NO-Phobia.
             audioSource.Play();
-        }        
+        }
     }
 
 
@@ -130,25 +129,17 @@ public class MainManager : MonoBehaviour
 
     public void BeginExercise()
     {
-        if (chosenExerciseID == 0)
-        {
-            //Debug.Log("[MainManager] No exercise chosen yet. Can't begin exercice.");
-            return;
-        }
-        else
-        {
-            audioSource.Stop();
+        audioSource.Stop();
 
-            handMenuBehaviour.HideAllMenus(true);
-            handMenuBehaviour.DeactivateOkButton();
+        handMenuBehaviour.HideAllMenus(true);
+        handMenuBehaviour.DeactivateOkButton();
 
-            currentExercise = Instantiate(exercisesPrefabs[chosenExerciseID - 1]);
+        currentExercise = Instantiate(exercisesPrefabs[chosenExerciseID - 1]);
 
-            OnExerciseBegin.Invoke(chosenExerciseID);
+        OnExerciseBegin.Invoke(chosenExerciseID);
 
-            //Debug.Log($"[MainManager] Begining exercise {currentExercise.Id}");
-            //Debug.Log($"[MainManager] Exercise Game Object name is: {currentExercise.name}.");
-        }
+        //Debug.Log($"[MainManager] Begining exercise {currentExercise.Id}");
+        //Debug.Log($"[MainManager] Exercise Game Object name is: {currentExercise.name}.");        
     }
 
 

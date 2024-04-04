@@ -52,11 +52,9 @@ public class HandMenuBehaviour : MonoBehaviour
     [SerializeField] private TextMeshPro displayDistancesButtonText;
 
 
-
     private ActiveStateSelector currentHandDisplayingMenu = null;
     private OVRBone leftThumbTip = null;
     private OVRBone rightThumbTip = null;
-
 
 
     private void Awake()
@@ -162,8 +160,15 @@ public class HandMenuBehaviour : MonoBehaviour
         {
             //Debug.Log($"[HandMenuBehaviour] Displaying main menu for exercise {MainManager.Instance.CurrentExercise.Id}.");
 
-            exerciseLabelText.text = $"Exercice {MainManager.Instance.CurrentExercise.Id}";
-            exerciceMainMenu.SetActive(true);
+            if (MainManager.Instance.CurrentExercise.IsInProgress)
+            {
+                exerciseLabelText.text = $"Exercice {MainManager.Instance.CurrentExercise.Id}";
+                exerciceMainMenu.SetActive(true);
+            }
+            else
+            {
+                DisplayQuitConfirmationMenu();
+            }
 
             DisplayOrHidePreviousAndNextButtons();
         }
@@ -210,6 +215,19 @@ public class HandMenuBehaviour : MonoBehaviour
     public void DisplayLevelsChoiceMenu()
     {
         HideAllMenus(false);
+
+        foreach (Toggle toggle in exercicesToggles)
+        {
+            if (toggle.gameObject.name.Contains(MainManager.Instance.ChosenExerciseID.ToString()))
+            {
+                toggle.isOn = true;
+            }
+            else
+            {
+                toggle.isOn = false;
+            }
+        }
+
         levelsChoiceMenu.SetActive(true);
     }
 
