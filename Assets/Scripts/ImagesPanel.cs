@@ -11,8 +11,10 @@ public class ImagesPanel : MonoBehaviour
 
     private int spriteIndex = 0;
 
-    float initialImageWidth;
-    float initialImageHeight;
+    private float initialImageWidth;
+    private float initialImageHeight;
+
+    private bool isFirstRotation = true;
 
     void Start()
     {
@@ -22,6 +24,25 @@ public class ImagesPanel : MonoBehaviour
         image.sprite = sprites[spriteIndex];
         AdjustImageRatioToSpriteRatio(sprites[spriteIndex]);
     }
+
+
+    private void Update()
+    {
+        Vector3 cameraPos = Camera.main.transform.position;
+        Vector3 directionToCamera = cameraPos - transform.position;
+        Vector3 panelDirection = new Vector3(directionToCamera.x, 0, directionToCamera.z).normalized;
+
+        if (isFirstRotation)
+        {
+            transform.forward = panelDirection;
+            isFirstRotation = false;
+        }
+        else
+        {
+            transform.forward = Vector3.Lerp(transform.forward, panelDirection, 0.05f);
+        }
+    }
+
 
     public void DisplayNextSprite()
     {
@@ -49,7 +70,7 @@ public class ImagesPanel : MonoBehaviour
         // Chat GPT 3.5
 
         float spriteAspectRatio = sprite.bounds.size.x / sprite.bounds.size.y;
-        
+
         // Calculer le nouveau rapport d'aspect pour l'Image basé sur les dimensions initiales
         float imageAspectRatio = initialImageWidth / initialImageHeight;
 
@@ -73,12 +94,6 @@ public class ImagesPanel : MonoBehaviour
 
         image.rectTransform.anchoredPosition = Vector2.zero;
     }
-
-
-
-
-
-
 
 
     public bool IsFirstSprite() { return spriteIndex == 0; }

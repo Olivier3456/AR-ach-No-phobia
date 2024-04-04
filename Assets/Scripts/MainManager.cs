@@ -1,4 +1,3 @@
-using Oculus.Interaction;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -79,7 +78,7 @@ public class MainManager : MonoBehaviour
         {
             audioSource.clip = introClip_3; // Welcome back in AR-ach-NO-Phobia.
             audioSource.Play();
-        }
+        }        
     }
 
 
@@ -95,7 +94,7 @@ public class MainManager : MonoBehaviour
 
         if (!isFirstLaunch && isRequired)
         {
-            audioSource.clip = introClip_4; // The room is not set correctly anymore. You'll need to add the missing elements.
+            audioSource.clip = introClip_4; // The room is not set correctly anymore. User need to add the missing elements.
             audioSource.Play();
         }
 
@@ -123,7 +122,7 @@ public class MainManager : MonoBehaviour
 
         if (isFirstLaunch && currentExercise == null)
         {
-            audioSource.clip = introClip_2; // Your room is now set correctly + instructions for accessing the menu.
+            audioSource.clip = introClip_2; // User's room is now set correctly + instructions for accessing the menu.
             audioSource.Play();
         }
     }
