@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5a45a99eca3b54ca6473ff14cb91c0, type: 3}
+  m_Name: Bienvenue 2
+  m_EditorClassIdentifier: 
+  clipSubtitles:
+    clip: {fileID: 8300000, guid: 4a1653252afc4ab4ebdf9de620c26297, type: 3}
+    subtitles:
+    - text: "Votre pi\xE8ce est param\xE9tr\xE9e."
+      beginAt: 0
+    - text: "Vous pouvez poser vos contr\xF4leurs : vous n'avez besoin que de vos
+        mains."
+      beginAt: 2.6
+    - text: "Pour acc\xE9der au menu, levez le pouce de votre main gauche, ou celui
+        de votre main droite,"
+      beginAt: 6.8
+    - text: et maintenez cette pose pendant que vous touchez les boutons du menu
+        avec l'index de l'autre main.
+      beginAt: 11.7

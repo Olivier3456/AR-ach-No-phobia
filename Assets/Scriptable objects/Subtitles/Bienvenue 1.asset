@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5a45a99eca3b54ca6473ff14cb91c0, type: 3}
+  m_Name: Bienvenue 1
+  m_EditorClassIdentifier: 
+  clipSubtitles:
+    clip: {fileID: 8300000, guid: 88fb58d4dfa7647489a8e7cc4d297af9, type: 3}
+    subtitles:
+    - text: Bienvenue dans Arachnophobia.
+      beginAt: 0
+    - text: "Cette application n\xE9cessite que vous ayez param\xE9tr\xE9 votre pi\xE8ce
+        dans le casque,"
+      beginAt: 2.6
+    - text: avec au moins quatre murs, un sol, un plafond et une table.
+      beginAt: 6.8
+    - text: "Pour maximiser le r\xE9alisme de l'application, faites en sorte que
+        votre table soit d\xE9gag\xE9e de tout objet,"
+      beginAt: 11.3
+    - text: et soit de forme rectangulaire.
+      beginAt: 16.8

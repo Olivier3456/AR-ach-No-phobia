@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5a45a99eca3b54ca6473ff14cb91c0, type: 3}
+  m_Name: Ex1 - fin
+  m_EditorClassIdentifier: 
+  clipSubtitles:
+    clip: {fileID: 8300000, guid: fa2a8e951bf66e447b72e38a5c1e61ae, type: 3}
+    subtitles:
+    - text: Qu'avez-vous ressenti ?
+      beginAt: 0
+    - text: "Vous avez peut-\xEAtre eu l'impression que les araign\xE9es vous mena\xE7aient,"
+      beginAt: 2.2
+    - text: et voulaient vous attaquer. Il n'en est rien.
+      beginAt: 5.3
+    - text: Ce ne sont que de petits animaux craintifs, elles ont bien plus peur
+        de vous que vous n'avez peur d'elles.
+      beginAt: 9.1
+    - text: "L'exercice est maintenant termin\xE9. Vous pouvez continuer \xE0 regarder
+        les images,"
+      beginAt: 14.5
+    - text: "revenir au menu, ou bien passer \xE0 l'exercice suivant."
+      beginAt: 19.8

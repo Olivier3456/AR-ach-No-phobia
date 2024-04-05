@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5a45a99eca3b54ca6473ff14cb91c0, type: 3}
+  m_Name: "Ex1 - d\xE9but"
+  m_EditorClassIdentifier: 
+  clipSubtitles:
+    clip: {fileID: 8300000, guid: 6be1614436b124140b17052a9f232c5c, type: 3}
+    subtitles:
+    - text: Dans ce premier exercice, vous allez pouvoir commencer
+      beginAt: 0
+    - text: "\xE0 vous familiariser en douceur avec les araign\xE9es."
+      beginAt: 3.1
+    - text: "Un panneau va appara\xEEtre sur la table, affichant des photos d'araign\xE9es
+        de plus en plus grandes."
+      beginAt: 6.4
+    - text: "Vous \xEAtes libre de vous approcher ou de vous \xE9loigner autant que
+        vous voulez."
+      beginAt: 12.1
+    - text: "Pour passer \xE0 l'image suivante, levez simplement le pouce et appuyez
+        sur le bouton avec la fl\xE8che."
+      beginAt: 16.4

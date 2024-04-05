@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5a45a99eca3b54ca6473ff14cb91c0, type: 3}
+  m_Name: Bienvenue 4
+  m_EditorClassIdentifier: 
+  clipSubtitles:
+    clip: {fileID: 8300000, guid: f3fb5c0fabde4e0469eea4dca9562499, type: 3}
+    subtitles:
+    - text: "Il semble que votre pi\xE8ce ne soit plus correctement param\xE9tr\xE9e."
+      beginAt: 0
+    - text: "Vous allez devoir ajouter les \xE9l\xE9ments manquants."
+      beginAt: 4.2

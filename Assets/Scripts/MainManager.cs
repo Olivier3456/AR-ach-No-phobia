@@ -46,6 +46,9 @@ public class MainManager : MonoBehaviour
     public Transform LeftPalmCenterMarker { get { return leftPalmCenterMarker; } }
     public Transform RightPalmCenterMarker { get { return rightPalmCenterMarker; } }
     public int TotalExercisesNumber { get { return exercisesPrefabs.Length; } }
+    public AudioSource AudioSource { get { return audioSource; } }
+    public SubtitlesManager SubtitlesManager { get { return subtitlesManager; } }
+
 
 
     private void Awake()

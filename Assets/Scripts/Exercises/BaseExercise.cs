@@ -4,12 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseExercise : MonoBehaviour
-{
-    [SerializeField] protected AudioSource exerciseAudioSource;
-    [Space(15)]
+{    
     [SerializeField] protected BaseExerciseEventSO[] exerciseEvents;
-    [Space(15)]
-
+    
+    
     protected int currentEventIndex = 0;
     protected float currentEventTimer = 0f;
     protected bool isInProgress = true;
@@ -29,17 +27,11 @@ public class BaseExercise : MonoBehaviour
 
 
     protected virtual void Awake()
-    {
-        if (exerciseAudioSource == null)
-        {
-            exerciseAudioSource = GetComponent<AudioSource>();
-        }
-
+    {       
         id = MainManager.Instance.ChosenExerciseID;
         //Debug.Log($"[BaseExercise] Exercise id: {id}.");
     }
-
-
+    
 
     protected virtual void Update()
     {
@@ -123,8 +115,9 @@ public class BaseExercise : MonoBehaviour
 
         if (!isPlayingCurrentPlayClipEvent)
         {
-            exerciseAudioSource.clip = playClipSO.clipToPlay;
-            exerciseAudioSource.Play();
+            MainManager.Instance.AudioSource.clip = playClipSO.clipToPlay;
+            MainManager.Instance.AudioSource.Play();
+            MainManager.Instance.SubtitlesManager.ShowSubtitles();
 
             if (playClipSO.waitForEndOfClip)
             {
@@ -137,10 +130,10 @@ public class BaseExercise : MonoBehaviour
         }
         else
         {
-            if (!exerciseAudioSource.isPlaying)
+            if (!MainManager.Instance.AudioSource.isPlaying)
             {
                 isPlayingCurrentPlayClipEvent = false;
-                exerciseAudioSource.clip = null;
+                MainManager.Instance.AudioSource.clip = null;
                 SwitchToNextEvent();
             }
         }
@@ -190,6 +183,8 @@ public class BaseExercise : MonoBehaviour
 
     protected virtual void OnDestroy()
     {
+        MainManager.Instance.AudioSource.Stop();
+
         for (int i = 0; i < allObjectsSpawned.Count; i++)
         {
             Destroy(allObjectsSpawned[i]);

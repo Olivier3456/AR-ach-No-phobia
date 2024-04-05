@@ -6,23 +6,11 @@ using UnityEngine;
 
 public class SubtitlesManager : MonoBehaviour
 {
-    [Serializable]
-    public class ClipSubtitlesData
-    {
-        public AudioClip clip;
-        public Subtitle[] subtitles;
-    }
-    [Serializable]
-    public class Subtitle
-    {
-        public string text;
-        public float beginAt;
-    }
-
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private TextMeshProUGUI subtitlesText;
     [Space(20)]
-    [SerializeField] private ClipSubtitlesData[] clipSubtitles;
+    [SerializeField] private AudioClipSubtitlesSO[] audioClipSubtitlesSOs;
+    
 
     private Coroutine subCoroutine = null;
 
@@ -37,12 +25,12 @@ public class SubtitlesManager : MonoBehaviour
     {
         Subtitle[] clipSubs = null;
 
-        foreach (var item in clipSubtitles)
+        foreach (var item in audioClipSubtitlesSOs)
         {
-            if (item.clip == audioSource.clip)
+            if (item.clipSubtitles.clip == audioSource.clip)
             {
-                clipSubs = item.subtitles;
-                Debug.Log($"Found subtitles data for clip {item.clip.name}.");
+                clipSubs = item.clipSubtitles.subtitles;
+                Debug.Log($"Found subtitles data for clip {item.clipSubtitles.clip.name}.");
                 break;
             }
         }

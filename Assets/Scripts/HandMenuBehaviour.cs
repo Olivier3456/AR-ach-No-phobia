@@ -98,6 +98,37 @@ public class HandMenuBehaviour : MonoBehaviour
     }
 
 
+    public void MenuHandPoseSelected(ActiveStateSelector ass)
+    {
+        if (currentHandDisplayingMenu != null)
+        {
+            return;
+        }
+
+        currentHandDisplayingMenu = ass;
+
+        //Debug.Log("Hand pose for menu detected.");
+
+        if (showHandsModelWhenMenuIsVisible)
+        {
+            leftHandRenderer.material = visibleHandMaterial;
+            rightHandRenderer.material = visibleHandMaterial;
+        }
+
+        UpdateMenuPositionAndRotation(false);
+        DisplayActualMainMenu();
+    }
+
+
+    public void MenuHandPoseUnselected(ActiveStateSelector ass)
+    {
+        if (currentHandDisplayingMenu == ass)
+        {
+            HideAllMenus(true);
+        }
+    }
+
+
     private void UpdateMenuPositionAndRotation(bool lerpPosition)
     {
         Vector3 direction = transform.position - Camera.main.transform.position;
@@ -286,35 +317,7 @@ public class HandMenuBehaviour : MonoBehaviour
     }
 
 
-    public void MenuHandPoseSelected(ActiveStateSelector ass)
-    {
-        if (currentHandDisplayingMenu != null)
-        {
-            return;
-        }
-
-        currentHandDisplayingMenu = ass;
-
-        //Debug.Log("Hand pose for menu detected.");
-
-        if (showHandsModelWhenMenuIsVisible)
-        {
-            leftHandRenderer.material = visibleHandMaterial;
-            rightHandRenderer.material = visibleHandMaterial;
-        }
-
-        UpdateMenuPositionAndRotation(false);
-        DisplayActualMainMenu();
-    }
-
-
-    public void MenuHandPoseUnselected(ActiveStateSelector ass)
-    {
-        if (currentHandDisplayingMenu == ass)
-        {
-            HideAllMenus(true);
-        }
-    }
+    
 
 
     public void DeactivateOkButton()
