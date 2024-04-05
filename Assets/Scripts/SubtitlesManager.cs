@@ -10,9 +10,18 @@ public class SubtitlesManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI subtitlesText;
     [Space(20)]
     [SerializeField] private AudioClipSubtitlesSO[] audioClipSubtitlesSOs;
-    
+
 
     private Coroutine subCoroutine = null;
+
+    private static bool displaySubtitles = true;
+    public static bool DisplaySubtitles { get { return displaySubtitles; } }
+
+
+    public static void MustDisplaySubtitles(bool display)
+    {
+        displaySubtitles = display;
+    }
 
 
     private void Start()
@@ -23,6 +32,12 @@ public class SubtitlesManager : MonoBehaviour
 
     public void ShowSubtitles()
     {
+        if (!displaySubtitles)
+        {
+            return;
+        }
+
+
         Subtitle[] clipSubs = null;
 
         foreach (var item in audioClipSubtitlesSOs)

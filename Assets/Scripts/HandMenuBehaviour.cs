@@ -15,6 +15,7 @@ public class HandMenuBehaviour : MonoBehaviour
     [SerializeField] private GameObject levelsChoiceMenu;
     [SerializeField] private GameObject progressionMenu;
     [SerializeField] private GameObject reinitializeProgressionConfirmationMenu;
+    [SerializeField] private GameObject settingsMenu;
     [Space(20)]
     [Header("Buttons previous/next for images panel")]
     [SerializeField] private GameObject previousButton;
@@ -50,7 +51,8 @@ public class HandMenuBehaviour : MonoBehaviour
     [Space(20)]
     [SerializeField] private GameObject distancesCanvasGameObject;
     [SerializeField] private TextMeshPro displayDistancesButtonText;
-
+    [Space(20)]
+    [SerializeField] private TextMeshPro displaySubtitlesButtonText;
 
     private ActiveStateSelector currentHandDisplayingMenu = null;
     private OVRBone leftThumbTip = null;
@@ -277,6 +279,13 @@ public class HandMenuBehaviour : MonoBehaviour
     }
 
 
+    public void DisplaySettingsMenu()
+    {
+        HideAllMenus(false);
+        settingsMenu.SetActive(true);
+    }
+
+
 
     public void HideAllMenus(bool isMenuDisappearing)
     {
@@ -286,6 +295,7 @@ public class HandMenuBehaviour : MonoBehaviour
         levelsChoiceMenu.SetActive(false);
         exerciceMainMenu.SetActive(false);
         quitExerciceConfirmationMenu.SetActive(false);
+        settingsMenu.SetActive(false);
 
         if (isMenuDisappearing)
         {
@@ -317,7 +327,7 @@ public class HandMenuBehaviour : MonoBehaviour
     }
 
 
-    
+
 
 
     public void DeactivateOkButton()
@@ -339,7 +349,14 @@ public class HandMenuBehaviour : MonoBehaviour
     public void ToggleDisplayOrHideDistances()
     {
         distancesCanvasGameObject.SetActive(!distancesCanvasGameObject.activeSelf);
-        displayDistancesButtonText.text = distancesCanvasGameObject.activeSelf ? "Masquer les distances" : "Afficher les distances";
+        displayDistancesButtonText.text = distancesCanvasGameObject.activeSelf ? "Masquer la distance de l'araignée la plus proche" : "Afficher la distance de l'araignée la plus proche";
+    }
+
+
+    public void ToggleDisplayOrHideSubtitles()
+    {
+        SubtitlesManager.MustDisplaySubtitles(!SubtitlesManager.DisplaySubtitles);
+        displaySubtitlesButtonText.text = SubtitlesManager.DisplaySubtitles ? "Masquer les sous-titres" : "Afficher les sous-titres";
     }
 
 
