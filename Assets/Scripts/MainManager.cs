@@ -20,11 +20,13 @@ public class MainManager : MonoBehaviour
     [SerializeField] private AudioClip introClip_3;
     [SerializeField] private AudioClip introClip_4;
     [Space(20)]
+    [SerializeField] private SubtitlesManager subtitlesManager;
+    [Space(20)]
     public UnityEvent<int> OnExerciseBegin = new UnityEvent<int>();
 
     public UnityEvent OnExerciseQuitted = new UnityEvent();
 
-    public const string SECOND_LAUNCH_PLAYERPREFS_KEY = "SecondLaunch";
+    //public const string SECOND_LAUNCH_PLAYERPREFS_KEY = "SecondLaunch";
 
 
     // Chosen exercice can be not the same as current exercice if chosen exercice is not yet begun.
@@ -71,12 +73,14 @@ public class MainManager : MonoBehaviour
         {
             audioSource.clip = introClip_1; // Welcome in AR-ach-NO-Phobia.
             audioSource.Play();
+            subtitlesManager.ShowSubtitles();
             isFirstLaunch = true;
         }
         else
         {
             audioSource.clip = introClip_3; // Welcome back in AR-ach-NO-Phobia.
             audioSource.Play();
+            subtitlesManager.ShowSubtitles();
         }
     }
 
@@ -95,6 +99,7 @@ public class MainManager : MonoBehaviour
         {
             audioSource.clip = introClip_4; // The room is not set correctly anymore. User need to add the missing elements.
             audioSource.Play();
+            subtitlesManager.ShowSubtitles();
         }
 
         while (audioSource.isPlaying)
@@ -123,6 +128,7 @@ public class MainManager : MonoBehaviour
         {
             audioSource.clip = introClip_2; // User's room is now set correctly + instructions for accessing the menu.
             audioSource.Play();
+            subtitlesManager.ShowSubtitles();
         }
     }
 
