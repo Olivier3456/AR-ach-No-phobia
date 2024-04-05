@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5a45a99eca3b54ca6473ff14cb91c0, type: 3}
+  m_Name: "Ex5 - d\xE9but"
+  m_EditorClassIdentifier: 
+  clipSubtitles:
+    clip: {fileID: 8300000, guid: af4ee681493045346b3545c2afdb2dea, type: 3}
+    subtitles:
+    - text: "L'exercice 5 commence exactement l\xE0 o\xF9 s'est arr\xEAt\xE9 l'exercice
+        4 :"
+      beginAt: 0
+    - text: "plusieurs araign\xE9es, de tailles variables, vont marcher sur la table
+        devant vous."
+      beginAt: 4.3
+    - text: "Mais, cette fois-ci, vous allez vous forcer \xE0 ne pas les regarder."
+      beginAt: 9.1
+    - text: "Oui, tout en restant pr\xE8s de la table, peut-\xEAtre m\xEAme les mains
+        pos\xE9es dessus"
+      beginAt: 13.7
+    - text: "si vous vous en sentez capable, vous allez fermer les yeux, ou regarder
+        compl\xE8tement ailleurs."
+      beginAt: 17.5

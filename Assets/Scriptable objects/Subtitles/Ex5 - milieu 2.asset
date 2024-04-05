@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5a45a99eca3b54ca6473ff14cb91c0, type: 3}
+  m_Name: Ex5 - milieu 2
+  m_EditorClassIdentifier: 
+  clipSubtitles:
+    clip: {fileID: 8300000, guid: 74bddf9837e064d4583c25bd0d10d432, type: 3}
+    subtitles:
+    - text: "Vous avez d\xFB remarquer comme il peut \xEAtre difficile de ne pas
+        regarder les araign\xE9es."
+      beginAt: 0
+    - text: "Quand on en a peur, on a tendance \xE0 vouloir les surveiller,"
+      beginAt: 4.9
+    - text: pour s'assurer qu'elles ne s'approchent pas trop.
+      beginAt: 8.4
+    - text: "Continuez \xE0 les ignorer."
+      beginAt: 11.1

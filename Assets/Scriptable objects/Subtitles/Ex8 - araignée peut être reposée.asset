@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5a45a99eca3b54ca6473ff14cb91c0, type: 3}
+  m_Name: "Ex8 - araign\xE9e peut \xEAtre repos\xE9e"
+  m_EditorClassIdentifier: 
+  clipSubtitles:
+    clip: {fileID: 8300000, guid: 4cc02785d579e2d47938bae2ba858f52, type: 3}
+    subtitles:
+    - text: "Vous pouvez maintenant reposer l'araign\xE9e sur la table, quand vous
+        le souhaitez,"
+      beginAt: 0
+    - text: pour terminer l'exercice.
+      beginAt: 4.2

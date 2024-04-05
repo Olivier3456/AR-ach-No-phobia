@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5a45a99eca3b54ca6473ff14cb91c0, type: 3}
+  m_Name: Ex3 - fin
+  m_EditorClassIdentifier: 
+  clipSubtitles:
+    clip: {fileID: 8300000, guid: 20f5b9150efdb18419e3ab5271e6fa8b, type: 3}
+    subtitles:
+    - text: "Bravo, vous vous en sortez tr\xE8s bien."
+      beginAt: 0
+    - text: "Si vous \xEAtes pr\xEAt \xE0 passer \xE0 l'exercice suivant, vous pouvez
+        le faire d\xE8s \xE0 pr\xE9sent."
+      beginAt: 3.1

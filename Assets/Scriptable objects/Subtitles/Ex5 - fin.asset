@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5a45a99eca3b54ca6473ff14cb91c0, type: 3}
+  m_Name: Ex5 - fin
+  m_EditorClassIdentifier: 
+  clipSubtitles:
+    clip: {fileID: 8300000, guid: 6aacb84a84adf834eb6df11e24789848, type: 3}
+    subtitles:
+    - text: "Bravo ! Vous faites de grands progr\xE8s !"
+      beginAt: 0
+    - text: "Quand vous vous sentirez pr\xEAt, vous pourrez rouvrir les yeux et passer
+        \xE0 l'exercice suivant."
+      beginAt: 3.9

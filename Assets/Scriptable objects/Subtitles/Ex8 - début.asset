@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5a45a99eca3b54ca6473ff14cb91c0, type: 3}
+  m_Name: "Ex8 - d\xE9but"
+  m_EditorClassIdentifier: 
+  clipSubtitles:
+    clip: {fileID: 8300000, guid: ecef001697ecc5445971aa668f2a6fdb, type: 3}
+    subtitles:
+    - text: "Cet exercice est identique au pr\xE9c\xE9dent, mais il pousse la difficult\xE9
+        un peu plus loin."
+      beginAt: 0
+    - text: "L'araign\xE9e qui va monter sur votre main sera plus grande."
+      beginAt: 5.5
+    - text: "Vous pouvez y arriver, vous savez que l'araign\xE9e va simplement rester
+        immobile sur votre main,"
+      beginAt: 9.2
+    - text: jusqu'a-ce que vous la reposiez sur la table.
+      beginAt: 14.2
+    - text: "Quand vous \xEAtes pr\xEAt, posez votre main sur la table, paume vers
+        le bas."
+      beginAt: 17.2

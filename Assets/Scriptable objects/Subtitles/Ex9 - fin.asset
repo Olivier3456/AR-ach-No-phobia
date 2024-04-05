@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5a45a99eca3b54ca6473ff14cb91c0, type: 3}
+  m_Name: Ex9 - fin
+  m_EditorClassIdentifier: 
+  clipSubtitles:
+    clip: {fileID: 8300000, guid: 530cd5acb1df2674db52e4e6800b9f39, type: 3}
+    subtitles:
+    - text: "Bravo ! Vous avez termin\xE9 tous les exercices de ce programme."
+      beginAt: 0
+    - text: "Vous \xEAtes maintenant capable d'attraper une grosse araign\xE9e, certes
+        virtuelle, mais r\xE9aliste,"
+      beginAt: 5.3
+    - text: "et de la mettre en lieu s\xFBr. C'est formidable !"
+      beginAt: 10.4
+    - text: Merci encore de nous avoir fait confiance pour vous accompagner dans
+        ce voyage.
+      beginAt: 14.5
+    - text: "Nous esp\xE9rons vous avoir \xE9t\xE9 utile."
+      beginAt: 19.2

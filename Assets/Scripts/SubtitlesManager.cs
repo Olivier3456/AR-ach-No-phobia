@@ -30,7 +30,7 @@ public class SubtitlesManager : MonoBehaviour
             if (item.clipSubtitles.clip == audioSource.clip)
             {
                 clipSubs = item.clipSubtitles.subtitles;
-                Debug.Log($"Found subtitles data for clip {item.clipSubtitles.clip.name}.");
+                //Debug.Log($"Found subtitles data for clip {item.clipSubtitles.clip.name}.");
                 break;
             }
         }
@@ -51,7 +51,7 @@ public class SubtitlesManager : MonoBehaviour
 
     private IEnumerator ShowSubtitles_Coroutine(Subtitle[] clipSubs)
     {
-        Debug.Log("Beginning subtitle coroutine.");
+        //Debug.Log("Beginning subtitle coroutine.");
 
         float timer = 0f;
 
@@ -72,16 +72,16 @@ public class SubtitlesManager : MonoBehaviour
 
             if (subIndex < clipSubs.Length - 1)
             {
-                Debug.Log("Looking for next subtitle time...");
+                //Debug.Log("Looking for next subtitle time...");
 
                 if (clipSubs[subIndex + 1].beginAt < timer)
                 {
-                    Debug.Log("Next subtitle time reached. Displaying this subtitle.");
+                    //Debug.Log("Next subtitle time reached. Displaying this subtitle.");
 
                     subIndex++;
                     subtitlesText.text = clipSubs[subIndex].text;
 
-                    Debug.Log($"Next subtitle displayed. Text is: {subtitlesText.text}");
+                    //Debug.Log($"Next subtitle displayed. Text is: {subtitlesText.text}");
                 }
             }
         }

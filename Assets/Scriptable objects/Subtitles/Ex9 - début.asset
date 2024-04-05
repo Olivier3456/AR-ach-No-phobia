@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5a45a99eca3b54ca6473ff14cb91c0, type: 3}
+  m_Name: "Ex9 - d\xE9but"
+  m_EditorClassIdentifier: 
+  clipSubtitles:
+    clip: {fileID: 8300000, guid: 7294b56d30cf2d24ba7f3e3d28f0d250, type: 3}
+    subtitles:
+    - text: "Dans ce dernier exercice, une araign\xE9e va appara\xEEtre sur la table."
+      beginAt: 0
+    - text: Cette fois, vous allez devoir l'attraper entre votre pouce et votre index,
+        et la tenir ainsi.
+      beginAt: 4.7
+    - text: "Si jamais vous laissez tomber l'araign\xE9e par terre, ce n'est pas
+        grave : vous pouvez la ramasser."
+      beginAt: 10.7

@@ -18418,6 +18418,31 @@ MonoBehaviour:
   - {fileID: 11400000, guid: eb47c03ce35d33e4dbc18b8c25c1ddc6, type: 2}
   - {fileID: 11400000, guid: 946319867792bc5469716c58e69d144b, type: 2}
   - {fileID: 11400000, guid: 4027cc89951fcc54a95a3177d1aaa52a, type: 2}
+  - {fileID: 11400000, guid: 446da4ac24f271444830c7ac56a7529a, type: 2}
+  - {fileID: 11400000, guid: 95368a7d5b5f462469de581343c58372, type: 2}
+  - {fileID: 11400000, guid: 3edbc7a78e3b159409557bb7ceec6bb8, type: 2}
+  - {fileID: 11400000, guid: 5a18546c4a312f84d9c84f5bdaa5fbc4, type: 2}
+  - {fileID: 11400000, guid: f2d4b1ca850d9cd4cb8116b220800fe7, type: 2}
+  - {fileID: 11400000, guid: cf3d8b86cb552bf4a8c85b069c04b2a0, type: 2}
+  - {fileID: 11400000, guid: d4f799e8b68a7c74b8f7eedaca88c6b1, type: 2}
+  - {fileID: 11400000, guid: 6cddcf083f7c2534fb355d5687e1d55f, type: 2}
+  - {fileID: 11400000, guid: 1892589cbefbdac40b4715df5a543663, type: 2}
+  - {fileID: 11400000, guid: 758c3d20c20f99041aab5ec126f12bf1, type: 2}
+  - {fileID: 11400000, guid: ad6d5034dcf18e842aefd0a536c32146, type: 2}
+  - {fileID: 11400000, guid: 9a68da1c7eb42174f919b40eb1456807, type: 2}
+  - {fileID: 11400000, guid: f3af6faa8270bf54c813cd24ae29d2f2, type: 2}
+  - {fileID: 11400000, guid: e44b244f8f7ae274b86eab148688f254, type: 2}
+  - {fileID: 11400000, guid: 50e6cbcab852e2845a10c036eec0038d, type: 2}
+  - {fileID: 11400000, guid: 9fb2ed6ec104a6f49b17f0448be807d0, type: 2}
+  - {fileID: 11400000, guid: f4bd5b1dbe0ca8946b61d44bbc4f5cbe, type: 2}
+  - {fileID: 11400000, guid: cc8067f28a9dfda4da2c1ac1cbe4b9e3, type: 2}
+  - {fileID: 11400000, guid: 6570c66bb5fdd9f4f996e2ac99b54df1, type: 2}
+  - {fileID: 11400000, guid: 318226b70d4215548a4730a6a203009c, type: 2}
+  - {fileID: 11400000, guid: 5923cea33d43312469060f8c8cd8ec9f, type: 2}
+  - {fileID: 11400000, guid: 7804b5cac187321408964a0ab49f8902, type: 2}
+  - {fileID: 11400000, guid: 6a4769afc51cad442bc918fa0540ad6b, type: 2}
+  - {fileID: 11400000, guid: df96f1f6e09211a49878f933fceb9e33, type: 2}
+  - {fileID: 11400000, guid: c8a0e7f8f654b6a408c077b6b743000c, type: 2}
 --- !u!1 &1398635856
 GameObject:
   m_ObjectHideFlags: 0
@@ -18552,12 +18577,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ce ne sont que de petits animaux craintifs, elles ont bien plus peur de
-    vous que vous n'avez peur d'elles.
+  m_text: "Vous \xEAtes maintenant capable d'attraper une grosse araign\xE9e, certes
+    virtuelle, mais r\xE9aliste,"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a6446991ef31ced4190c53c206cf4b3e, type: 2}
-  m_sharedMaterial: {fileID: -9221056233183343877, guid: a6446991ef31ced4190c53c206cf4b3e,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

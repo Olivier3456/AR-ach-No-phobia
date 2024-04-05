@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5a45a99eca3b54ca6473ff14cb91c0, type: 3}
+  m_Name: "Ex2 - d\xE9but"
+  m_EditorClassIdentifier: 
+  clipSubtitles:
+    clip: {fileID: 8300000, guid: ed603ff66010a8643b9a91b440f143d4, type: 3}
+    subtitles:
+    - text: "Dans ce deuxi\xE8me exercice, vous allez voir sur la table une petite
+        araign\xE9e qui marche lentement."
+      beginAt: 0
+    - text: "Vous \xEAtes libre de vous rapprocher ou de vous \xE9loigner autant
+        que vous le souhaitez."
+      beginAt: 5.8

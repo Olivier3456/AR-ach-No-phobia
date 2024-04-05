@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5a45a99eca3b54ca6473ff14cb91c0, type: 3}
+  m_Name: Ex6 - milieu 3
+  m_EditorClassIdentifier: 
+  clipSubtitles:
+    clip: {fileID: 8300000, guid: 2111dc5d2673dc74c8aff892261abe72, type: 3}
+    subtitles:
+    - text: "Essayez de vous d\xE9tendre, et fermez les yeux."
+      beginAt: 0
+    - text: Prenez de grandes respirations.
+      beginAt: 3.3
+    - text: "Laissez les araign\xE9es aller et venir."
+      beginAt: 5.7

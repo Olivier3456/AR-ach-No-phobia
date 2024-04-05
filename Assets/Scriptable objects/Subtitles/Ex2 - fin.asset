@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5a45a99eca3b54ca6473ff14cb91c0, type: 3}
+  m_Name: Ex2 - fin
+  m_EditorClassIdentifier: 
+  clipSubtitles:
+    clip: {fileID: 8300000, guid: 4a3c92e8e0efe9046908056b49f03688, type: 3}
+    subtitles:
+    - text: "D\xE9tendez-vous, vous ne risquez rien."
+      beginAt: 0
+    - text: "L'araign\xE9e se contente d'aller et venir sur la table, sans vous pr\xEAter
+        attention."
+      beginAt: 3
+    - text: "Observez-la \xE0 votre guise."
+      beginAt: 8.2
+    - text: "Quand vous vous sentirez pr\xEAt, vous pourrez passer \xE0 l'exercice
+        suivant."
+      beginAt: 10.6

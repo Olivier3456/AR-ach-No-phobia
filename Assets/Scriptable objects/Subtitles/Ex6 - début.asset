@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5a45a99eca3b54ca6473ff14cb91c0, type: 3}
+  m_Name: "Ex6 - d\xE9but"
+  m_EditorClassIdentifier: 
+  clipSubtitles:
+    clip: {fileID: 8300000, guid: 356c688093a3a4346883946d902ae468, type: 3}
+    subtitles:
+    - text: "Cet exercice va \xEAtre un peu diff\xE9rent des pr\xE9c\xE9dents :"
+      beginAt: 0
+    - text: "les araign\xE9es ne seront plus situ\xE9es sur la table, mais sur les
+        murs de votre pi\xE8ce,"
+      beginAt: 3.1
+    - text: "allant et venant \xE0 leur guise tout autour de vous."
+      beginAt: 7.5
+    - text: Pour commencer, vous en verrez trois.
+      beginAt: 10.4
+    - text: "Cherchez-les, et observez-les vaquer \xE0 leurs occupations."
+      beginAt: 13.3
