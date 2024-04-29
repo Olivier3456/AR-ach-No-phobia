@@ -22,6 +22,8 @@ public class SpiderGrabbable : BaseSpider
     private bool isInBox = false;
 
 
+    private bool canEnterInBox = false;
+
     protected override void OnDestroy()
     {
         base.OnDestroy();
@@ -60,6 +62,15 @@ public class SpiderGrabbable : BaseSpider
         NavMeshHandler.BuildAllNavMeshes(true);
 
         //Debug.Log("Spider released!");
+
+        StartCoroutine(ManageCanEnterInBoxValue_Coroutine());
+    }
+
+    private IEnumerator ManageCanEnterInBoxValue_Coroutine() // We need a small delay before setting canEnterInBox to false, otherwise it may always be false when OnTriggerEnter, even if spider just throwed by player.
+    {
+        canEnterInBox = true;
+        yield return new WaitForSeconds(0.5f);
+        canEnterInBox = false;
     }
 
 
@@ -84,7 +95,7 @@ public class SpiderGrabbable : BaseSpider
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(BOX_TAG))
+        if (other.CompareTag(BOX_TAG) && canEnterInBox)
         {
             SpiderInBox.Invoke();
             agent.speed = 0f;
