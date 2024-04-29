@@ -103,6 +103,7 @@ public class SpiderGrabbable : BaseSpider
             isInBox = true;
             Vector3 verticalOffset = new Vector3(0f, -0.125f, 0f);
             transform.position = other.transform.position + verticalOffset;
+            handGrabInteractable.Disable(); // Spider can't be grabbed anymore after been entered in its box.
 
             //Debug.Log("Spider is in a spider box.");
         }
