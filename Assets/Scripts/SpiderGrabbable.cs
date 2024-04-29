@@ -59,7 +59,7 @@ public class SpiderGrabbable : BaseSpider
         rb.useGravity = true;
         isThrowed = true;
 
-        NavMeshHandler.BuildAllNavMeshes(true);
+        NavMeshHandler.BuildAllNavMeshes(true, true);
 
         //Debug.Log("Spider released!");
 
@@ -101,6 +101,9 @@ public class SpiderGrabbable : BaseSpider
             agent.speed = 0f;
             animator.speed = 0f;
             isInBox = true;
+            Vector3 verticalOffset = new Vector3(0f, -0.125f, 0f);
+            transform.position = other.transform.position + verticalOffset;
+
             //Debug.Log("Spider is in a spider box.");
         }
     }
@@ -120,6 +123,8 @@ public class SpiderGrabbable : BaseSpider
                 rb.useGravity = false;
                 rb.velocity = Vector3.zero;
                 agent.enabled = true;
+
+                NavMeshHandler.BuildNavMesh(sceneAnchor, false);    // Rebuilding the table navmesh with the spider box on it, to avoid spider to walk through the box.
             }
         }
 

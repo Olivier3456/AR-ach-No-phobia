@@ -10,11 +10,14 @@ public static class NavMeshHandler
     public static List<GameObject> objectsToDisableWhenBakingNavMeshes = new List<GameObject>();
 
 
-    public static void BuildNavMesh(OVRSceneAnchor sceneAnchor)
+    public static void BuildNavMesh(OVRSceneAnchor sceneAnchor, bool deactivateNoNavMeshObjects = true)
     {
         NavMeshSurface navMeshSurface = sceneAnchor.gameObject.GetComponentInChildren<NavMeshSurface>();
 
-        DeactivateNoNavMeshObjects();
+        if (deactivateNoNavMeshObjects)
+        {
+            DeactivateNoNavMeshObjects();
+        }
         navMeshSurface.BuildNavMesh();
         ActivateNoNavMeshObjects();
 
@@ -23,7 +26,7 @@ public static class NavMeshHandler
 
     
 
-    public static void BuildAllNavMeshes(bool onlyFirstTime)
+    public static void BuildAllNavMeshes(bool onlyFirstTime, bool deactivateNoNavMeshObjects = true)
     {
         if (sceneNavMeshSurfaces == null)
         {
@@ -36,7 +39,10 @@ public static class NavMeshHandler
         
         foreach (NavMeshSurface surface in sceneNavMeshSurfaces)
         {
-            DeactivateNoNavMeshObjects();
+            if (deactivateNoNavMeshObjects)
+            {
+                DeactivateNoNavMeshObjects();
+            }
             surface.BuildNavMesh();
             ActivateNoNavMeshObjects();
         }
