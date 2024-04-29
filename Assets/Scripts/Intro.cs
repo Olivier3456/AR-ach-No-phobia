@@ -6,11 +6,14 @@ using UnityEngine.SceneManagement;
 public class Intro : MonoBehaviour
 {
     [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] private float distanceToCamera = 5f;
+
+    [SerializeField] private Transform cam;
 
     private const int MAIN_SCENE_ID = 1;
 
     void Start()
-    {
+    {        
         StartCoroutine(Intro_Coroutine());
     }
 
@@ -20,9 +23,13 @@ public class Intro : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
+        // Placing the canvas in front of player.
+        canvasGroup.transform.position = cam.position + (cam.forward * distanceToCamera);
+        canvasGroup.transform.LookAt(cam.position + (cam.forward * distanceToCamera * 2));
+
         float timer = 0f;
 
-        //Canvas appears
+        // Canvas appears.
         float apparitionLength = 2f;
         while (timer < apparitionLength)
         {
@@ -66,6 +73,6 @@ public class Intro : MonoBehaviour
 
     private void MoveCanvas()
     {
-        canvasGroup.transform.position -= Vector3.forward * Time.deltaTime * 0.1f;
+        canvasGroup.transform.position -= canvasGroup.transform.forward * Time.deltaTime * 0.1f;
     }
 }
