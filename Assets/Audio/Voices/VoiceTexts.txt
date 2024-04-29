@@ -83,5 +83,7 @@ Ex 9 début : Dans ce dernier exercice, une araignée va apparaître sur la table. 
 
 Ex 9 araignée attrapée : Vous allez maintenant pouvoir déposer l'araignée dans la boîte qui va apparaître sur la table.
 
-Ex 9 fin : Bravo ! Vous avez terminé tous les exercices de ce programme. Vous êtes maintenant capable d'attraper une grosse araignée, certes virtuelle, mais réaliste, et de la mettre en lieu sûr. C'est formidable ! Merci encore de nous avoir fait confiance pour vous accompagner dans ce voyage. Nous espérons vous avoir été utile.
+Ex 9 fin : Bravo ! Vous avez terminé tous les exercices de ce programme. Vous êtes maintenant capable d'attraper une grosse araignée, certes virtuelle, mais réaliste, et de la mettre en lieu sûr. C'est formidable ! 
+
+Ex9 fin 2 : Notez votre degré d'anxiété pour revenir au menu d'accueil. Merci encore de nous avoir fait confiance pour vous accompagner dans ce voyage. Nous espérons vous avoir été utile.
 

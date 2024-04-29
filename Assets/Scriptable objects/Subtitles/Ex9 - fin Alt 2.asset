@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5a45a99eca3b54ca6473ff14cb91c0, type: 3}
+  m_Name: Ex9 - fin Alt 2
+  m_EditorClassIdentifier: 
+  clipSubtitles:
+    clip: {fileID: 8300000, guid: 77dcf0441c649a144b7ad78d1bacc318, type: 3}
+    subtitles:
+    - text: "Notez votre degr\xE9 d'anxi\xE9t\xE9 pour revenir au menu d'accueil."
+      beginAt: 0
+    - text: Merci encore de nous avoir fait confiance pour vous accompagner dans
+        ce voyage.
+      beginAt: 4.2
+    - text: "Nous esp\xE9rons vous avoir \xE9t\xE9 utile."
+      beginAt: 8.8
