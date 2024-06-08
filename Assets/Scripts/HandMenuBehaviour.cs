@@ -53,6 +53,11 @@ public class HandMenuBehaviour : MonoBehaviour
     [SerializeField] private TextMeshPro displayDistancesButtonText;
     [Space(20)]
     [SerializeField] private TextMeshPro displaySubtitlesButtonText;
+    [Space(20)]
+    [SerializeField] private Transform[] anxietyButtonsTransforms;
+    [SerializeField] private SpriteRenderer selectionCircle;
+    [SerializeField] private Gradient anxietyColorGradient;
+    
 
     private ActiveStateSelector currentHandDisplayingMenu = null;
     private OVRBone leftThumbTip = null;
@@ -91,13 +96,13 @@ public class HandMenuBehaviour : MonoBehaviour
     }
 
 
-    //private void Update()
-    //{
-    //    if (currentHandDisplayingMenu != null && leftThumbTip != null && rightThumbTip != null)
-    //    {
-    //        UpdateMenuPositionAndRotation(true);
-    //    }
-    //}
+    private void Update()
+    {
+        if (currentHandDisplayingMenu != null && leftThumbTip != null && rightThumbTip != null)
+        {
+            UpdateMenuPositionAndRotation(true);
+        }
+    }
 
 
     public void MenuHandPoseSelected(ActiveStateSelector ass)
@@ -117,21 +122,21 @@ public class HandMenuBehaviour : MonoBehaviour
             rightHandRenderer.material = visibleHandMaterial;
         }
 
-        UpdateMenuPositionAndRotation(/*false*/);
+        UpdateMenuPositionAndRotation(false);
         DisplayActualMainMenu();
     }
 
 
-    //public void MenuHandPoseUnselected(ActiveStateSelector ass)
-    //{
-    //    if (currentHandDisplayingMenu == ass)
-    //    {
-    //        HideAllMenus(true);
-    //    }
-    //}
+    public void MenuHandPoseUnselected(ActiveStateSelector ass)
+    {
+        if (currentHandDisplayingMenu == ass)
+        {
+            HideAllMenus(true);
+        }
+    }
 
 
-    private void UpdateMenuPositionAndRotation(/*bool lerpPosition*/)
+    private void UpdateMenuPositionAndRotation(bool lerpPosition)
     {
         Vector3 direction = transform.position - Camera.main.transform.position;
         direction.y = 0;
@@ -152,17 +157,15 @@ public class HandMenuBehaviour : MonoBehaviour
             targetPosition = rightThumbTip.Transform.position + adjustedOffset;
         }
 
-        //if (lerpPosition)
-        //{
-        //    float lerp = 0.1f;
-        //    transform.position = Vector3.Lerp(transform.position, targetPosition, lerp);
-        //}
-        //else
-        //{
-        //    transform.position = targetPosition;
-        //}
-
-        transform.position = targetPosition;
+        if (lerpPosition)
+        {
+            float lerp = 0.1f;
+            transform.position = Vector3.Lerp(transform.position, targetPosition, lerp);
+        }
+        else
+        {
+            transform.position = targetPosition;
+        }
     }
 
 
@@ -178,6 +181,8 @@ public class HandMenuBehaviour : MonoBehaviour
         anxietyButtonsParent.SetActive(!exerciseInProgress);
         quitButton.SetActive(exerciseInProgress);
         nextExerciseButton.SetActive(false);
+
+        selectionCircle.gameObject.SetActive(false);
     }
 
 
@@ -304,7 +309,7 @@ public class HandMenuBehaviour : MonoBehaviour
             currentHandDisplayingMenu = null;
             leftHandRenderer.material = invisibleHandMaterial;
             rightHandRenderer.material = invisibleHandMaterial;
-        }
+        }        
     }
 
 
@@ -345,6 +350,10 @@ public class HandMenuBehaviour : MonoBehaviour
         quitButton.SetActive(true);
 
         AnxietyDataHandler.SetAnxietyLevel(anxietyLevel);
+
+        selectionCircle.transform.position = anxietyButtonsTransforms[anxietyLevel].position;
+        selectionCircle.color = anxietyColorGradient.Evaluate(anxietyLevel * 0.1f);
+        selectionCircle.gameObject.SetActive(true);
     }
 
 
