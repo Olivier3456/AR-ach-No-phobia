@@ -119,13 +119,20 @@ public class SpiderHandInteract : BaseSpider
             if (currentAnchor == rightHandAnchor)
             {
                 transform.position = currentAnchor.position + (currentAnchor.up * verticalOffsetFromHandAnchor);
-                transform.up = currentAnchor.up;
+
+                //transform.up = currentAnchor.up;
+                //transform.rotation = currentAnchor.rotation;
             }
             else // To fix the bug of the spider not placed correctly on left hand. Currently I don't understand why left palm center and right palm center don't have the same up vector.
             {
                 transform.position = currentAnchor.position + (-currentAnchor.up * verticalOffsetFromHandAnchor);
-                transform.up = -currentAnchor.up;
+
+                //transform.up = -currentAnchor.up;
+                //transform.rotation = currentAnchor.rotation;
             }
+
+            Quaternion rotationOffset = Quaternion.Euler(0, 90, 0);
+            transform.rotation = currentAnchor.rotation * rotationOffset;
         }
     }
 
