@@ -45,7 +45,8 @@ public class AnxietyDataDisplayer : MonoBehaviour
                 TextMeshProUGUI TMP_text = Instantiate(textTemplate.gameObject.GetComponent<TextMeshProUGUI>(), textParentTransform);
                 instantiatedTexts.Add(TMP_text);
 
-                string text = $"{item.time} | Ex {item.exerciseId} | Anx {item.anxietyNote} | Dist min {item.minDistanceFromSpider.ToString("0.00")} | Dist moy {item.averageDistanceFromNearestSpider.ToString("0.00")}";
+                //string text = $"{item.time} | Ex {item.exerciseId} | Anx {item.anxietyNote} | Dist min {item.minDistanceFromSpider.ToString("0.00")} | Dist moy {item.averageDistanceFromNearestSpider.ToString("0.00")}";
+                string text = $"{item.time}      |      Exercice {item.exerciseId}      |      Anxiété :   {item.anxietyNote}";
                 TMP_text.text = text;
                 TMP_text.gameObject.SetActive(true);
             }
