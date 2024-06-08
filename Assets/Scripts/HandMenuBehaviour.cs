@@ -91,13 +91,13 @@ public class HandMenuBehaviour : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        if (currentHandDisplayingMenu != null && leftThumbTip != null && rightThumbTip != null)
-        {
-            UpdateMenuPositionAndRotation(true);
-        }
-    }
+    //private void Update()
+    //{
+    //    if (currentHandDisplayingMenu != null && leftThumbTip != null && rightThumbTip != null)
+    //    {
+    //        UpdateMenuPositionAndRotation(true);
+    //    }
+    //}
 
 
     public void MenuHandPoseSelected(ActiveStateSelector ass)
@@ -117,21 +117,21 @@ public class HandMenuBehaviour : MonoBehaviour
             rightHandRenderer.material = visibleHandMaterial;
         }
 
-        UpdateMenuPositionAndRotation(false);
+        UpdateMenuPositionAndRotation(/*false*/);
         DisplayActualMainMenu();
     }
 
 
-    public void MenuHandPoseUnselected(ActiveStateSelector ass)
-    {
-        if (currentHandDisplayingMenu == ass)
-        {
-            HideAllMenus(true);
-        }
-    }
+    //public void MenuHandPoseUnselected(ActiveStateSelector ass)
+    //{
+    //    if (currentHandDisplayingMenu == ass)
+    //    {
+    //        HideAllMenus(true);
+    //    }
+    //}
 
 
-    private void UpdateMenuPositionAndRotation(bool lerpPosition)
+    private void UpdateMenuPositionAndRotation(/*bool lerpPosition*/)
     {
         Vector3 direction = transform.position - Camera.main.transform.position;
         direction.y = 0;
@@ -152,15 +152,17 @@ public class HandMenuBehaviour : MonoBehaviour
             targetPosition = rightThumbTip.Transform.position + adjustedOffset;
         }
 
-        if (lerpPosition)
-        {
-            float lerp = 0.1f;
-            transform.position = Vector3.Lerp(transform.position, targetPosition, lerp);
-        }
-        else
-        {
-            transform.position = targetPosition;
-        }
+        //if (lerpPosition)
+        //{
+        //    float lerp = 0.1f;
+        //    transform.position = Vector3.Lerp(transform.position, targetPosition, lerp);
+        //}
+        //else
+        //{
+        //    transform.position = targetPosition;
+        //}
+
+        transform.position = targetPosition;
     }
 
 

@@ -23,7 +23,7 @@ public class Intro : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        // Placing the canvas in front of player.
+        // Placing the canvas in front of the user.
         canvasGroup.transform.position = cam.position + (cam.forward * distanceToCamera);
         canvasGroup.transform.LookAt(cam.position + (cam.forward * distanceToCamera * 2));
 
