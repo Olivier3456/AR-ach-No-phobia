@@ -88,18 +88,18 @@ public class HandMenuBehaviour : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        if (isMenuVisible)
-        {
-            float distanceFromCamera = Vector3.Distance(transform.position, Camera.main.transform.position);
-            float maxDistance = 1f;
-            if (distanceFromCamera > maxDistance)
-            {
-                HideAllMenus(true);
-            }
-        }
-    }
+    //private void Update()
+    //{
+    //    if (isMenuVisible)
+    //    {
+    //        float distanceFromCamera = Vector3.Distance(transform.position, Camera.main.transform.position);
+    //        float maxDistance = 1f;
+    //        if (distanceFromCamera > maxDistance)
+    //        {
+    //            HideAllMenus(true);
+    //        }
+    //    }
+    //}
 
 
     public void MenuHandPoseSelected(ActiveStateSelector ass)
