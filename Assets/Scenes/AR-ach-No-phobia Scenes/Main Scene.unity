@@ -6114,7 +6114,6 @@ MonoBehaviour:
   - {fileID: 8873305689100450894}
   - {fileID: 8873305688191336853}
   exerciseLabelText: {fileID: 2018780205}
-  offsetForRightHand: {x: -0.2, y: -0.1, z: 0}
   showHandsModelWhenMenuIsVisible: 1
   leftHandRenderer: {fileID: 1913207998}
   rightHandRenderer: {fileID: 151065030}
@@ -22977,7 +22976,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1551960431
 Transform:
   m_ObjectHideFlags: 0

@@ -31,10 +31,6 @@ public class HandMenuBehaviour : MonoBehaviour
     [SerializeField] private Toggle[] exercicesToggles;
     [Space(20)]
     [SerializeField] private TextMeshPro exerciseLabelText;
-    //[Space(20)]
-    //[Header("Offset for all menus. The offset for left hand will be symetrical to the offset for right hand.")]
-    //[SerializeField] private Vector3 offsetForRightHand;
-    //private Vector3 offsetForLeftHand;
     [Space(20)]
     [SerializeField] private bool showHandsModelWhenMenuIsVisible;
     [SerializeField] private SkinnedMeshRenderer leftHandRenderer;
@@ -63,11 +59,7 @@ public class HandMenuBehaviour : MonoBehaviour
     private OVRBone leftThumbTip = null;
     private OVRBone rightThumbTip = null;
 
-
-    //private void Awake()
-    //{
-    //    offsetForLeftHand = new Vector3(-offsetForRightHand.x, offsetForRightHand.y, offsetForRightHand.z);
-    //}
+    private bool isMenuVisible = false;
 
 
     private IEnumerator Start()
@@ -96,13 +88,18 @@ public class HandMenuBehaviour : MonoBehaviour
     }
 
 
-    //private void Update()
-    //{
-    //    if (currentHandDisplayingMenu != null && leftThumbTip != null && rightThumbTip != null)
-    //    {
-    //        UpdateMenuPositionAndRotation(true);
-    //    }
-    //}
+    private void Update()
+    {
+        if (isMenuVisible)
+        {
+            float distanceFromCamera = Vector3.Distance(transform.position, Camera.main.transform.position);
+            float maxDistance = 1f;
+            if (distanceFromCamera > maxDistance)
+            {
+                HideAllMenus(true);
+            }
+        }
+    }
 
 
     public void MenuHandPoseSelected(ActiveStateSelector ass)
@@ -127,6 +124,7 @@ public class HandMenuBehaviour : MonoBehaviour
     }
 
 
+    // DEBUG
     public void MenuHandPoseUnselected(ActiveStateSelector ass)
     {
         if (currentHandDisplayingMenu == ass)
@@ -155,10 +153,7 @@ public class HandMenuBehaviour : MonoBehaviour
         Vector3 orthogonalDirection = new Vector3(-direction.z, 0, direction.x);    // Lateral offset.
         orthogonalDirection = orthogonalDirection.normalized;
 
-        //Debug.Log($"Camera => Hand: {direction}.");
-        //Debug.Log($"Orthogonal direction : {orthogonalDirection}.");
 
-       
         if (currentHandDisplayingMenu == menuHandPoseLeft)  // Places the menu at the position of the hand, with a lateral offset.
         {
             transform.position = leftThumbTip.Transform.position - (orthogonalDirection * 0.2f);
@@ -181,33 +176,9 @@ public class HandMenuBehaviour : MonoBehaviour
         newDirection.y = 0;
         newDirection = newDirection.normalized;
 
-       
+
         Quaternion rotation = Quaternion.LookRotation(newDirection);    // Sets the rotation of the menu.
         transform.rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
-
-
-        //if (currentHandDisplayingMenu == menuHandPoseLeft)
-        //{
-        //    adjustedOffset = Quaternion.Euler(0, rotation.eulerAngles.y, 0) * offsetForLeftHand;
-        //    targetPosition = leftThumbTip.Transform.position + adjustedOffset;
-        //}
-        //else if (currentHandDisplayingMenu == menuHandPoseRight)
-        //{
-        //    adjustedOffset = Quaternion.Euler(0, rotation.eulerAngles.y, 0) * offsetForRightHand;
-        //    targetPosition = rightThumbTip.Transform.position + adjustedOffset;
-        //}
-
-        //transform.position = targetPosition;
-
-        //if (lerpPosition)
-        //{
-        //    float lerp = 0.1f;
-        //    transform.position = Vector3.Lerp(transform.position, targetPosition, lerp);
-        //}
-        //else
-        //{
-        //    transform.position = targetPosition;
-        //}
     }
 
 
@@ -231,6 +202,8 @@ public class HandMenuBehaviour : MonoBehaviour
     public void DisplayActualMainMenu()
     {
         HideAllMenus(false);
+
+        isMenuVisible = true;
 
         if (MainManager.Instance.CurrentExercise == null)
         {
@@ -351,6 +324,8 @@ public class HandMenuBehaviour : MonoBehaviour
             currentHandDisplayingMenu = null;
             leftHandRenderer.material = invisibleHandMaterial;
             rightHandRenderer.material = invisibleHandMaterial;
+
+            isMenuVisible = false;
         }
     }
 
