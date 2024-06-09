@@ -31,10 +31,10 @@ public class HandMenuBehaviour : MonoBehaviour
     [SerializeField] private Toggle[] exercicesToggles;
     [Space(20)]
     [SerializeField] private TextMeshPro exerciseLabelText;
-    [Space(20)]
-    [Header("Offset for all menus. The offset for left hand will be symetrical to the offset for right hand.")]
-    [SerializeField] private Vector3 offsetForRightHand;
-    private Vector3 offsetForLeftHand;
+    //[Space(20)]
+    //[Header("Offset for all menus. The offset for left hand will be symetrical to the offset for right hand.")]
+    //[SerializeField] private Vector3 offsetForRightHand;
+    //private Vector3 offsetForLeftHand;
     [Space(20)]
     [SerializeField] private bool showHandsModelWhenMenuIsVisible;
     [SerializeField] private SkinnedMeshRenderer leftHandRenderer;
@@ -57,17 +57,17 @@ public class HandMenuBehaviour : MonoBehaviour
     [SerializeField] private Transform[] anxietyButtonsTransforms;
     [SerializeField] private SpriteRenderer selectionCircle;
     [SerializeField] private Gradient anxietyColorGradient;
-    
+
 
     private ActiveStateSelector currentHandDisplayingMenu = null;
     private OVRBone leftThumbTip = null;
     private OVRBone rightThumbTip = null;
 
 
-    private void Awake()
-    {
-        offsetForLeftHand = new Vector3(-offsetForRightHand.x, offsetForRightHand.y, offsetForRightHand.z);
-    }
+    //private void Awake()
+    //{
+    //    offsetForLeftHand = new Vector3(-offsetForRightHand.x, offsetForRightHand.y, offsetForRightHand.z);
+    //}
 
 
     private IEnumerator Start()
@@ -96,13 +96,13 @@ public class HandMenuBehaviour : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        if (currentHandDisplayingMenu != null && leftThumbTip != null && rightThumbTip != null)
-        {
-            UpdateMenuPositionAndRotation(true);
-        }
-    }
+    //private void Update()
+    //{
+    //    if (currentHandDisplayingMenu != null && leftThumbTip != null && rightThumbTip != null)
+    //    {
+    //        UpdateMenuPositionAndRotation(true);
+    //    }
+    //}
 
 
     public void MenuHandPoseSelected(ActiveStateSelector ass)
@@ -122,7 +122,7 @@ public class HandMenuBehaviour : MonoBehaviour
             rightHandRenderer.material = visibleHandMaterial;
         }
 
-        UpdateMenuPositionAndRotation(false);
+        UpdateMenuPositionAndRotation();
         DisplayActualMainMenu();
     }
 
@@ -136,36 +136,78 @@ public class HandMenuBehaviour : MonoBehaviour
     }
 
 
-    private void UpdateMenuPositionAndRotation(bool lerpPosition)
+
+    private void UpdateMenuPositionAndRotation()
     {
-        Vector3 direction = transform.position - Camera.main.transform.position;
-        direction.y = 0;
-        Quaternion rotation = Quaternion.LookRotation(direction);
-        Vector3 adjustedOffset;
-        Vector3 targetPosition = Vector3.zero;
-
-        transform.rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
-
+        Vector3 direction = Vector3.zero;   // Direction from camera to hand.
         if (currentHandDisplayingMenu == menuHandPoseLeft)
         {
-            adjustedOffset = Quaternion.Euler(0, rotation.eulerAngles.y, 0) * offsetForLeftHand;
-            targetPosition = leftThumbTip.Transform.position + adjustedOffset;
+            direction = leftThumbTip.Transform.position - Camera.main.transform.position;
         }
         else if (currentHandDisplayingMenu == menuHandPoseRight)
         {
-            adjustedOffset = Quaternion.Euler(0, rotation.eulerAngles.y, 0) * offsetForRightHand;
-            targetPosition = rightThumbTip.Transform.position + adjustedOffset;
+            direction = rightThumbTip.Transform.position - Camera.main.transform.position;
+        }
+        direction.y = 0;
+        direction = direction.normalized;
+
+
+        Vector3 orthogonalDirection = new Vector3(-direction.z, 0, direction.x);    // Lateral offset.
+        orthogonalDirection = orthogonalDirection.normalized;
+
+        //Debug.Log($"Camera => Hand: {direction}.");
+        //Debug.Log($"Orthogonal direction : {orthogonalDirection}.");
+
+       
+        if (currentHandDisplayingMenu == menuHandPoseLeft)  // Places the menu at the position of the hand, with a lateral offset.
+        {
+            transform.position = leftThumbTip.Transform.position - (orthogonalDirection * 0.2f);
+        }
+        else if (currentHandDisplayingMenu == menuHandPoseRight)
+        {
+            transform.position = rightThumbTip.Transform.position + (orthogonalDirection * 0.2f);
         }
 
-        if (lerpPosition)
+
+        Vector3 newDirection = Vector3.zero;    // The direction from camera to menu's new position.
+        if (currentHandDisplayingMenu == menuHandPoseLeft)
         {
-            float lerp = 0.1f;
-            transform.position = Vector3.Lerp(transform.position, targetPosition, lerp);
+            newDirection = transform.position - Camera.main.transform.position;
         }
-        else
+        else if (currentHandDisplayingMenu == menuHandPoseRight)
         {
-            transform.position = targetPosition;
+            newDirection = transform.position - Camera.main.transform.position;
         }
+        newDirection.y = 0;
+        newDirection = newDirection.normalized;
+
+       
+        Quaternion rotation = Quaternion.LookRotation(newDirection);    // Sets the rotation of the menu.
+        transform.rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
+
+
+        //if (currentHandDisplayingMenu == menuHandPoseLeft)
+        //{
+        //    adjustedOffset = Quaternion.Euler(0, rotation.eulerAngles.y, 0) * offsetForLeftHand;
+        //    targetPosition = leftThumbTip.Transform.position + adjustedOffset;
+        //}
+        //else if (currentHandDisplayingMenu == menuHandPoseRight)
+        //{
+        //    adjustedOffset = Quaternion.Euler(0, rotation.eulerAngles.y, 0) * offsetForRightHand;
+        //    targetPosition = rightThumbTip.Transform.position + adjustedOffset;
+        //}
+
+        //transform.position = targetPosition;
+
+        //if (lerpPosition)
+        //{
+        //    float lerp = 0.1f;
+        //    transform.position = Vector3.Lerp(transform.position, targetPosition, lerp);
+        //}
+        //else
+        //{
+        //    transform.position = targetPosition;
+        //}
     }
 
 
@@ -309,7 +351,7 @@ public class HandMenuBehaviour : MonoBehaviour
             currentHandDisplayingMenu = null;
             leftHandRenderer.material = invisibleHandMaterial;
             rightHandRenderer.material = invisibleHandMaterial;
-        }        
+        }
     }
 
 
