@@ -42,6 +42,8 @@ public class HandMenuBehaviour : MonoBehaviour
     [SerializeField] private GameObject anxietyButtonsParent;
     [SerializeField] private GameObject quitButton;
     [SerializeField] private GameObject nextExerciseButton;
+    //[SerializeField] private GameObject yesButton;
+    [SerializeField] private GameObject noButton;
     [SerializeField] private GameObject exerciseNotFinishedLabel;
     [SerializeField] private GameObject exerciseFinishedLabel;
     [Space(20)]
@@ -55,7 +57,7 @@ public class HandMenuBehaviour : MonoBehaviour
     [SerializeField] private Gradient anxietyColorGradient;
 
 
-    private ActiveStateSelector currentHandDisplayingMenu = null;
+    //private ActiveStateSelector currentHandDisplayingMenu = null;
     private OVRBone leftThumbTip = null;
     private OVRBone rightThumbTip = null;
 
@@ -88,28 +90,49 @@ public class HandMenuBehaviour : MonoBehaviour
     }
 
 
-    //private void Update()
-    //{
-    //    if (isMenuVisible)
-    //    {
-    //        float distanceFromCamera = Vector3.Distance(transform.position, Camera.main.transform.position);
-    //        float maxDistance = 1f;
-    //        if (distanceFromCamera > maxDistance)
-    //        {
-    //            HideAllMenus(true);
-    //        }
-    //    }
-    //}
+    private void Update()
+    {
+        if (isMenuVisible)
+        {
+            // Menu disappears if the camera is too far from the user.
+
+            float distanceFromCamera = Vector3.Distance(transform.position, Camera.main.transform.position);
+            float maxDistance = 1f;
+            if (distanceFromCamera > maxDistance)
+            {
+                HideAllMenus(true);
+                return;
+            }
+
+
+            // Menu disappears if the user is not looking at it.
+
+            Vector3 directionFromCamera = transform.position - Camera.main.transform.position;
+            Vector3 lookDirection = Camera.main.transform.forward;
+
+            float angle = Vector3.Angle(directionFromCamera, lookDirection);
+            float maxAngle = 60;
+            //Debug.Log("Angle: " + angle);
+            if (angle > maxAngle)
+            {
+                HideAllMenus(true);
+                return;
+            }
+        }
+    }
 
 
     public void MenuHandPoseSelected(ActiveStateSelector ass)
     {
-        if (currentHandDisplayingMenu != null)
-        {
-            return;
-        }
+        //if (currentHandDisplayingMenu != null)
+        //{
+        //    return;
+        //}
 
-        currentHandDisplayingMenu = ass;
+
+        
+
+        //currentHandDisplayingMenu = ass;
 
         //Debug.Log("Hand pose for menu detected.");
 
@@ -119,30 +142,28 @@ public class HandMenuBehaviour : MonoBehaviour
             rightHandRenderer.material = visibleHandMaterial;
         }
 
-        UpdateMenuPositionAndRotation();
+        SetMenuPositionAndRotation(ass);
         DisplayActualMainMenu();
     }
 
 
-    // DEBUG
-    public void MenuHandPoseUnselected(ActiveStateSelector ass)
-    {
-        if (currentHandDisplayingMenu == ass)
-        {
-            HideAllMenus(true);
-        }
-    }
+    //public void MenuHandPoseUnselected(ActiveStateSelector ass)
+    //{
+    //    if (currentHandDisplayingMenu == ass)
+    //    {
+    //        HideAllMenus(true);
+    //    }
+    //}
 
 
-
-    private void UpdateMenuPositionAndRotation()
+    private void SetMenuPositionAndRotation(ActiveStateSelector handDisplayingMenu)
     {
         Vector3 direction = Vector3.zero;   // Direction from camera to hand.
-        if (currentHandDisplayingMenu == menuHandPoseLeft)
+        if (handDisplayingMenu == menuHandPoseLeft)
         {
             direction = leftThumbTip.Transform.position - Camera.main.transform.position;
         }
-        else if (currentHandDisplayingMenu == menuHandPoseRight)
+        else if (handDisplayingMenu == menuHandPoseRight)
         {
             direction = rightThumbTip.Transform.position - Camera.main.transform.position;
         }
@@ -154,22 +175,22 @@ public class HandMenuBehaviour : MonoBehaviour
         orthogonalDirection = orthogonalDirection.normalized;
 
 
-        if (currentHandDisplayingMenu == menuHandPoseLeft)  // Places the menu at the position of the hand, with a lateral offset.
+        if (handDisplayingMenu == menuHandPoseLeft)  // Places the menu at the position of the hand, with a lateral offset.
         {
             transform.position = leftThumbTip.Transform.position - (orthogonalDirection * 0.2f);
         }
-        else if (currentHandDisplayingMenu == menuHandPoseRight)
+        else if (handDisplayingMenu == menuHandPoseRight)
         {
             transform.position = rightThumbTip.Transform.position + (orthogonalDirection * 0.2f);
         }
 
 
         Vector3 newDirection = Vector3.zero;    // The direction from camera to menu's new position.
-        if (currentHandDisplayingMenu == menuHandPoseLeft)
+        if (handDisplayingMenu == menuHandPoseLeft)
         {
             newDirection = transform.position - Camera.main.transform.position;
         }
-        else if (currentHandDisplayingMenu == menuHandPoseRight)
+        else if (handDisplayingMenu == menuHandPoseRight)
         {
             newDirection = transform.position - Camera.main.transform.position;
         }
@@ -194,6 +215,9 @@ public class HandMenuBehaviour : MonoBehaviour
         anxietyButtonsParent.SetActive(!exerciseInProgress);
         quitButton.SetActive(exerciseInProgress);
         nextExerciseButton.SetActive(false);
+
+        noButton.SetActive(exerciseInProgress);
+        //yesButton.SetActive(exerciseInProgress);
 
         selectionCircle.gameObject.SetActive(false);
     }
@@ -321,7 +345,7 @@ public class HandMenuBehaviour : MonoBehaviour
 
         if (isMenuDisappearing)
         {
-            currentHandDisplayingMenu = null;
+            //currentHandDisplayingMenu = null;
             leftHandRenderer.material = invisibleHandMaterial;
             rightHandRenderer.material = invisibleHandMaterial;
 
@@ -365,6 +389,9 @@ public class HandMenuBehaviour : MonoBehaviour
         bool isLastExercise = MainManager.Instance.CurrentExercise.Id == MainManager.Instance.TotalExercisesNumber;
         nextExerciseButton.SetActive(!isLastExercise);
         quitButton.SetActive(true);
+        noButton.SetActive(false);
+        //yesButton.SetActive(false);
+
 
         AnxietyDataHandler.SetAnxietyLevel(anxietyLevel);
 
