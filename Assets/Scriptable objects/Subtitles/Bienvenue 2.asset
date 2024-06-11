@@ -21,8 +21,5 @@ MonoBehaviour:
         mains."
       beginAt: 2.6
     - text: "Pour acc\xE9der au menu, levez le pouce de votre main gauche, ou celui
-        de votre main droite,"
+        de votre main droite."
       beginAt: 6.8
-    - text: et maintenez cette pose pendant que vous touchez les boutons du menu
-        avec l'index de l'autre main.
-      beginAt: 11.7

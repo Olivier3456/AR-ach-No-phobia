@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayClipSO
   beginWithCondition: 0
   waitForEndOfClip: 0
-  clipToPlay: {fileID: 8300000, guid: fa2a8e951bf66e447b72e38a5c1e61ae, type: 3}
+  clipToPlay: {fileID: 8300000, guid: 1e380b61541749d4d90552fdf12a5662, type: 3}

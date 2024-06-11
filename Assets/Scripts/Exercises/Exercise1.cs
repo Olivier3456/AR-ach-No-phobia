@@ -16,6 +16,8 @@ public class Exercise1 : BaseExercise
             {
                 FulfillConditionForExerciseEvent(endExerciseEvent);
             }
+
+            MainManager.Instance.HandMenuBehaviour.DisplayOrHidePreviousAndNextButtons();
         }
     }
 }

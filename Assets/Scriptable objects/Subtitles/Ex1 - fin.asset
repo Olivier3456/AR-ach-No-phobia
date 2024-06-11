@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ex1 - fin
   m_EditorClassIdentifier: 
   clipSubtitles:
-    clip: {fileID: 8300000, guid: fa2a8e951bf66e447b72e38a5c1e61ae, type: 3}
+    clip: {fileID: 8300000, guid: 1e380b61541749d4d90552fdf12a5662, type: 3}
     subtitles:
     - text: Qu'avez-vous ressenti ?
       beginAt: 0
@@ -24,8 +24,10 @@ MonoBehaviour:
     - text: Ce ne sont que de petits animaux craintifs, elles ont bien plus peur
         de vous que vous n'avez peur d'elles.
       beginAt: 9.1
-    - text: "L'exercice est maintenant termin\xE9. Vous pouvez continuer \xE0 regarder
-        les images,"
+    - text: "L'exercice est maintenant termin\xE9. Levez le pouce pour faire appara\xEEtre
+        le menu,"
       beginAt: 14.5
-    - text: "revenir au menu, ou bien passer \xE0 l'exercice suivant."
-      beginAt: 19.8
+    - text: "puis \xE9valuez votre degr\xE9 d'anxi\xE9t\xE9 de 0 \xE0 9."
+      beginAt: 19.6
+    - text: "Vous pourrez ensuite revenir au menu, ou passer \xE0 l'exercice suivant."
+      beginAt: 23

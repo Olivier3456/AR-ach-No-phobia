@@ -49,6 +49,7 @@ public class MainManager : MonoBehaviour
     public int TotalExercisesNumber { get { return exercisesPrefabs.Length; } }
     public AudioSource AudioSource { get { return audioSource; } }
     public SubtitlesManager SubtitlesManager { get { return subtitlesManager; } }
+    public HandMenuBehaviour HandMenuBehaviour { get { return handMenuBehaviour; } }
 
 
 
@@ -135,7 +136,7 @@ public class MainManager : MonoBehaviour
             subtitlesManager.ShowSubtitles();
         }
     }
-        
+
 
     public void BeginExercise()
     {

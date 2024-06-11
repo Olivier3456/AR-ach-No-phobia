@@ -23,7 +23,7 @@ MonoBehaviour:
     - text: "Vous pouvez y arriver, vous savez que l'araign\xE9e va simplement rester
         immobile sur votre main,"
       beginAt: 9.2
-    - text: jusqu'a-ce que vous la reposiez sur la table.
+    - text: "jusqu'\xE0-ce que vous la reposiez sur la table."
       beginAt: 14.2
     - text: "Quand vous \xEAtes pr\xEAt, posez votre main sur la table, paume vers
         le bas."
