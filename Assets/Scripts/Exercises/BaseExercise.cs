@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BaseExercise : MonoBehaviour
 {    
@@ -23,6 +24,8 @@ public class BaseExercise : MonoBehaviour
     public int Id { get { return id; } }
     public BaseExerciseEventSO CurrentEvent { get { return exerciseEvents[currentEventIndex]; } }
     public int CurrentEventIndex { get { return currentEventIndex; } }
+
+    
 
 
 
@@ -165,6 +168,7 @@ public class BaseExercise : MonoBehaviour
             if (isInProgress)
             {
                 isInProgress = false;
+                MainManager.Instance.OnExerciseFinished.Invoke();
                 //Debug.Log("[BaseExercise] Current exercise is finished.");
             }
         }

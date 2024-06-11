@@ -25,6 +25,7 @@ public class MainManager : MonoBehaviour
     public UnityEvent<int> OnExerciseBegin = new UnityEvent<int>();
 
     public UnityEvent OnExerciseQuitted = new UnityEvent();
+    public UnityEvent OnExerciseFinished = new UnityEvent();
 
     //public const string SECOND_LAUNCH_PLAYERPREFS_KEY = "SecondLaunch";
 
@@ -134,7 +135,7 @@ public class MainManager : MonoBehaviour
             subtitlesManager.ShowSubtitles();
         }
     }
-
+        
 
     public void BeginExercise()
     {

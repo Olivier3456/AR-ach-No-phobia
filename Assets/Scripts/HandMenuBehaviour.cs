@@ -42,7 +42,6 @@ public class HandMenuBehaviour : MonoBehaviour
     [SerializeField] private GameObject anxietyButtonsParent;
     [SerializeField] private GameObject quitButton;
     [SerializeField] private GameObject nextExerciseButton;
-    //[SerializeField] private GameObject yesButton;
     [SerializeField] private GameObject noButton;
     [SerializeField] private GameObject exerciseNotFinishedLabel;
     [SerializeField] private GameObject exerciseFinishedLabel;
@@ -56,8 +55,6 @@ public class HandMenuBehaviour : MonoBehaviour
     [SerializeField] private SpriteRenderer selectionCircle;
     [SerializeField] private Gradient anxietyColorGradient;
 
-
-    //private ActiveStateSelector currentHandDisplayingMenu = null;
     private OVRBone leftThumbTip = null;
     private OVRBone rightThumbTip = null;
 
@@ -87,6 +84,8 @@ public class HandMenuBehaviour : MonoBehaviour
                 //Debug.Log("Right Thumb tip found");
             }
         }
+
+        MainManager.Instance.OnExerciseFinished.AddListener(DisplayActualMainMenu);
     }
 
 
@@ -124,18 +123,6 @@ public class HandMenuBehaviour : MonoBehaviour
 
     public void MenuHandPoseSelected(ActiveStateSelector ass)
     {
-        //if (currentHandDisplayingMenu != null)
-        //{
-        //    return;
-        //}
-
-
-        
-
-        //currentHandDisplayingMenu = ass;
-
-        //Debug.Log("Hand pose for menu detected.");
-
         if (showHandsModelWhenMenuIsVisible)
         {
             leftHandRenderer.material = visibleHandMaterial;
@@ -145,16 +132,7 @@ public class HandMenuBehaviour : MonoBehaviour
         SetMenuPositionAndRotation(ass);
         DisplayActualMainMenu();
     }
-
-
-    //public void MenuHandPoseUnselected(ActiveStateSelector ass)
-    //{
-    //    if (currentHandDisplayingMenu == ass)
-    //    {
-    //        HideAllMenus(true);
-    //    }
-    //}
-
+    
 
     private void SetMenuPositionAndRotation(ActiveStateSelector handDisplayingMenu)
     {
@@ -201,27 +179,7 @@ public class HandMenuBehaviour : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(newDirection);    // Sets the rotation of the menu.
         transform.rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
     }
-
-
-    public void DisplayQuitConfirmationMenu()
-    {
-        HideAllMenus(false);
-        quitExerciceConfirmationMenu.SetActive(true);
-
-        bool exerciseInProgress = MainManager.Instance.CurrentExercise.IsInProgress;
-
-        exerciseNotFinishedLabel.SetActive(exerciseInProgress);
-        exerciseFinishedLabel.SetActive(!exerciseInProgress);
-        anxietyButtonsParent.SetActive(!exerciseInProgress);
-        quitButton.SetActive(exerciseInProgress);
-        nextExerciseButton.SetActive(false);
-
-        noButton.SetActive(exerciseInProgress);
-        //yesButton.SetActive(exerciseInProgress);
-
-        selectionCircle.gameObject.SetActive(false);
-    }
-
+    
 
     public void DisplayActualMainMenu()
     {
@@ -251,6 +209,25 @@ public class HandMenuBehaviour : MonoBehaviour
 
             DisplayOrHidePreviousAndNextButtons();
         }
+    }
+
+
+    public void DisplayQuitConfirmationMenu()
+    {
+        HideAllMenus(false);
+        quitExerciceConfirmationMenu.SetActive(true);
+
+        bool exerciseInProgress = MainManager.Instance.CurrentExercise.IsInProgress;
+
+        exerciseNotFinishedLabel.SetActive(exerciseInProgress);
+        exerciseFinishedLabel.SetActive(!exerciseInProgress);
+        anxietyButtonsParent.SetActive(!exerciseInProgress);
+        quitButton.SetActive(exerciseInProgress);
+        nextExerciseButton.SetActive(false);
+
+        noButton.SetActive(exerciseInProgress);
+
+        selectionCircle.gameObject.SetActive(false);
     }
 
 
@@ -390,8 +367,6 @@ public class HandMenuBehaviour : MonoBehaviour
         nextExerciseButton.SetActive(!isLastExercise);
         quitButton.SetActive(true);
         noButton.SetActive(false);
-        //yesButton.SetActive(false);
-
 
         AnxietyDataHandler.SetAnxietyLevel(anxietyLevel);
 
