@@ -85,7 +85,7 @@ public class HandMenuBehaviour : MonoBehaviour
             }
         }
 
-        MainManager.Instance.OnExerciseFinished.AddListener(DisplayActualMainMenu);
+        MainManager.Instance.OnExerciseFinished.AddListener(RefreshMenuIfMenuVisible);
     }
 
 
@@ -179,7 +179,7 @@ public class HandMenuBehaviour : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(newDirection);    // Sets the rotation of the menu.
         transform.rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
     }
-    
+
 
     public void DisplayActualMainMenu()
     {
@@ -208,6 +208,15 @@ public class HandMenuBehaviour : MonoBehaviour
             }
 
             DisplayOrHidePreviousAndNextButtons();
+        }
+    }
+
+
+    private void RefreshMenuIfMenuVisible()
+    {
+        if (isMenuVisible)
+        {
+            DisplayActualMainMenu();
         }
     }
 
